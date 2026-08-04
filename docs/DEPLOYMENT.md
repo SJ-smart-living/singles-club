@@ -1,0 +1,23 @@
+# Deployment Checklist
+
+- [ ] Supabase project belongs to the merchant
+- [ ] SQL files executed in order
+- [ ] Merchant Auth user created
+- [ ] `tenant_admins` row created
+- [ ] `config.js` credentials replaced
+- [ ] `tenantSlug` matches database tenant
+- [ ] Official domain added
+- [ ] Merchant contact email added
+- [ ] Business address added
+- [ ] Real events added
+- [ ] Real deadlines and capacities added
+- [ ] Stripe / Zelle / QR configured
+- [ ] Refund rules reviewed
+- [ ] Privacy policy reviewed for actual jurisdiction
+- [ ] Real authorized images uploaded
+- [ ] Test application submitted
+- [ ] Test photo upload completed
+- [ ] Admin can review application
+- [ ] Payment status can be changed
+- [ ] Exact venue appears only after venue_unlocked
+- [ ] Mobile PWA installation tested

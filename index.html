@@ -1,144 +1,245 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#151314">
-<meta name="description" content="Local singles club SaaS-style PWA for real events, live local activity, member applications, and recurring membership.">
-<meta name="robots" content="index,follow,max-image-preview:large">
-<link rel="canonical" id="canonicalLink" href="https://example.com/">
-<link rel="manifest" href="./manifest.webmanifest">
-<link rel="icon" href="./icon.svg" type="image/svg+xml">
-<title>Singles Club</title>
-<style>
-:root{--ink:#151314;--paper:#f5f1eb;--panel:#fffdfa;--rose:#a95563;--rose2:#d98c98;--gold:#b78d5d;--muted:#726a66;--line:rgba(21,19,20,.1);--green:#5d7668;--shadow:0 28px 80px rgba(45,30,31,.16)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 10% 0%,rgba(169,85,99,.1),transparent 28%),var(--paper);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-button,input,select,textarea{font:inherit}.wrap{width:min(1180px,calc(100% - 24px));margin:auto}
-header{position:sticky;top:0;z-index:50;background:rgba(245,241,235,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
-nav{height:66px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;font-weight:850}.logo{width:36px;height:36px;border-radius:14px;background:var(--ink);color:#fff;display:grid;place-items:center}.actions{display:flex;gap:8px}
-.btn{border:0;border-radius:999px;padding:12px 18px;font-weight:800;cursor:pointer}.primary{background:var(--ink);color:#fff}.soft{background:#fff;border:1px solid var(--line)}.rose{background:var(--rose);color:#fff}
-.hero{display:grid;grid-template-columns:.95fr 1.05fr;gap:24px;padding:34px 0 24px;align-items:stretch}.copy{padding:34px 8px 20px}.eyebrow{font-size:12px;letter-spacing:.14em;color:var(--gold);font-weight:900;text-transform:uppercase}
-h1{font:700 clamp(48px,7vw,82px)/1 Georgia,serif;letter-spacing:-.055em;margin:15px 0}h1 span{color:var(--rose)}.copy p{font-size:18px;line-height:1.7;color:var(--muted);max-width:640px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}.stat{background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:18px;padding:14px}.stat strong{display:block;font-size:24px}.stat span{font-size:12px;color:var(--muted)}
-.app{background:#1d181a;border-radius:32px;padding:14px;box-shadow:var(--shadow);min-height:680px;display:grid;grid-template-columns:1.15fr .85fr;gap:12px;overflow:hidden}
-.left,.right{background:rgba(255,255,255,.96);border-radius:24px;overflow:hidden}.topbar{display:flex;align-items:center;justify-content:space-between;padding:15px 16px;border-bottom:1px solid var(--line)}.topbar strong{font-size:15px}.live{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--rose);font-weight:800}.pulse{width:9px;height:9px;border-radius:50%;background:var(--rose2);box-shadow:0 0 0 0 rgba(217,140,152,.7);animation:pulse 1.7s infinite}@keyframes pulse{70%{box-shadow:0 0 0 12px rgba(217,140,152,0)}100%{box-shadow:0 0 0 0 rgba(217,140,152,0)}}
-.map{position:relative;height:330px;background:linear-gradient(145deg,#2b2426,#554346);overflow:hidden}.map::before{content:"";position:absolute;inset:-20%;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:42px 42px;transform:rotate(-8deg)}
-.map-title{position:absolute;left:18px;top:16px;color:#fff;z-index:2}.map-title h3{font:700 28px Georgia,serif;margin:5px 0}.map-title p{margin:0;color:#ddd0ce;font-size:13px}
-.pin{position:absolute;z-index:3;transform:translate(-50%,-50%)}.pin b{display:block;width:17px;height:17px;border-radius:50%;background:var(--rose2);border:4px solid #fff;box-shadow:0 0 0 0 rgba(217,140,152,.7);animation:pinpulse 2s infinite}.pin span{position:absolute;left:22px;top:-18px;background:#fff;color:var(--ink);padding:8px 10px;border-radius:12px;white-space:nowrap;font-size:11px;box-shadow:0 15px 30px rgba(0,0,0,.2)}@keyframes pinpulse{70%{box-shadow:0 0 0 18px rgba(217,140,152,0)}100%{box-shadow:0 0 0 0 rgba(217,140,152,0)}}
-.feed{padding:12px;height:322px;overflow:hidden;position:relative}.feed-track{display:grid;gap:9px;animation:scrollFeed 18s linear infinite}@keyframes scrollFeed{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
-.post{background:#faf7f3;border:1px solid var(--line);border-radius:16px;padding:12px}.post-head{display:flex;justify-content:space-between;gap:10px}.tag{font-size:10px;font-weight:900;padding:5px 8px;border-radius:999px;background:#f0e5e3;color:var(--rose);text-transform:uppercase;letter-spacing:.07em}.tag.activity{background:#e8eee9;color:var(--green)}.post p{margin:8px 0 0;font-size:13px;line-height:1.5;color:#514a47}
-.pricing{padding:14px;display:grid;gap:10px}.plan{border:1px solid var(--line);border-radius:18px;padding:14px;position:relative}.plan.popular{background:var(--ink);color:#fff}.plan h3{margin:0;font-size:15px}.amount{font-size:34px;font-weight:900;margin:6px 0}.amount small{font-size:11px;color:var(--muted)}.plan.popular .amount small,.plan.popular p{color:#d8ceca}.plan p{font-size:12px;color:var(--muted);line-height:1.45;margin:0 0 10px}.popular-badge{position:absolute;right:10px;top:10px;background:var(--rose);color:#fff;border-radius:999px;padding:5px 8px;font-size:10px;font-weight:900}
-.applybar{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:14px;border-top:1px solid var(--line);background:#fff}.applybar strong{font-size:14px}.applybar span{font-size:12px;color:var(--muted)}
-dialog{border:0;border-radius:24px;padding:0;max-width:560px;width:calc(100% - 28px);box-shadow:0 30px 90px rgba(0,0,0,.3)}dialog::backdrop{background:rgba(15,11,13,.62)}.modal{padding:22px}.step{display:none}.step.active{display:block}.progress{display:flex;gap:7px;margin:13px 0 18px}.dot{height:5px;flex:1;border-radius:999px;background:#ece5df}.dot.active{background:var(--rose)}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{margin-bottom:12px}.field label{display:block;font-size:12px;font-weight:800;margin-bottom:6px}.field input,.field select,.field textarea{width:100%;border:1px solid #cec3bb;border-radius:13px;padding:12px}.field textarea{min-height:80px}.upload{border:1.5px dashed #baaDA5;border-radius:16px;padding:14px}.preview{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.preview img{width:72px;height:72px;object-fit:cover;border-radius:11px}.form-actions{display:flex;justify-content:space-between;gap:8px;margin-top:14px}.notice{font-size:11px;color:var(--muted);line-height:1.5}.success{display:none;text-align:center}.success.show{display:block}.code{font-size:22px;font-weight:900;letter-spacing:.08em;background:#f2eae4;border-radius:14px;padding:12px;margin:12px 0}
-footer{padding:26px 0 70px;color:var(--muted);font-size:12px}.bottom{display:none}
-@media(max-width:900px){.hero{grid-template-columns:1fr}.app{grid-template-columns:1fr;min-height:auto}.right{display:grid;grid-template-columns:1fr 1fr}.pricing{grid-column:1/-1}.feed{height:280px}}
-@media(max-width:650px){.copy{padding-top:18px}.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:1/-1}.app{padding:8px;border-radius:24px}.right{grid-template-columns:1fr}.feed{height:270px}.row{grid-template-columns:1fr}.bottom{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:60;justify-content:space-around;background:rgba(255,253,249,.96);backdrop-filter:blur(18px);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom))}.bottom a{font-size:12px;font-weight:800;color:var(--ink);text-decoration:none}}
-</style>
-<script id="structuredData" type="application/ld+json"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#161314">
+  <meta name="description" content="Local singles club platform for real events, verified applications, member services, shared learning, and merchant-owned payments.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" id="canonicalLink" href="https://example.com/">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Singles Club</title>
+  <script id="structuredData" type="application/ld+json"></script>
 </head>
 <body>
-<header><div class="wrap"><nav>
-<div class="brand"><div class="logo">S</div><span id="brandName"></span></div>
-<div class="actions"><button class="btn soft" id="langBtn">EN</button><button class="btn primary" onclick="openApply()" data-i18n="join">申请加入</button></div>
-</nav></div></header>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home"><span class="logo">S</span><span id="brandName">Singles Club</span></a>
+    <div class="nav-actions">
+      <button class="btn ghost" id="langBtn">EN</button>
+      <button class="btn ghost" data-route="status" data-i18n="myStatus">我的申请</button>
+      <button class="btn primary" data-route="apply" data-i18n="apply">申请加入</button>
+    </div>
+  </div>
+</header>
 
-<main class="wrap hero">
-<section class="copy">
-<div class="eyebrow" data-i18n="eyebrow">真实活动 · 共同学习 · 认真连接</div>
-<h1 data-i18n-html="title">遇见一个<span>愿意走进未来</span>的人</h1>
-<p data-i18n="subtitle">一页完成发现、报名和会员解锁。附近活动实时闪烁，平台动态持续更新，会员资料只在授权范围内开放。</p>
-<button class="btn rose" onclick="openApply()" data-i18n="applyNow">查看本周名额</button>
-<div class="stats">
-<div class="stat"><strong>3</strong><span data-i18n="events">本周活动</span></div>
-<div class="stat"><strong>4</strong><span data-i18n="cities">附近城市</span></div>
-<div class="stat"><strong data-i18n="verified">人工确认</strong><span data-i18n="privacy">隐私优先</span></div>
-</div>
-</section>
+<main>
+  <section id="publicApp" class="route active">
+    <div class="wrap hero">
+      <div class="hero-copy">
+        <div class="eyebrow" data-i18n="eyebrow">真实活动 · 共同成长 · 认真连接</div>
+        <h1 data-i18n-html="heroTitle">遇见一个<span>愿意走进未来</span>的人</h1>
+        <p data-i18n="heroText">不是无限刷人。通过真实活动、共同学习和经过授权的会员资料，慢慢认识一个值得认真了解的人。</p>
+        <div class="hero-actions">
+          <button class="btn rose" data-route="apply" data-i18n="viewSpots">查看本周名额</button>
+          <button class="btn ghost" data-route="status" data-i18n="checkStatus">查询申请状态</button>
+        </div>
+        <div class="trust-row">
+          <span>✓ <b data-i18n="humanReview">人工确认</b></span>
+          <span>✓ <b data-i18n="privateByDefault">默认不公开</b></span>
+          <span>✓ <b data-i18n="merchantPayment">商家直接收款</b></span>
+        </div>
+      </div>
 
-<section class="app" aria-label="Singles Club App">
-<div class="left">
-<div class="topbar"><strong data-i18n="discover">附近正在发生</strong><div class="live"><span class="pulse"></span><span data-i18n="live">实时更新</span></div></div>
-<div class="map" id="map">
-<div class="map-title"><div class="eyebrow" style="color:#d9b58d">LIVE LOCAL MAP</div><h3 data-i18n="mapTitle">点击闪烁城市查看活动</h3><p data-i18n="mapSub">只显示活动区域，不显示会员实时位置。</p></div>
-</div>
-<div class="applybar"><div><strong id="featuredTitle"></strong><br><span id="featuredMeta"></span></div><button class="btn primary" onclick="openApply()" data-i18n="requestSpot">申请名额</button></div>
-</div>
+      <div class="app-shell">
+        <div class="shell-top">
+          <strong data-i18n="nearby">附近正在发生</strong>
+          <span class="live"><i></i><span data-i18n="liveUpdates">实时活动</span></span>
+        </div>
+        <div id="activityMap" class="activity-map">
+          <div class="map-copy">
+            <div class="eyebrow">LOCAL ACTIVITY MAP</div>
+            <h3 data-i18n="mapTitle">点击闪烁城市查看活动</h3>
+            <p data-i18n="mapPrivacy">只显示活动区域，不显示会员实时位置。</p>
+          </div>
+        </div>
+        <div class="shell-grid">
+          <div>
+            <div class="section-label" data-i18n="latestUpdates">最新动态</div>
+            <div class="feed-window"><div id="feedTrack" class="feed-track"></div></div>
+          </div>
+          <div>
+            <div class="section-label" data-i18n="membership">会员方案</div>
+            <div id="planMiniList" class="mini-plans"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<div class="right">
-<div>
-<div class="topbar"><strong data-i18n="today">今天</strong><span class="tag activity" data-i18n="alive">持续更新</span></div>
-<div class="feed"><div class="feed-track" id="feedTrack"></div></div>
-</div>
-<div>
-<div class="topbar"><strong data-i18n="plans">会员方案</strong><span class="tag" data-i18n="unlock">解锁更多</span></div>
-<div class="pricing" id="pricing"></div>
-</div>
-</div>
-</section>
+    <section class="wrap block">
+      <div class="section-head">
+        <div><div class="eyebrow" data-i18n="events">近期活动</div><h2 data-i18n="eventHeading">先一起做一件真实的小事</h2></div>
+        <p data-i18n="venuePrivacy">具体地点在报名和付款确认后提供。</p>
+      </div>
+      <div id="eventList" class="event-scroller"></div>
+    </section>
+
+    <section class="wrap block">
+      <div class="section-head">
+        <div><div class="eyebrow" data-i18n="learning">共同学习</div><h2 data-i18n="learningHeading">在一起完成事情时，真正了解彼此</h2></div>
+      </div>
+      <div id="learningList" class="learning-grid"></div>
+    </section>
+
+    <section class="wrap block">
+      <div class="section-head">
+        <div><div class="eyebrow" data-i18n="fullPlans">完整会员方案</div><h2 data-i18n="plansHeading">解锁参与，不是购买他人的隐私</h2></div>
+      </div>
+      <div id="planList" class="pricing-grid"></div>
+    </section>
+
+    <section class="wrap block trust-block">
+      <div class="section-head">
+        <div><div class="eyebrow" data-i18n="trustTitle">可信状态</div><h2 data-i18n="trustHeading">真实，但不过度暴露</h2></div>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-card"><strong data-i18n="sourceSelf">本人填写</strong><span data-i18n="sourceSelfSub">资料来源清楚</span></div>
+        <div class="trust-card"><strong data-i18n="sourceClub">俱乐部确认</strong><span data-i18n="sourceClubSub">真人与活动状态</span></div>
+        <div class="trust-card"><strong data-i18n="sourceUpdated">最近更新</strong><span id="updatedDate"></span></div>
+        <div class="trust-card"><strong data-i18n="sourcePermission">授权可见</strong><span data-i18n="sourcePermissionSub">本人控制公开范围</span></div>
+      </div>
+    </section>
+
+    <section class="wrap block legal-preview">
+      <h2 data-i18n="clearRules">清楚的规则，真实的边界</h2>
+      <p data-i18n="clearRulesText">活动由当前商家独立运营并收款。平台提供软件，不保证任何关系结果，也不公开出售会员隐私。</p>
+      <div class="legal-links">
+        <button class="link-btn" data-route="privacy" data-i18n="privacyPolicy">隐私政策</button>
+        <button class="link-btn" data-route="terms" data-i18n="terms">服务条款</button>
+        <button class="link-btn" data-route="guidelines" data-i18n="guidelines">社区规范</button>
+        <button class="link-btn" data-route="refund" data-i18n="refund">退款与取消</button>
+      </div>
+    </section>
+  </section>
+
+  <section id="applyApp" class="route">
+    <div class="wrap narrow">
+      <button class="back-link" data-route="home">← <span data-i18n="backHome">返回首页</span></button>
+      <div class="form-card">
+        <div class="eyebrow" data-i18n="application">会员申请</div>
+        <h2 data-i18n="applyHeading">一分钟完成申请</h2>
+        <p data-i18n="applySub">资料默认不公开。审核通过后，俱乐部再确认付款和活动安排。</p>
+        <div class="progress"><span class="active"></span><span></span><span></span></div>
+
+        <form id="applicationForm">
+          <div class="form-step active">
+            <div class="form-grid two">
+              <label><span data-i18n="name">姓名或昵称</span><input required name="display_name"></label>
+              <label><span data-i18n="age">年龄</span><input required name="age" type="number" min="18" max="99"></label>
+              <label><span data-i18n="city">城市</span><input required name="city"></label>
+              <label><span data-i18n="contact">电话或邮箱</span><input required name="contact"></label>
+            </div>
+          </div>
+
+          <div class="form-step">
+            <div class="form-grid">
+              <label><span data-i18n="goal">关系目标</span>
+                <select required name="relationship_goal" id="goalSelect"></select>
+              </label>
+              <label><span data-i18n="intro">一句话介绍自己</span><textarea required name="intro" maxlength="300"></textarea></label>
+              <label><span data-i18n="chooseOffer">选择活动或会员方案</span><select required id="offerSelect" name="offer_key"></select></label>
+            </div>
+          </div>
+
+          <div class="form-step">
+            <label class="upload-box">
+              <span data-i18n="photos">添加1—3张本人照片</span>
+              <input id="photoInput" type="file" accept="image/jpeg,image/png,image/webp" multiple>
+              <small data-i18n="photoRules">每张不超过5MB，仅支持 JPG、PNG、WEBP。</small>
+            </label>
+            <div id="photoPreview" class="photo-preview"></div>
+            <label class="consent"><input required type="checkbox" name="age_consent"><span data-i18n="consentText">我确认已满18岁，并同意当前商家仅为审核、活动联系和本人选择的服务使用本次资料。</span></label>
+            <label class="consent"><input required type="checkbox" name="policy_consent"><span data-i18n="policyConsent">我同意隐私政策、服务条款、社区规范和退款规则。</span></label>
+          </div>
+
+          <div id="formError" class="error"></div>
+          <div class="form-actions">
+            <button type="button" class="btn ghost" id="prevStep" data-i18n="back">上一步</button>
+            <button type="button" class="btn primary" id="nextStep" data-i18n="next">下一步</button>
+          </div>
+        </form>
+
+        <div id="applicationSuccess" class="success hidden">
+          <div class="success-icon">✓</div>
+          <h2 data-i18n="received">申请已收到</h2>
+          <p data-i18n="saveCode">请保存你的申请编号：</p>
+          <div id="applicationCode" class="code-box"></div>
+          <p data-i18n="statusHint">你可以使用申请编号和联系方式查询审核、付款和地址状态。</p>
+          <button class="btn rose" data-route="status" data-i18n="viewStatus">查看申请状态</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="statusApp" class="route">
+    <div class="wrap narrow">
+      <button class="back-link" data-route="home">← <span data-i18n="backHome">返回首页</span></button>
+      <div class="form-card">
+        <div class="eyebrow" data-i18n="statusTitle">申请状态</div>
+        <h2 data-i18n="statusHeading">查看审核、付款和活动地址</h2>
+        <form id="statusForm" class="status-form">
+          <label><span data-i18n="applicationCodeLabel">申请编号</span><input required name="code"></label>
+          <label><span data-i18n="contact">电话或邮箱</span><input required name="contact"></label>
+          <button class="btn primary" type="submit" data-i18n="check">查询</button>
+        </form>
+        <div id="statusResult"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="adminApp" class="route">
+    <div class="admin-layout">
+      <aside>
+        <div class="brand"><span class="logo">S</span><span id="adminBrand">Singles Club</span></div>
+        <button data-admin-tab="dashboard" class="active" data-i18n="dashboard">概览</button>
+        <button data-admin-tab="events" data-i18n="manageEvents">活动管理</button>
+        <button data-admin-tab="posts" data-i18n="managePosts">动态管理</button>
+        <button data-admin-tab="applications" data-i18n="applications">会员申请</button>
+        <button data-admin-tab="payments" data-i18n="paymentSettings">收款设置</button>
+        <button data-admin-tab="plans" data-i18n="planSettings">套餐设置</button>
+        <button data-admin-tab="club" data-i18n="clubSettings">俱乐部设置</button>
+        <button id="adminLogout" data-i18n="logout">退出</button>
+      </aside>
+      <section class="admin-content">
+        <div id="adminLogin" class="admin-login">
+          <div class="form-card">
+            <h2 data-i18n="merchantLogin">商家登录</h2>
+            <form id="adminLoginForm">
+              <label><span data-i18n="email">邮箱</span><input required type="email" name="email"></label>
+              <label><span data-i18n="password">密码</span><input required type="password" name="password"></label>
+              <button class="btn primary" type="submit" data-i18n="login">登录</button>
+            </form>
+            <div id="adminLoginError" class="error"></div>
+          </div>
+        </div>
+        <div id="adminWorkspace" class="hidden">
+          <div id="adminPanel"></div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section id="legalApp" class="route">
+    <div class="wrap narrow">
+      <button class="back-link" data-route="home">← <span data-i18n="backHome">返回首页</span></button>
+      <article id="legalContent" class="legal-page"></article>
+    </div>
+  </section>
 </main>
 
-<footer><div class="wrap"><span id="footerBrand"></span> · <span id="footerCity"></span></div></footer>
-<div class="bottom"><a href="#" onclick="openApply();return false" data-i18n="applyShort">申请</a><a href="#" onclick="choosePlan('connection');return false">$299</a><a href="#" onclick="openPay();return false" data-i18n="payShort">付款</a></div>
-
-<dialog id="applyDialog"><div class="modal">
-<div style="display:flex;justify-content:space-between;align-items:center"><h2 data-i18n="application">会员申请</h2><button class="btn soft" onclick="applyDialog.close()">×</button></div>
-<div class="progress"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
-<form id="form">
-<div class="step active"><div class="row"><div class="field"><label data-i18n="name">姓名或昵称</label><input required name="name"></div><div class="field"><label data-i18n="age">年龄</label><input required type="number" min="18" max="99" name="age"></div></div><div class="row"><div class="field"><label data-i18n="city">城市</label><input required name="city"></div><div class="field"><label data-i18n="contact">电话或邮箱</label><input required name="contact"></div></div></div>
-<div class="step"><div class="field"><label data-i18n="goal">关系目标</label><select required name="goal"><option value="">—</option><option>Serious relationship</option><option>Marriage-minded</option><option>Start as friends</option></select></div><div class="field"><label data-i18n="intro">一句话介绍</label><textarea required name="intro" maxlength="220"></textarea></div><div class="field"><label data-i18n="offer">活动或会员方案</label><select id="offerSelect" required name="offer"></select></div></div>
-<div class="step"><div class="field"><label data-i18n="photo">添加1—3张本人照片</label><div class="upload"><input id="photos" type="file" accept="image/*" multiple><div class="preview" id="preview"></div></div></div><label style="display:flex;gap:8px;font-size:12px"><input required type="checkbox"><span data-i18n="consent">我确认已满18岁，并同意俱乐部仅为审核和活动联系使用本次资料。</span></label><p class="notice" data-i18n="privateDefault">资料默认不公开，只有本人授权的简介才会显示。</p></div>
-<div class="form-actions"><button class="btn soft" type="button" id="backBtn" style="visibility:hidden" data-i18n="back">上一步</button><button class="btn primary" type="button" id="nextBtn" data-i18n="next">下一步</button></div>
-</form>
-<div class="success" id="success"><div class="eyebrow" data-i18n="received">申请已收到</div><h2 data-i18n="thanks">谢谢你的认真填写</h2><p data-i18n="save">保存申请编号：</p><div class="code" id="code"></div><button class="btn rose" onclick="openPay()" data-i18n="payment">查看付款方式</button></div>
-</div></dialog>
-
-<dialog id="payDialog"><div class="modal"><div style="display:flex;justify-content:space-between;align-items:center"><h2 data-i18n="choosePay">选择付款方式</h2><button class="btn soft" onclick="payDialog.close()">×</button></div><div id="paymentList"></div><p class="notice" data-i18n="addressNote">付款后，具体地址在商家确认报名后发送。</p></div></dialog>
+<footer>
+  <div class="wrap footer">
+    <span id="footerBrand">Singles Club</span>
+    <span>·</span>
+    <button class="link-btn" data-route="privacy" data-i18n="privacyPolicy">隐私政策</button>
+    <button class="link-btn" data-route="terms" data-i18n="terms">服务条款</button>
+    <button class="link-btn" data-route="admin" data-i18n="merchantLogin">商家登录</button>
+  </div>
+</footer>
 
 <script src="./config.js"></script>
-<script>
-const t={
-zh:{join:"申请加入",eyebrow:"真实活动 · 共同学习 · 认真连接",title:'遇见一个<span>愿意走进未来</span>的人',subtitle:"一页完成发现、报名和会员解锁。附近活动实时闪烁，平台动态持续更新，会员资料只在授权范围内开放。",applyNow:"查看本周名额",events:"本周活动",cities:"附近城市",verified:"人工确认",privacy:"隐私优先",discover:"附近正在发生",live:"实时更新",mapTitle:"点击闪烁城市查看活动",mapSub:"只显示活动区域，不显示会员实时位置。",requestSpot:"申请名额",today:"今天",alive:"持续更新",plans:"会员方案",unlock:"解锁更多",applyShort:"申请",payShort:"付款",application:"会员申请",name:"姓名或昵称",age:"年龄",city:"城市",contact:"电话或邮箱",goal:"关系目标",intro:"一句话介绍",offer:"活动或会员方案",photo:"添加1—3张本人照片",consent:"我确认已满18岁，并同意俱乐部仅为审核和活动联系使用本次资料。",privateDefault:"资料默认不公开，只有本人授权的简介才会显示。",back:"上一步",next:"下一步",submit:"提交申请",received:"申请已收到",thanks:"谢谢你的认真填写",save:"保存申请编号：",payment:"查看付款方式",choosePay:"选择付款方式",addressNote:"付款后，具体地址在商家确认报名后发送。",popular:"最受欢迎",month:"月",choose:"选择",club:"基础活动与公共学习",connection:"更多活动、授权简介和人工介绍",private:"私人活动与更深入人工服务",platform:"俱乐部发布",activity:"活动更新",member:"会员动态"},
-en:{join:"Apply",eyebrow:"REAL EVENTS · SHARED LEARNING · SERIOUS CONNECTIONS",title:'Meet someone <span>ready to build a future</span>',subtitle:"Discover, apply, and unlock membership in one page. Nearby events pulse live, platform updates keep moving, and profiles appear only with permission.",applyNow:"View this week's spots",events:"Events this week",cities:"Nearby cities",verified:"Human review",privacy:"Privacy first",discover:"Happening nearby",live:"Live updates",mapTitle:"Tap a pulsing city to view activity",mapSub:"Only event areas are shown—never member live locations.",requestSpot:"Request a spot",today:"Today",alive:"Always moving",plans:"Membership plans",unlock:"Unlock more",applyShort:"Apply",payShort:"Pay",application:"Member application",name:"Name or nickname",age:"Age",city:"City",contact:"Phone or email",goal:"Relationship goal",intro:"One-line introduction",offer:"Event or membership",photo:"Add 1–3 real photos",consent:"I confirm I am 18 or older and consent to use of this information only for review and event contact.",privateDefault:"Profiles are private by default and shown only with permission.",back:"Back",next:"Next",submit:"Submit application",received:"APPLICATION RECEIVED",thanks:"Thank you for applying",save:"Save application number:",payment:"View payment options",choosePay:"Choose payment method",addressNote:"The exact address is sent only after the merchant confirms registration.",popular:"Most popular",month:"month",choose:"Choose",club:"Basic events and public learning",connection:"More events, authorized profiles, and human introductions",private:"Private events and deeper human support",platform:"Club post",activity:"Event update",member:"Member post"}
-};
-let lang=localStorage.getItem("lang")||"zh",step=0,selectedOffer="plan:connection";
-const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
-function render(){
-document.documentElement.lang=lang==="zh"?"zh-CN":"en";
-$$("[data-i18n]").forEach(x=>{const v=t[lang][x.dataset.i18n];if(v)x.textContent=v});
-$$("[data-i18n-html]").forEach(x=>{const v=t[lang][x.dataset.i18nHtml];if(v)x.innerHTML=v});
-$("#langBtn").textContent=lang==="zh"?"EN":"中文";$("#brandName").textContent=CONFIG.brandName;$("#footerBrand").textContent=CONFIG.brandName;$("#footerCity").textContent=CONFIG.city;document.title=CONFIG.pageTitle;$("#canonicalLink").href=CONFIG.siteUrl;
-renderMap();renderFeed();renderPricing();renderOfferSelect();renderFeature();renderPayments();showStep();updateSchema();
-}
-function renderMap(){
-const map=$("#map");map.querySelectorAll(".pin").forEach(x=>x.remove());
-CONFIG.mapPoints.forEach((p,i)=>{const el=document.createElement("button");el.className="pin";el.style.left=p.x+"%";el.style.top=p.y+"%";el.innerHTML=`<b></b><span><strong>${p.city}</strong><br>${lang==="zh"?p.zh:p.en}</span>`;el.onclick=()=>{selectedOffer="event:"+CONFIG.events[i%CONFIG.events.length].id;openApply()};map.appendChild(el)});
-}
-function renderFeed(){
-const posts=[...CONFIG.posts,...CONFIG.posts];
-$("#feedTrack").innerHTML=posts.map(p=>`<article class="post"><div class="post-head"><span class="tag ${p.type==="activity"?"activity":""}">${p.type==="platform"?t[lang].platform:p.type==="activity"?t[lang].activity:t[lang].member}</span><small>${p.time}</small></div><p>${lang==="zh"?p.zh:p.en}</p></article>`).join("");
-}
-function renderPricing(){
-$("#pricing").innerHTML=CONFIG.plans.map((p,i)=>`<article class="plan ${i===1?"popular":""}">${i===1?`<span class="popular-badge">${t[lang].popular}</span>`:""}<h3>${p.name}</h3><div class="amount">$${p.price}<small> / ${t[lang].month}</small></div><p>${i===0?t[lang].club:i===1?t[lang].connection:t[lang].private}</p><button class="btn ${i===1?"rose":"primary"} small" onclick="choosePlan('${p.id}')">${t[lang].choose}</button></article>`).join("");
-}
-function renderOfferSelect(){
-const s=$("#offerSelect");s.innerHTML="";
-CONFIG.events.forEach(e=>s.insertAdjacentHTML("beforeend",`<option value="event:${e.id}">${lang==="zh"?e.titleZh:e.titleEn} · ${e.price}</option>`));
-CONFIG.plans.forEach(p=>s.insertAdjacentHTML("beforeend",`<option value="plan:${p.id}">${p.name} · $${p.price}</option>`));
-s.value=selectedOffer;
-}
-function renderFeature(){const f=CONFIG.events[0];$("#featuredTitle").textContent=lang==="zh"?f.titleZh:f.titleEn;$("#featuredMeta").textContent=`${f.date} · ${f.city} · ${f.price}`}
-function choosePlan(id){selectedOffer="plan:"+id;openApply()}
-function openApply(){renderOfferSelect();$("#applyDialog").showModal()}
-$("#langBtn").onclick=()=>{lang=lang==="zh"?"en":"zh";localStorage.setItem("lang",lang);render()}
-$("#photos").onchange=e=>{const files=[...e.target.files].slice(0,3);$("#preview").innerHTML="";files.forEach(f=>{const img=document.createElement("img");img.src=URL.createObjectURL(f);$("#preview").appendChild(img)})}
-function showStep(){$$(".step").forEach((x,i)=>x.classList.toggle("active",i===step));$$(".dot").forEach((x,i)=>x.classList.toggle("active",i<=step));$("#backBtn").style.visibility=step?"visible":"hidden";$("#nextBtn").textContent=step===2?t[lang].submit:t[lang].next}
-$("#backBtn").onclick=()=>{if(step>0){step--;showStep()}};
-$("#nextBtn").onclick=()=>{const cur=$$(".step")[step],inputs=[...cur.querySelectorAll("input,select,textarea")];const invalid=inputs.find(x=>!x.checkValidity());if(invalid){invalid.reportValidity();return}if(step<2){step++;showStep()}else submitApplication()};
-function submitApplication(){const code="SC-"+new Date().toISOString().slice(2,10).replaceAll("-","")+"-"+Math.random().toString(36).slice(2,6).toUpperCase();const fd=new FormData($("#form"));fd.append("application_code",code);if(CONFIG.formEndpoint)fetch(CONFIG.formEndpoint,{method:"POST",body:fd}).catch(()=>{});$("#form").style.display="none";$("#success").classList.add("show");$("#code").textContent=code}
-function renderPayments(){const box=$("#paymentList");box.innerHTML="";if(CONFIG.stripeUrl)box.innerHTML+=`<div class="post"><strong>Stripe</strong><p><a class="btn primary" href="${CONFIG.stripeUrl}" target="_blank">Open secure payment</a></p></div>`;if(CONFIG.zelle.enabled)box.innerHTML+=`<div class="post"><strong>Zelle</strong><p>${CONFIG.zelle.name}<br>${CONFIG.zelle.contact}</p></div>`;if(CONFIG.qr.enabled)box.innerHTML+=`<div class="post"><strong>QR</strong><p>${CONFIG.qr.label}</p></div>`;if(CONFIG.onsitePayment)box.innerHTML+=`<div class="post"><strong>Pay at event</strong></div>`}
-function openPay(){renderPayments();$("#payDialog").showModal()}
-function updateSchema(){const graph=[{"@type":"Organization","name":CONFIG.brandName,"url":CONFIG.siteUrl,"email":CONFIG.contactEmail,"areaServed":CONFIG.city},{"@type":"WebSite","name":CONFIG.brandName,"url":CONFIG.siteUrl}];CONFIG.events.forEach(e=>graph.push({"@type":"Event","name":e.titleEn,"startDate":e.startDate,"eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":e.venue,"address":{"@type":"PostalAddress","addressLocality":e.city,"addressRegion":e.region,"addressCountry":e.country}},"offers":{"@type":"Offer","price":e.priceNumber,"priceCurrency":e.currency,"url":CONFIG.siteUrl,"availability":"https://schema.org/LimitedAvailability"}}));$("#structuredData").textContent=JSON.stringify({"@context":"https://schema.org","@graph":graph})}
-window.openApply=openApply;window.openPay=openPay;window.choosePlan=choosePlan;
-render();if("serviceWorker"in navigator)navigator.serviceWorker.register("./service-worker.js");
-</script>
-</body></html>
+<script src="./app.js"></script>
+</body>
+</html>
