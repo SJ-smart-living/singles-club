@@ -4,126 +4,289 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#171313">
-<meta name="description" content="Local singles club for small real-world events, verified applications, and serious long-term connections.">
+<meta name="description" content="A premium local singles club for real-world events, member applications, shared learning, and serious long-term connections.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" id="canonicalLink" href="https://example.com/">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="icon" href="./icon.svg" type="image/svg+xml">
-<title>Singles Club — Real Events, Serious Connections</title>
+<title>Singles Club — Real Events, Shared Growth, Serious Connections</title>
 <style>
-:root{--ink:#171313;--paper:#f8f3ed;--card:#fffdf9;--rose:#aa5d66;--gold:#b58c5e;--muted:#756d67;--line:rgba(23,19,19,.1);--shadow:0 24px 70px rgba(49,32,29,.14)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 12% 2%,rgba(170,93,102,.10),transparent 30%),var(--paper);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-button,input,select,textarea{font:inherit}.wrap{width:min(1080px,calc(100% - 28px));margin:auto}
-header{position:sticky;top:0;z-index:30;background:rgba(248,243,237,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
+:root{
+  --ink:#171313;--paper:#f8f3ed;--card:#fffdf9;--rose:#a95864;--rose2:#d88d96;
+  --gold:#b58c5e;--muted:#746b66;--line:rgba(23,19,19,.1);--green:#567164;
+  --shadow:0 24px 70px rgba(49,32,29,.14)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 12% 2%,rgba(169,88,100,.10),transparent 30%),var(--paper);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+button,input,select,textarea{font:inherit}.wrap{width:min(1120px,calc(100% - 28px));margin:auto}
+header{position:sticky;top:0;z-index:50;background:rgba(248,243,237,.89);backdrop-filter:blur(22px);border-bottom:1px solid var(--line)}
 nav{height:66px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;font-weight:850}.logo{width:35px;height:35px;border-radius:13px;background:var(--ink);color:#fff;display:grid;place-items:center}.actions{display:flex;gap:8px}
-.btn{border:0;border-radius:999px;padding:12px 18px;font-weight:800;cursor:pointer}.primary{background:var(--ink);color:#fff}.soft{background:#fff;border:1px solid var(--line);color:var(--ink)}
-.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;padding:60px 0 36px}.eyebrow{font-size:12px;letter-spacing:.15em;color:var(--gold);font-weight:900;text-transform:uppercase}
-h1{font:700 clamp(48px,7vw,78px)/1.02 Georgia,serif;letter-spacing:-.055em;margin:16px 0}h1 span{color:var(--rose)}.hero p{font-size:18px;line-height:1.7;color:var(--muted);max-width:620px}
-.hero-card{min-height:465px;border-radius:34px;padding:22px;display:flex;align-items:flex-end;background-image:linear-gradient(180deg,transparent 35%,rgba(18,12,12,.72)),url('./assets/hero.jpg');background-size:cover;background-position:center;box-shadow:var(--shadow)}
-.panel{width:100%;padding:19px;border-radius:22px;background:rgba(255,253,249,.94);backdrop-filter:blur(14px)}.panel h3{font:700 28px Georgia,serif;margin:8px 0}.meta{display:flex;gap:7px;flex-wrap:wrap}.pill{padding:7px 10px;background:#eee6de;border-radius:999px;font-size:12px}.price{font-size:25px;font-weight:900;margin:13px 0}
-.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}.quick div{background:rgba(255,255,255,.65);border:1px solid var(--line);border-radius:18px;padding:14px}.quick strong{display:block;font-size:20px}.quick span{font-size:12px;color:var(--muted)}
+.btn{border:0;border-radius:999px;padding:12px 18px;font-weight:800;cursor:pointer;transition:.2s transform,.2s opacity}.btn:hover{transform:translateY(-1px)}.primary{background:var(--ink);color:#fff}.soft{background:#fff;border:1px solid var(--line);color:var(--ink)}.rose{background:var(--rose);color:#fff}.small{padding:9px 13px;font-size:13px}
+.hero{display:grid;grid-template-columns:1.03fr .97fr;gap:28px;align-items:center;padding:58px 0 34px}.eyebrow{font-size:12px;letter-spacing:.15em;color:var(--gold);font-weight:900;text-transform:uppercase}
+h1{font:700 clamp(48px,7vw,80px)/1.01 Georgia,serif;letter-spacing:-.057em;margin:16px 0}h1 span{color:var(--rose)}.hero p{font-size:18px;line-height:1.7;color:var(--muted);max-width:630px}
+.hero-card{min-height:480px;border-radius:36px;padding:22px;display:flex;align-items:flex-end;background-image:linear-gradient(180deg,transparent 30%,rgba(18,12,12,.75)),url('./assets/hero.jpg');background-size:cover;background-position:center;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero-card::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 75% 24%,rgba(255,255,255,.16),transparent 20%);pointer-events:none}
+.panel{position:relative;z-index:1;width:100%;padding:19px;border-radius:22px;background:rgba(255,253,249,.94);backdrop-filter:blur(14px)}.panel h3{font:700 28px Georgia,serif;margin:8px 0}.meta{display:flex;gap:7px;flex-wrap:wrap}.pill{padding:7px 10px;background:#eee6de;border-radius:999px;font-size:12px}.price{font-size:25px;font-weight:900;margin:13px 0}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}.quick div{background:rgba(255,255,255,.67);border:1px solid var(--line);border-radius:18px;padding:14px}.quick strong{display:block;font-size:20px}.quick span{font-size:12px;color:var(--muted)}
 section{padding:48px 0}.head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-bottom:20px}.head h2{font:700 40px Georgia,serif;margin:7px 0 0}.head p{color:var(--muted)}
-.scroller{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(290px,34%);gap:14px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory}.scroller::-webkit-scrollbar{height:7px}.scroller::-webkit-scrollbar-thumb{background:#d7cec6;border-radius:999px}
-.event{scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;transition:.25s transform}.event:hover{transform:translateY(-4px)}.cover{height:190px;background-size:cover;background-position:center}.content{padding:18px}.content h3{font:700 24px Georgia,serif;margin:0 0 7px}.content p{color:var(--muted);line-height:1.5}
-.tonight{background:var(--ink);color:#fff;border-radius:30px;padding:28px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}.tonight p{color:#d7ceca}.badge{display:inline-flex;padding:8px 11px;border-radius:999px;background:rgba(255,255,255,.1);font-size:12px}
+.livebar{display:flex;gap:10px;overflow:auto;padding-bottom:4px}.livechip{flex:0 0 auto;background:#fff;border:1px solid var(--line);border-radius:999px;padding:10px 13px;font-size:13px}.pulse-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--rose);margin-right:7px;box-shadow:0 0 0 0 rgba(169,88,100,.55);animation:pulse 1.8s infinite}@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(169,88,100,0)}100%{box-shadow:0 0 0 0 rgba(169,88,100,0)}}
+.map{height:390px;border-radius:30px;background:linear-gradient(145deg,#2d2424,#5a4642);position:relative;overflow:hidden;box-shadow:var(--shadow)}.map::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:52px 52px;transform:rotate(-7deg) scale(1.15)}
+.map-copy{position:absolute;left:24px;top:22px;color:#fff;z-index:2}.map-copy h3{font:700 32px Georgia,serif;margin:6px 0}.map-copy p{color:#ddd0cb}
+.pin{position:absolute;z-index:3;transform:translate(-50%,-50%);cursor:pointer}.pin i{display:block;width:18px;height:18px;background:var(--rose2);border:4px solid rgba(255,255,255,.9);border-radius:50%;box-shadow:0 0 0 0 rgba(216,141,150,.65);animation:pulseMap 2s infinite}.pin span{display:none;position:absolute;left:24px;top:-22px;min-width:180px;background:#fff;color:var(--ink);padding:11px;border-radius:13px;font-size:12px;box-shadow:0 15px 35px rgba(0,0,0,.2)}.pin:hover span,.pin:focus span{display:block}@keyframes pulseMap{70%{box-shadow:0 0 0 18px rgba(216,141,150,0)}100%{box-shadow:0 0 0 0 rgba(216,141,150,0)}}
+.scroller{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(290px,33%);gap:14px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory}.event{scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;transition:.25s transform}.event:hover{transform:translateY(-4px)}.cover{height:190px;background-size:cover;background-position:center}.content{padding:18px}.content h3{font:700 24px Georgia,serif;margin:0 0 7px}.content p{color:var(--muted);line-height:1.5}
+.feed-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}.feed{display:grid;gap:11px}.post{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px}.post-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.tag{font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:7px 9px;border-radius:999px;background:#f0e7e2;color:var(--rose)}.tag.activity{background:#e8eee9;color:var(--green)}.tag.member{background:#eee9f3;color:#705682}.post p{line-height:1.6;color:#504947}.post-actions{display:flex;gap:8px;flex-wrap:wrap}
+.challenge{background:linear-gradient(145deg,#211818,#4b3233);color:#fff;border-radius:25px;padding:23px;min-height:210px}.challenge p{color:#dfd3cf;line-height:1.6}.challenge .progressline{height:7px;background:rgba(255,255,255,.12);border-radius:999px;overflow:hidden;margin:18px 0}.challenge .progressline span{display:block;width:62%;height:100%;background:linear-gradient(90deg,var(--gold),#e4bea0)}
+.learning{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.learn{background:#fff;border:1px solid var(--line);border-radius:21px;padding:18px}.learn h3{margin:9px 0}.learn p{color:var(--muted);line-height:1.5}
+.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.plan{background:#fff;border:1px solid var(--line);border-radius:25px;padding:21px;position:relative}.plan.popular{background:var(--ink);color:#fff;transform:translateY(-6px)}.plan.popular p,.plan.popular li{color:#d9cfcb}.plan .amount{font-size:43px;font-weight:900;margin:12px 0}.plan .amount small{font-size:14px;color:var(--muted)}.plan ul{padding-left:18px;color:var(--muted);line-height:1.8}.popular-badge{position:absolute;right:16px;top:15px;background:var(--rose);color:#fff;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:900}
 .apply{display:grid;grid-template-columns:.78fr 1.22fr;gap:18px}.intro-box{background:linear-gradient(150deg,#211818,#4b3233);color:#fff;border-radius:27px;padding:26px}.intro-box p{color:#ded3d0;line-height:1.65}
-form{background:#fff;border:1px solid var(--line);border-radius:27px;padding:22px}.progress{display:flex;gap:7px;margin-bottom:18px}.dot{height:5px;flex:1;border-radius:999px;background:#ece5df}.dot.active{background:var(--rose)}
-.step{display:none}.step.active{display:block}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{margin-bottom:12px}.field label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}.field input,.field select,.field textarea{width:100%;border:1px solid #cec3bb;border-radius:14px;padding:13px;background:#fff}.field textarea{min-height:88px;resize:vertical}
-.upload{border:1.5px dashed #baaDA5;border-radius:16px;padding:16px}.preview{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}.preview img{width:78px;height:78px;object-fit:cover;border-radius:12px}.notice{font-size:12px;color:var(--muted);line-height:1.5}.form-actions{display:flex;justify-content:space-between;gap:8px;margin-top:15px}
-.success{display:none;text-align:center;padding:26px}.success.show{display:block}.code{font-size:23px;font-weight:900;letter-spacing:.08em;background:#f2eae4;border-radius:15px;padding:13px;margin:13px 0}
-.faq{display:grid;grid-template-columns:1fr 1fr;gap:12px}.faq details{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}.faq summary{font-weight:800;cursor:pointer}.faq p{color:var(--muted);line-height:1.55}
-footer{padding:34px 0 84px;color:var(--muted);font-size:13px}.bottom{display:none}
-dialog{border:0;border-radius:23px;padding:0;max-width:490px;width:calc(100% - 28px)}dialog::backdrop{background:rgba(18,13,13,.55)}.modal{padding:22px}.pay{border:1px solid var(--line);border-radius:16px;padding:14px;margin:9px 0}.qr{width:165px;height:165px;margin:9px auto;display:grid;place-items:center;background:#f1eae4;border-radius:14px}
-@media(max-width:760px){.hero,.apply{grid-template-columns:1fr}.hero{padding-top:34px}.hero-card{min-height:360px}.quick{grid-template-columns:1fr 1fr}.quick div:last-child{grid-column:1/-1}.scroller{grid-auto-columns:86%}.row{grid-template-columns:1fr}.head{align-items:start;flex-direction:column}.tonight{grid-template-columns:1fr}.faq{grid-template-columns:1fr}.desktop{display:none}.bottom{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;justify-content:space-around;background:rgba(255,253,249,.95);backdrop-filter:blur(18px);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom))}.bottom a{font-size:12px;font-weight:850;color:var(--ink);text-decoration:none}}
+form{background:#fff;border:1px solid var(--line);border-radius:27px;padding:22px}.progress{display:flex;gap:7px;margin-bottom:18px}.dot{height:5px;flex:1;border-radius:999px;background:#ece5df}.dot.active{background:var(--rose)}.step{display:none}.step.active{display:block}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{margin-bottom:12px}.field label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}.field input,.field select,.field textarea{width:100%;border:1px solid #cec3bb;border-radius:14px;padding:13px;background:#fff}.field textarea{min-height:88px;resize:vertical}.upload{border:1.5px dashed #baaDA5;border-radius:16px;padding:16px}.preview{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}.preview img{width:78px;height:78px;object-fit:cover;border-radius:12px}.notice{font-size:12px;color:var(--muted);line-height:1.5}.form-actions{display:flex;justify-content:space-between;gap:8px;margin-top:15px}.success{display:none;text-align:center;padding:26px}.success.show{display:block}.code{font-size:23px;font-weight:900;letter-spacing:.08em;background:#f2eae4;border-radius:15px;padding:13px;margin:13px 0}
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.trust .item{background:#fff;border:1px solid var(--line);border-radius:19px;padding:16px}.trust strong{display:block}.trust span{font-size:12px;color:var(--muted)}
+footer{padding:34px 0 86px;color:var(--muted);font-size:13px}.bottom{display:none}
+dialog{border:0;border-radius:23px;padding:0;max-width:520px;width:calc(100% - 28px)}dialog::backdrop{background:rgba(18,13,13,.58)}.modal{padding:22px}.pay{border:1px solid var(--line);border-radius:16px;padding:14px;margin:9px 0}.qr{width:165px;height:165px;margin:9px auto;display:grid;place-items:center;background:#f1eae4;border-radius:14px}
+.admin-drawer{position:fixed;right:18px;bottom:90px;z-index:60}.admin-panel{display:none;position:fixed;right:18px;bottom:145px;width:min(390px,calc(100% - 36px));max-height:72vh;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:24px;padding:18px;box-shadow:0 30px 90px rgba(0,0,0,.25);z-index:60}.admin-panel.show{display:block}.admin-panel h3{margin-top:0}.admin-grid{display:grid;gap:10px}.admin-grid input,.admin-grid textarea{width:100%;padding:11px;border:1px solid #cec3bb;border-radius:12px}
+@media(max-width:780px){.hero,.apply,.feed-grid{grid-template-columns:1fr}.hero{padding-top:34px}.hero-card{min-height:360px}.quick{grid-template-columns:1fr 1fr}.quick div:last-child{grid-column:1/-1}.scroller{grid-auto-columns:86%}.row{grid-template-columns:1fr}.head{align-items:start;flex-direction:column}.learning,.pricing,.trust{grid-template-columns:1fr}.popular{transform:none!important}.bottom{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;justify-content:space-around;background:rgba(255,253,249,.96);backdrop-filter:blur(18px);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom))}.bottom a{font-size:12px;font-weight:850;color:var(--ink);text-decoration:none}.admin-drawer{bottom:78px}}
 </style>
 <script id="structuredData" type="application/ld+json"></script>
 </head>
 <body>
-<header><div class="wrap"><nav><div class="brand"><div class="logo">S</div><span id="brandName"></span></div><div class="actions"><button class="btn soft" id="langBtn">EN</button><button class="btn primary" onclick="go('apply')" data-i18n="join">申请加入</button></div></nav></div></header>
+<header><div class="wrap"><nav>
+  <div class="brand"><div class="logo">S</div><span id="brandName"></span></div>
+  <div class="actions"><button class="btn soft" id="langBtn">EN</button><button class="btn primary" onclick="go('apply')" data-i18n="join">申请加入</button></div>
+</nav></div></header>
 
 <main>
 <div class="wrap hero">
-<div>
-<div class="eyebrow" data-i18n="eyebrow">本地单身俱乐部 · 真实线下活动</div>
-<h1 data-i18n-html="title">遇见一个<span>值得认识</span>的人</h1>
-<p data-i18n="subtitle">小范围线下活动，简单申请，人工确认。少一点刷屏，多一点真实见面。</p>
-<button class="btn primary" onclick="go('apply')" data-i18n="applyNow">报名近期活动</button>
-<div class="quick"><div><strong id="eventCount">3</strong><span data-i18n="weekendEvents">近期活动</span></div><div><strong id="cityCount">3</strong><span data-i18n="nearbyCities">附近城市</span></div><div><strong data-i18n="humanReview">人工确认</strong><span data-i18n="privacyFirst">隐私优先</span></div></div>
-</div>
-<div class="hero-card"><div class="panel"><div class="eyebrow" data-i18n="nextEvent">近期活动</div><h3 id="featuredTitle"></h3><div class="meta"><span class="pill" id="featuredDate"></span><span class="pill" id="featuredCity"></span><span class="pill" id="featuredSeats"></span></div><div class="price" id="featuredPrice"></div><button class="btn primary" onclick="go('apply')" data-i18n="reserve">申请名额</button></div></div>
+  <div>
+    <div class="eyebrow" data-i18n="eyebrow">真实活动 · 共同成长 · 认真连接</div>
+    <h1 data-i18n-html="title">遇见一个<span>愿意走进未来</span>的人</h1>
+    <p data-i18n="subtitle">不是无限刷人。通过真实活动、共同学习和有限公开的会员资料，慢慢认识一个值得认真了解的人。</p>
+    <button class="btn primary" onclick="go('apply')" data-i18n="applyNow">查看本周名额</button>
+    <div class="quick">
+      <div><strong id="eventCount"></strong><span data-i18n="upcoming">近期活动</span></div>
+      <div><strong id="cityCount"></strong><span data-i18n="cities">附近城市</span></div>
+      <div><strong data-i18n="verified">人工确认</strong><span data-i18n="privacyFirst">隐私优先</span></div>
+    </div>
+  </div>
+  <div class="hero-card"><div class="panel">
+    <div class="eyebrow" data-i18n="featured">本周精选</div>
+    <h3 id="featuredTitle"></h3>
+    <div class="meta"><span class="pill" id="featuredDate"></span><span class="pill" id="featuredCity"></span><span class="pill" id="featuredSeats"></span></div>
+    <div class="price" id="featuredPrice"></div>
+    <button class="btn rose" onclick="selectEvent(CONFIG.events[0].id)" data-i18n="requestSpot">申请名额</button>
+  </div></div>
 </div>
 
-<section><div class="wrap"><div class="tonight"><div><span class="badge" data-i18n="tonight">本周精选</span><h2 id="tonightTitle"></h2><p id="tonightMeta"></p></div><button class="btn soft" onclick="go('apply')" data-i18n="joinThis">申请参加</button></div></div></section>
-
-<section id="events"><div class="wrap"><div class="head"><div><div class="eyebrow" data-i18n="events">近期线下活动</div><h2 data-i18n="meetReal">从一次真实见面开始</h2></div><p data-i18n="limit">活动人数有限，提交申请后由工作人员确认。</p></div><div class="scroller" id="eventsGrid"></div></div></section>
-
-<section id="apply"><div class="wrap apply">
-<div class="intro-box"><div class="eyebrow" data-i18n="member">会员申请</div><h2 data-i18n="oneMinute">一分钟完成</h2><p data-i18n="introText">填写基本资料并上传本人照片。审核通过后，俱乐部会联系你确认活动和付款。</p></div>
-<div><form id="form">
-<div class="progress"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
-<div class="step active">
-<div class="row"><div class="field"><label data-i18n="name">姓名或昵称</label><input required name="name" autocomplete="name"></div><div class="field"><label data-i18n="age">年龄</label><input required type="number" min="18" max="99" name="age"></div></div>
-<div class="row"><div class="field"><label data-i18n="city">所在城市</label><input required name="city" autocomplete="address-level2"></div><div class="field"><label data-i18n="contact">电话或邮箱</label><input required name="contact"></div></div>
-</div>
-<div class="step">
-<div class="field"><label data-i18n="goal">关系目标</label><select required name="goal"><option value="">—</option><option data-i18n="serious">认真寻找长期关系</option><option data-i18n="marriage">希望认识结婚对象</option><option data-i18n="friends">先从朋友开始</option></select></div>
-<div class="field"><label data-i18n="intro">一句话介绍自己</label><textarea required maxlength="220" name="intro"></textarea></div>
-<div class="field"><label data-i18n="event">选择活动</label><select required id="eventSelect" name="event"></select></div>
-</div>
-<div class="step">
-<div class="field"><label data-i18n="photo">添加1—3张本人照片</label><div class="upload"><input id="photos" type="file" accept="image/*" multiple><div class="preview" id="preview"></div></div></div>
-<label style="display:flex;gap:8px;align-items:flex-start;font-size:13px"><input required type="checkbox"><span data-i18n="consent">我确认已满18岁，并同意俱乐部为审核和活动联系使用本次提交的信息。</span></label>
-<p class="notice" data-i18n="privacy">照片和联系方式仅用于申请审核与活动联系。</p>
-</div>
-<div class="form-actions"><button class="btn soft" type="button" id="backBtn" style="visibility:hidden" data-i18n="back">上一步</button><button class="btn primary" type="button" id="nextBtn" data-i18n="next">下一步</button></div>
-</form>
-<div class="success" id="success"><div class="eyebrow" data-i18n="received">申请已收到</div><h2 data-i18n="thanks">谢谢你的认真填写</h2><p data-i18n="save">请保存报名编号：</p><div class="code" id="code"></div><button class="btn primary" onclick="openPay()" data-i18n="payment">查看付款方式</button></div></div>
+<section><div class="wrap">
+  <div class="livebar" id="liveBar"></div>
 </div></section>
 
-<section><div class="wrap"><div class="head"><div><div class="eyebrow">FAQ</div><h2 data-i18n="faqTitle">常见问题</h2></div></div><div class="faq">
-<details><summary data-i18n="faq1">提交申请会立即收费吗？</summary><p data-i18n="faq1a">不会。工作人员确认活动适合度与名额后，再向你确认付款。</p></details>
-<details><summary data-i18n="faq2">照片会公开展示吗？</summary><p data-i18n="faq2a">申请照片只用于审核，除非你以后另行同意公开。</p></details>
-<details><summary data-i18n="faq3">活动地点在哪里？</summary><p data-i18n="faq3a">活动城市公开，具体地点会在确认报名后提供。</p></details>
-<details><summary data-i18n="faq4">支持哪些付款方式？</summary><p data-i18n="faq4a">由当前俱乐部配置Stripe、Zelle、二维码或现场付款。</p></details>
-</div></div></section>
+<section id="map"><div class="wrap">
+  <div class="head"><div><div class="eyebrow" data-i18n="nearbyNow">附近正在发生</div><h2 data-i18n="mapTitle">在真实城市里，开始一次连接</h2></div><p data-i18n="mapPrivacy">地图只显示活动城市和大致区域，不显示会员实时位置。</p></div>
+  <div class="map" id="cityMap">
+    <div class="map-copy"><div class="eyebrow" data-i18n="localActivityMap">LOCAL ACTIVITY MAP</div><h3 data-i18n="mapPrompt">点击闪烁地点查看近期活动</h3><p data-i18n="mapSub">真实名额、真实截止时间、真实活动状态。</p></div>
+  </div>
+</div></section>
+
+<section id="events"><div class="wrap">
+  <div class="head"><div><div class="eyebrow" data-i18n="events">近期活动</div><h2 data-i18n="meetReal">先一起做一件真实的小事</h2></div><p data-i18n="eventNote">活动由俱乐部发布，具体地点在报名确认后显示。</p></div>
+  <div class="scroller" id="eventsGrid"></div>
+</div></section>
+
+<section id="today"><div class="wrap">
+  <div class="head"><div><div class="eyebrow" data-i18n="today">今天</div><h2 data-i18n="alive">让平台每天都有事情发生</h2></div></div>
+  <div class="feed-grid">
+    <div class="feed" id="feed"></div>
+    <div class="challenge">
+      <div class="eyebrow" data-i18n="weeklyChallenge">本周挑战</div>
+      <h2 id="challengeTitle"></h2>
+      <p id="challengeText"></p>
+      <div class="progressline"><span></span></div>
+      <button class="btn soft" onclick="joinChallenge()" data-i18n="joinChallenge">加入挑战</button>
+    </div>
+  </div>
+</div></section>
+
+<section id="learning"><div class="wrap">
+  <div class="head"><div><div class="eyebrow" data-i18n="learning">共同学习</div><h2 data-i18n="learnTitle">在一起完成事情时，真正了解彼此</h2></div></div>
+  <div class="learning" id="learningGrid"></div>
+</div></section>
+
+<section id="pricing"><div class="wrap">
+  <div class="head"><div><div class="eyebrow" data-i18n="membership">会员方案</div><h2 data-i18n="pricingTitle">不是购买隐私，而是解锁更真实的参与</h2></div><p data-i18n="pricingSub">高等级会员获得更多活动、学习小组和人工服务。</p></div>
+  <div class="pricing" id="pricingGrid"></div>
+</div></section>
+
+<section id="apply"><div class="wrap apply">
+  <div class="intro-box"><div class="eyebrow" data-i18n="application">会员申请</div><h2 data-i18n="oneMinute">一分钟完成</h2><p data-i18n="applicationText">提交基本资料和本人照片。审核后，俱乐部再确认活动、会员资格和付款。</p></div>
+  <div>
+    <form id="applicationForm">
+      <div class="progress"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+      <div class="step active">
+        <div class="row"><div class="field"><label data-i18n="name">姓名或昵称</label><input required name="name"></div><div class="field"><label data-i18n="age">年龄</label><input required type="number" min="18" max="99" name="age"></div></div>
+        <div class="row"><div class="field"><label data-i18n="city">所在城市</label><input required name="city"></div><div class="field"><label data-i18n="contact">电话或邮箱</label><input required name="contact"></div></div>
+      </div>
+      <div class="step">
+        <div class="field"><label data-i18n="goal">关系目标</label><select required name="goal"><option value="">—</option><option>Serious long-term relationship</option><option>Marriage-minded introduction</option><option>Start as friends</option></select></div>
+        <div class="field"><label data-i18n="intro">一句话介绍自己</label><textarea required maxlength="220" name="intro"></textarea></div>
+        <div class="field"><label data-i18n="eventChoice">选择活动或会员方案</label><select required id="offerSelect" name="offer"></select></div>
+      </div>
+      <div class="step">
+        <div class="field"><label data-i18n="photo">添加1—3张本人照片</label><div class="upload"><input id="photos" type="file" accept="image/*" multiple><div class="preview" id="preview"></div></div></div>
+        <label style="display:flex;gap:8px;align-items:flex-start;font-size:13px"><input required type="checkbox"><span data-i18n="consent">我确认已满18岁，并同意俱乐部仅为审核、活动联系和本人选择的会员服务使用本次资料。</span></label>
+        <p class="notice" data-i18n="privacy">资料默认不公开。经本人授权的简介才会向符合条件的会员显示。</p>
+      </div>
+      <div class="form-actions"><button class="btn soft" type="button" id="backBtn" style="visibility:hidden" data-i18n="back">上一步</button><button class="btn primary" type="button" id="nextBtn" data-i18n="next">下一步</button></div>
+    </form>
+    <div class="success" id="success"><div class="eyebrow" data-i18n="received">申请已收到</div><h2 data-i18n="thanks">谢谢你的认真填写</h2><p data-i18n="saveCode">请保存申请编号：</p><div class="code" id="applicationCode"></div><button class="btn primary" onclick="openPay()" data-i18n="viewPayment">查看付款方式</button></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="head"><div><div class="eyebrow" data-i18n="trust">可信状态</div><h2 data-i18n="trustTitle">真实，但不过度暴露</h2></div></div>
+  <div class="trust">
+    <div class="item"><strong data-i18n="selfProvided">本人填写</strong><span data-i18n="selfProvidedSub">资料来源清楚</span></div>
+    <div class="item"><strong data-i18n="clubConfirmed">俱乐部确认</strong><span data-i18n="clubConfirmedSub">真人与活动状态</span></div>
+    <div class="item"><strong data-i18n="lastUpdated">最近更新</strong><span id="lastUpdatedText"></span></div>
+    <div class="item"><strong data-i18n="controlledVisibility">授权可见</strong><span data-i18n="controlledVisibilitySub">本人控制公开范围</span></div>
+  </div>
+</div></section>
 </main>
 
 <footer><div class="wrap"><span id="footerBrand"></span> · <span id="footerCity"></span> · <span data-i18n="footer">真实连接，从本地活动开始。</span></div></footer>
-<div class="bottom"><a href="#events" data-i18n="eventsShort">活动</a><a href="#apply" data-i18n="joinShort">申请</a><a href="#" onclick="openPay();return false" data-i18n="payShort">付款</a></div>
+<div class="bottom"><a href="#map" data-i18n="mapNav">地图</a><a href="#today" data-i18n="todayNav">今天</a><a href="#pricing" data-i18n="membershipNav">会员</a><a href="#apply" data-i18n="applyNav">申请</a></div>
 
-<dialog id="payDialog"><div class="modal"><div style="display:flex;justify-content:space-between;align-items:center"><h2 data-i18n="choosePay">选择付款方式</h2><button class="btn soft" onclick="payDialog.close()">×</button></div><div id="paymentList"></div><p class="notice" data-i18n="payNote">使用Zelle或二维码付款后，请保存付款记录，并提供报名编号。</p></div></dialog>
+<button class="btn soft admin-drawer" id="adminButton" onclick="toggleAdmin()">⚙</button>
+<div class="admin-panel" id="adminPanel">
+  <h3 data-i18n="merchantSettings">商家设置</h3>
+  <div class="admin-grid">
+    <input id="adminBrand" placeholder="Brand name">
+    <input id="adminCity" placeholder="City">
+    <input id="adminStripe" placeholder="Stripe Payment Link">
+    <input id="adminZelleName" placeholder="Zelle receiver name">
+    <input id="adminZelleContact" placeholder="Zelle phone/email">
+    <textarea id="adminNotice" placeholder="Urgency notice"></textarea>
+    <button class="btn primary" onclick="saveAdmin()" data-i18n="saveSettings">保存当前设备设置</button>
+    <button class="btn soft" onclick="resetAdmin()" data-i18n="resetSettings">恢复默认配置</button>
+  </div>
+  <p class="notice" data-i18n="adminNote">这个最小后台仅修改当前设备。正式多人运营需连接数据库。</p>
+</div>
+
+<dialog id="payDialog"><div class="modal">
+  <div style="display:flex;justify-content:space-between;align-items:center"><h2 data-i18n="choosePay">选择付款方式</h2><button class="btn soft" onclick="payDialog.close()">×</button></div>
+  <div id="paymentList"></div>
+  <p class="notice" data-i18n="paymentNote">付款后，具体活动地址会在商家确认报名后发送到你的联系方式。</p>
+</div></dialog>
 
 <script src="./config.js"></script>
 <script>
 const tr={
-zh:{join:"申请加入",eyebrow:"本地单身俱乐部 · 真实线下活动",title:'遇见一个<span>值得认识</span>的人',subtitle:"小范围线下活动，简单申请，人工确认。少一点刷屏，多一点真实见面。",applyNow:"报名近期活动",weekendEvents:"近期活动",nearbyCities:"附近城市",humanReview:"人工确认",privacyFirst:"隐私优先",nextEvent:"近期活动",reserve:"申请名额",tonight:"本周精选",joinThis:"申请参加",events:"近期线下活动",meetReal:"从一次真实见面开始",limit:"活动人数有限，提交申请后由工作人员确认。",member:"会员申请",oneMinute:"一分钟完成",introText:"填写基本资料并上传本人照片。审核通过后，俱乐部会联系你确认活动和付款。",name:"姓名或昵称",age:"年龄",city:"所在城市",contact:"电话或邮箱",goal:"关系目标",serious:"认真寻找长期关系",marriage:"希望认识结婚对象",friends:"先从朋友开始",intro:"一句话介绍自己",event:"选择活动",photo:"添加1—3张本人照片",consent:"我确认已满18岁，并同意俱乐部为审核和活动联系使用本次提交的信息。",privacy:"照片和联系方式仅用于申请审核与活动联系。",back:"上一步",next:"下一步",submit:"提交申请",received:"申请已收到",thanks:"谢谢你的认真填写",save:"请保存报名编号：",payment:"查看付款方式",faqTitle:"常见问题",faq1:"提交申请会立即收费吗？",faq1a:"不会。工作人员确认活动适合度与名额后，再向你确认付款。",faq2:"照片会公开展示吗？",faq2a:"申请照片只用于审核，除非你以后另行同意公开。",faq3:"活动地点在哪里？",faq3a:"活动城市公开，具体地点会在确认报名后提供。",faq4:"支持哪些付款方式？",faq4a:"由当前俱乐部配置Stripe、Zelle、二维码或现场付款。",footer:"真实连接，从本地活动开始。",eventsShort:"活动",joinShort:"申请",payShort:"付款",choosePay:"选择付款方式",payNote:"使用Zelle或二维码付款后，请保存付款记录，并提供报名编号。",stripe:"打开Stripe付款",zelle:"Zelle人工确认",qr:"扫码付款",onsite:"现场付款"},
-en:{join:"Apply",eyebrow:"LOCAL SINGLES CLUB · REAL EVENTS",title:'Meet someone <span>worth meeting</span>',subtitle:"Small local events, a simple application, and human review. Less swiping, more real meetings.",applyNow:"Apply for an event",weekendEvents:"Upcoming events",nearbyCities:"Nearby cities",humanReview:"Human review",privacyFirst:"Privacy first",nextEvent:"UPCOMING EVENT",reserve:"Request a spot",tonight:"THIS WEEK'S PICK",joinThis:"Apply to join",events:"UPCOMING LOCAL EVENTS",meetReal:"Begin with one real meeting",limit:"Attendance is limited and reviewed by club staff.",member:"MEMBER APPLICATION",oneMinute:"Apply in one minute",introText:"Share basic details and real photos. The club will contact you after review to confirm the event and payment.",name:"Name or nickname",age:"Age",city:"City",contact:"Phone or email",goal:"Relationship goal",serious:"Seeking a serious long-term relationship",marriage:"Hoping to meet a future spouse",friends:"Start as friends",intro:"One-line introduction",event:"Choose an event",photo:"Add 1–3 real photos",consent:"I confirm that I am 18 or older and consent to use of this information for review and event contact.",privacy:"Photos and contact details are used only for application review and event coordination.",back:"Back",next:"Next",submit:"Submit application",received:"APPLICATION RECEIVED",thanks:"Thank you for applying",save:"Save your application number:",payment:"View payment options",faqTitle:"Frequently asked questions",faq1:"Will I be charged when I apply?",faq1a:"No. Staff confirms suitability and availability before payment.",faq2:"Will my photos be public?",faq2a:"Application photos are used only for review unless you later consent to publication.",faq3:"Where are events held?",faq3a:"The city is public. The exact venue is shared after confirmation.",faq4:"Which payment methods are supported?",faq4a:"The club can enable Stripe, Zelle, QR payment, or on-site payment.",footer:"Real connections begin with local events.",eventsShort:"Events",joinShort:"Apply",payShort:"Pay",choosePay:"Choose a payment method",payNote:"For Zelle or QR payments, save your receipt and provide your application number.",stripe:"Open Stripe payment",zelle:"Zelle · Manual confirmation",qr:"Pay by QR code",onsite:"Pay at event"}};
-let lang=localStorage.getItem("club_lang")||"zh",step=0;
-const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
+zh:{
+join:"申请加入",eyebrow:"真实活动 · 共同成长 · 认真连接",title:'遇见一个<span>愿意走进未来</span>的人',subtitle:"不是无限刷人。通过真实活动、共同学习和有限公开的会员资料，慢慢认识一个值得认真了解的人。",applyNow:"查看本周名额",upcoming:"近期活动",cities:"附近城市",verified:"人工确认",privacyFirst:"隐私优先",featured:"本周精选",requestSpot:"申请名额",nearbyNow:"附近正在发生",mapTitle:"在真实城市里，开始一次连接",mapPrivacy:"地图只显示活动城市和大致区域，不显示会员实时位置。",localActivityMap:"本地活动地图",mapPrompt:"点击闪烁地点查看近期活动",mapSub:"真实名额、真实截止时间、真实活动状态。",events:"近期活动",meetReal:"先一起做一件真实的小事",eventNote:"活动由俱乐部发布，具体地点在报名确认后显示。",today:"今天",alive:"让平台每天都有事情发生",weeklyChallenge:"本周挑战",joinChallenge:"加入挑战",learning:"共同学习",learnTitle:"在一起完成事情时，真正了解彼此",membership:"会员方案",pricingTitle:"不是购买隐私，而是解锁更真实的参与",pricingSub:"高等级会员获得更多活动、学习小组和人工服务。",application:"会员申请",oneMinute:"一分钟完成",applicationText:"提交基本资料和本人照片。审核后，俱乐部再确认活动、会员资格和付款。",name:"姓名或昵称",age:"年龄",city:"所在城市",contact:"电话或邮箱",goal:"关系目标",intro:"一句话介绍自己",eventChoice:"选择活动或会员方案",photo:"添加1—3张本人照片",consent:"我确认已满18岁，并同意俱乐部仅为审核、活动联系和本人选择的会员服务使用本次资料。",privacy:"资料默认不公开。经本人授权的简介才会向符合条件的会员显示。",back:"上一步",next:"下一步",submit:"提交申请",received:"申请已收到",thanks:"谢谢你的认真填写",saveCode:"请保存申请编号：",viewPayment:"查看付款方式",trust:"可信状态",trustTitle:"真实，但不过度暴露",selfProvided:"本人填写",selfProvidedSub:"资料来源清楚",clubConfirmed:"俱乐部确认",clubConfirmedSub:"真人与活动状态",lastUpdated:"最近更新",controlledVisibility:"授权可见",controlledVisibilitySub:"本人控制公开范围",footer:"真实连接，从本地活动开始。",mapNav:"地图",todayNav:"今天",membershipNav:"会员",applyNav:"申请",merchantSettings:"商家设置",saveSettings:"保存当前设备设置",resetSettings:"恢复默认配置",adminNote:"这个最小后台仅修改当前设备。正式多人运营需连接数据库。",choosePay:"选择付款方式",paymentNote:"付款后，具体活动地址会在商家确认报名后发送到你的联系方式。",platformPost:"俱乐部发布",activityPost:"活动更新",memberPost:"会员发布",join:"申请加入",oneTime:"单次体验",month:"月",mostPopular:"最受欢迎",choosePlan:"选择方案",challengeJoined:"你已加入本周挑战。"
+},
+en:{
+join:"Apply",eyebrow:"REAL EVENTS · SHARED GROWTH · SERIOUS CONNECTIONS",title:'Meet someone <span>ready to build a future</span>',subtitle:"No endless swiping. Meet through real events, shared learning, and member profiles shown only with permission.",applyNow:"View this week's spots",upcoming:"Upcoming events",cities:"Nearby cities",verified:"Human review",privacyFirst:"Privacy first",featured:"THIS WEEK'S PICK",requestSpot:"Request a spot",nearbyNow:"HAPPENING NEARBY",mapTitle:"Start a connection in a real city",mapPrivacy:"The map shows event areas, never a member's live location.",localActivityMap:"LOCAL ACTIVITY MAP",mapPrompt:"Tap a pulsing place to view activity",mapSub:"Real capacity, deadlines, and event status.",events:"UPCOMING EVENTS",meetReal:"Begin by doing one real thing together",eventNote:"Exact venues appear only after registration is confirmed.",today:"TODAY",alive:"Something real happens every day",weeklyChallenge:"WEEKLY CHALLENGE",joinChallenge:"Join challenge",learning:"SHARED LEARNING",learnTitle:"You understand someone by doing things together",membership:"MEMBERSHIP",pricingTitle:"Unlock participation—not private data",pricingSub:"Higher tiers include more events, learning groups, and human support.",application:"MEMBER APPLICATION",oneMinute:"Apply in one minute",applicationText:"Share basic details and real photos. The club confirms the event, membership, and payment after review.",name:"Name or nickname",age:"Age",city:"City",contact:"Phone or email",goal:"Relationship goal",intro:"One-line introduction",eventChoice:"Choose an event or membership",photo:"Add 1–3 real photos",consent:"I confirm I am 18 or older and consent to use of this information only for review, event contact, and services I choose.",privacy:"Your information is private by default. Only an authorized profile is visible to eligible members.",back:"Back",next:"Next",submit:"Submit application",received:"APPLICATION RECEIVED",thanks:"Thank you for applying",saveCode:"Save your application number:",viewPayment:"View payment options",trust:"TRUST STATUS",trustTitle:"Real, without overexposure",selfProvided:"Member provided",selfProvidedSub:"Source is clearly labeled",clubConfirmed:"Club confirmed",clubConfirmedSub:"Real-person and event status",lastUpdated:"Last updated",controlledVisibility:"Permission-based visibility",controlledVisibilitySub:"Members control what is shared",footer:"Real connections begin with local events.",mapNav:"Map",todayNav:"Today",membershipNav:"Membership",applyNav:"Apply",merchantSettings:"Merchant settings",saveSettings:"Save on this device",resetSettings:"Reset defaults",adminNote:"This minimal admin edits only the current device. Shared operations require a database.",choosePay:"Choose a payment method",paymentNote:"After payment, the exact venue is sent only after the merchant confirms registration.",platformPost:"Club post",activityPost:"Event update",memberPost:"Member post",oneTime:"One-time",month:"month",mostPopular:"Most popular",choosePlan:"Choose plan",challengeJoined:"You joined this week's challenge."
+}};
+let lang=localStorage.getItem("club_lang")||"zh", step=0;
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const runtime=()=>({...CONFIG,...JSON.parse(localStorage.getItem("merchant_overrides")||"{}")});
 function go(id){document.getElementById(id).scrollIntoView({behavior:"smooth"})}
 function render(){
-document.documentElement.lang=lang==="zh"?"zh-CN":"en";
-$$("[data-i18n]").forEach(x=>{const v=tr[lang][x.dataset.i18n];if(v)x.textContent=v});
-$$("[data-i18n-html]").forEach(x=>{const v=tr[lang][x.dataset.i18nHtml];if(v)x.innerHTML=v});
-$("#langBtn").textContent=lang==="zh"?"EN":"中文";
-const grid=$("#eventsGrid"),sel=$("#eventSelect");grid.innerHTML="";sel.innerHTML="";
-CONFIG.events.forEach((e,i)=>{const title=lang==="zh"?e.titleZh:e.titleEn;grid.insertAdjacentHTML("beforeend",`<article class="event" itemscope itemtype="https://schema.org/Event"><div class="cover" style="background-image:url('${e.image}')"></div><div class="content"><h3 itemprop="name">${title}</h3><p><time itemprop="startDate" datetime="${e.startDate}">${e.date}</time><br><span itemprop="location">${e.city}</span> · ${e.seats} seats</p><div class="price">${e.price}</div><button class="btn primary" onclick="choose('${e.id}')">${tr[lang].reserve}</button></div></article>`);sel.insertAdjacentHTML("beforeend",`<option value="${e.id}">${title} · ${e.date}</option>`)});
-const f=CONFIG.events[0];$("#featuredTitle").textContent=lang==="zh"?f.titleZh:f.titleEn;$("#featuredDate").textContent=f.date;$("#featuredCity").textContent=f.city;$("#featuredSeats").textContent=f.seats+" seats";$("#featuredPrice").textContent=f.price;$("#tonightTitle").textContent=lang==="zh"?f.titleZh:f.titleEn;$("#tonightMeta").textContent=`${f.date} · ${f.city} · ${f.seats} seats`;$("#eventCount").textContent=CONFIG.events.length;$("#cityCount").textContent=new Set(CONFIG.events.map(e=>e.city)).size;
-showStep();
+  const C=runtime();
+  document.documentElement.lang=lang==="zh"?"zh-CN":"en";
+  $$("[data-i18n]").forEach(x=>{const v=tr[lang][x.dataset.i18n];if(v)x.textContent=v});
+  $$("[data-i18n-html]").forEach(x=>{const v=tr[lang][x.dataset.i18nHtml];if(v)x.innerHTML=v});
+  $("#langBtn").textContent=lang==="zh"?"EN":"中文";
+  $("#brandName").textContent=C.brandName;$("#footerBrand").textContent=C.brandName;$("#footerCity").textContent=C.city;
+  $("#eventCount").textContent=C.events.length;$("#cityCount").textContent=new Set(C.events.map(e=>e.city)).size;
+  document.title=C.pageTitle;$("#canonicalLink").href=C.siteUrl;
+  renderEvents(C);renderMap(C);renderFeed(C);renderLearning(C);renderPricing(C);renderPayments(C);renderLiveBar(C);renderChallenge(C);showStep();
+  $("#lastUpdatedText").textContent=new Date().toLocaleDateString(lang==="zh"?"zh-CN":"en-US",{year:"numeric",month:"long"});
+  updateSchema(C);
 }
-function choose(id){$("#eventSelect").value=id;go("apply")}
-$("#langBtn").onclick=()=>{lang=lang==="zh"?"en":"zh";localStorage.setItem("club_lang",lang);render()}
-$("#photos").onchange=e=>{const files=[...e.target.files].slice(0,3);$("#preview").innerHTML="";files.forEach(f=>{const img=document.createElement("img");img.src=URL.createObjectURL(f);$("#preview").appendChild(img)})}
-function showStep(){ $$(".step").forEach((x,i)=>x.classList.toggle("active",i===step));$$(".dot").forEach((x,i)=>x.classList.toggle("active",i<=step));$("#backBtn").style.visibility=step?"visible":"hidden";$("#nextBtn").textContent=step===2?tr[lang].submit:tr[lang].next}
+function renderLiveBar(C){
+  $("#liveBar").innerHTML=C.liveNotices.map(n=>`<div class="livechip"><span class="pulse-dot"></span>${lang==="zh"?n.zh:n.en}</div>`).join("");
+}
+function renderEvents(C){
+  const grid=$("#eventsGrid"),select=$("#offerSelect");grid.innerHTML="";select.innerHTML="";
+  C.events.forEach(e=>{
+    const title=lang==="zh"?e.titleZh:e.titleEn;
+    grid.insertAdjacentHTML("beforeend",`<article class="event"><div class="cover" style="background-image:url('${e.image}')"></div><div class="content"><h3>${title}</h3><p>${e.date}<br>${e.city} · ${e.seats} seats</p><div class="price">${e.price}</div><button class="btn primary small" onclick="selectEvent('${e.id}')">${tr[lang].requestSpot}</button></div></article>`);
+    select.insertAdjacentHTML("beforeend",`<option value="event:${e.id}">${title} · ${e.price}</option>`);
+  });
+  C.plans.forEach(p=>select.insertAdjacentHTML("beforeend",`<option value="plan:${p.id}">${p.name} · $${p.price}</option>`));
+  const f=C.events[0];$("#featuredTitle").textContent=lang==="zh"?f.titleZh:f.titleEn;$("#featuredDate").textContent=f.date;$("#featuredCity").textContent=f.city;$("#featuredSeats").textContent=f.seats+" seats";$("#featuredPrice").textContent=f.price;
+}
+function renderMap(C){
+  const map=$("#cityMap");map.querySelectorAll(".pin").forEach(x=>x.remove());
+  C.mapPoints.forEach(p=>{
+    const el=document.createElement("button");el.className="pin";el.style.left=p.x+"%";el.style.top=p.y+"%";el.setAttribute("aria-label",p.city);
+    el.innerHTML=`<i></i><span><strong>${p.city}</strong><br>${lang==="zh"?p.zh:p.en}</span>`;el.onclick=()=>go("events");map.appendChild(el);
+  });
+}
+function renderFeed(C){
+  $("#feed").innerHTML=C.posts.map(p=>{
+    const cls=p.type==="platform"?"":p.type==="activity"?"activity":"member";
+    const label=p.type==="platform"?tr[lang].platformPost:p.type==="activity"?tr[lang].activityPost:tr[lang].memberPost;
+    return `<article class="post"><div class="post-head"><span class="tag ${cls}">${label}</span><small>${p.time}</small></div><p>${lang==="zh"?p.zh:p.en}</p><div class="post-actions"><button class="btn soft small">♡</button><button class="btn soft small" onclick="go('events')">${tr[lang].events}</button></div></article>`;
+  }).join("");
+}
+function renderChallenge(C){
+  $("#challengeTitle").textContent=lang==="zh"?C.challenge.titleZh:C.challenge.titleEn;
+  $("#challengeText").textContent=lang==="zh"?C.challenge.textZh:C.challenge.textEn;
+}
+function renderLearning(C){
+  $("#learningGrid").innerHTML=C.learningGroups.map(g=>`<article class="learn"><span class="tag activity">${g.city}</span><h3>${lang==="zh"?g.titleZh:g.titleEn}</h3><p>${lang==="zh"?g.textZh:g.textEn}</p><button class="btn soft small" onclick="go('apply')">${tr[lang].join}</button></article>`).join("");
+}
+function renderPricing(C){
+  $("#pricingGrid").innerHTML=C.plans.map((p,i)=>`<article class="plan ${i===1?"popular":""}">${i===1?`<span class="popular-badge">${tr[lang].mostPopular}</span>`:""}<div class="eyebrow">${p.name}</div><div class="amount">$${p.price}<small> / ${tr[lang].month}</small></div><p>${lang==="zh"?p.summaryZh:p.summaryEn}</p><ul>${(lang==="zh"?p.featuresZh:p.featuresEn).map(x=>`<li>${x}</li>`).join("")}</ul><button class="btn ${i===1?"rose":"primary"}" onclick="choosePlan('${p.id}')">${tr[lang].choosePlan}</button></article>`).join("");
+}
+function selectEvent(id){$("#offerSelect").value="event:"+id;go("apply")}
+function choosePlan(id){$("#offerSelect").value="plan:"+id;go("apply")}
+$("#langBtn").onclick=()=>{lang=lang==="zh"?"en":"zh";localStorage.setItem("club_lang",lang);render()};
+$("#photos").onchange=e=>{const files=[...e.target.files].slice(0,3);$("#preview").innerHTML="";files.forEach(f=>{const img=document.createElement("img");img.src=URL.createObjectURL(f);$("#preview").appendChild(img)})};
+function showStep(){$$(".step").forEach((x,i)=>x.classList.toggle("active",i===step));$$(".dot").forEach((x,i)=>x.classList.toggle("active",i<=step));$("#backBtn").style.visibility=step?"visible":"hidden";$("#nextBtn").textContent=step===2?tr[lang].submit:tr[lang].next}
 $("#backBtn").onclick=()=>{if(step>0){step--;showStep()}};
 $("#nextBtn").onclick=()=>{const cur=$$(".step")[step],inputs=[...cur.querySelectorAll("input,select,textarea")];const invalid=inputs.find(x=>!x.checkValidity());if(invalid){invalid.reportValidity();return}if(step<2){step++;showStep()}else submitApplication()};
-function submitApplication(){const code="SC-"+new Date().toISOString().slice(2,10).replaceAll("-","")+"-"+Math.random().toString(36).slice(2,6).toUpperCase();const fd=new FormData($("#form"));fd.append("application_code",code);if(CONFIG.formEndpoint)fetch(CONFIG.formEndpoint,{method:"POST",body:fd}).catch(()=>{});localStorage.setItem("last_application",JSON.stringify({code,createdAt:new Date().toISOString()}));$("#form").style.display="none";$("#success").classList.add("show");$("#code").textContent=code}
-function renderPayments(){const box=$("#paymentList");box.innerHTML="";if(CONFIG.stripeUrl)box.innerHTML+=`<div class="pay"><strong>Stripe</strong><p><a class="btn primary" href="${CONFIG.stripeUrl}" target="_blank" rel="noopener">${tr[lang].stripe}</a></p></div>`;if(CONFIG.zelle.enabled)box.innerHTML+=`<div class="pay"><strong>${tr[lang].zelle}</strong><p>${CONFIG.zelle.name}<br>${CONFIG.zelle.contact}</p></div>`;if(CONFIG.qr.enabled)box.innerHTML+=`<div class="pay"><strong>${tr[lang].qr}</strong><div class="qr">${CONFIG.qr.imageUrl?`<img src="${CONFIG.qr.imageUrl}" style="max-width:100%;max-height:100%">`:"QR"}</div><p>${CONFIG.qr.label}</p></div>`;if(CONFIG.onsitePayment)box.innerHTML+=`<div class="pay"><strong>${tr[lang].onsite}</strong></div>`}
-function openPay(){renderPayments();$("#payDialog").showModal()}
-window.go=go;window.choose=choose;window.openPay=openPay;
-$("#brandName").textContent=CONFIG.brandName;$("#footerBrand").textContent=CONFIG.brandName;$("#footerCity").textContent=CONFIG.city;document.title=CONFIG.pageTitle;$("#canonicalLink").href=CONFIG.siteUrl;
-const schema={"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":CONFIG.siteUrl+"#organization","name":CONFIG.brandName,"url":CONFIG.siteUrl,"email":CONFIG.contactEmail,"areaServed":CONFIG.city},{"@type":"WebSite","@id":CONFIG.siteUrl+"#website","url":CONFIG.siteUrl,"name":CONFIG.brandName,"publisher":{"@id":CONFIG.siteUrl+"#organization"}},...CONFIG.events.map(e=>({"@type":"Event","name":e.titleEn,"startDate":e.startDate,"eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","eventStatus":"https://schema.org/EventScheduled","image":[CONFIG.siteUrl+e.image.replace("./","")],"location":{"@type":"Place","name":e.venue,"address":{"@type":"PostalAddress","addressLocality":e.city,"addressRegion":e.region,"addressCountry":e.country}},"offers":{"@type":"Offer","price":e.priceNumber,"priceCurrency":e.currency,"url":CONFIG.siteUrl+"#apply","availability":"https://schema.org/LimitedAvailability"},"organizer":{"@id":CONFIG.siteUrl+"#organization"}}))]};
-$("#structuredData").textContent=JSON.stringify(schema);
+function submitApplication(){
+  const code="SC-"+new Date().toISOString().slice(2,10).replaceAll("-","")+"-"+Math.random().toString(36).slice(2,6).toUpperCase();
+  const fd=new FormData($("#applicationForm"));fd.append("application_code",code);
+  const C=runtime();if(C.formEndpoint)fetch(C.formEndpoint,{method:"POST",body:fd}).catch(()=>{});
+  localStorage.setItem("last_application",JSON.stringify({code,createdAt:new Date().toISOString(),offer:fd.get("offer")}));
+  $("#applicationForm").style.display="none";$("#success").classList.add("show");$("#applicationCode").textContent=code;
+}
+function renderPayments(C){
+  const box=$("#paymentList");box.innerHTML="";
+  if(C.stripeUrl)box.innerHTML+=`<div class="pay"><strong>Stripe</strong><p><a class="btn primary" href="${C.stripeUrl}" target="_blank" rel="noopener">Open secure payment</a></p></div>`;
+  if(C.zelle.enabled)box.innerHTML+=`<div class="pay"><strong>Zelle</strong><p>${C.zelle.name}<br>${C.zelle.contact}</p></div>`;
+  if(C.qr.enabled)box.innerHTML+=`<div class="pay"><strong>QR</strong><div class="qr">${C.qr.imageUrl?`<img src="${C.qr.imageUrl}" style="max-width:100%;max-height:100%">`:"QR"}</div><p>${C.qr.label}</p></div>`;
+  if(C.onsitePayment)box.innerHTML+=`<div class="pay"><strong>Pay at event</strong></div>`;
+}
+function openPay(){renderPayments(runtime());$("#payDialog").showModal()}
+function joinChallenge(){localStorage.setItem("challenge_joined","1");alert(tr[lang].challengeJoined)}
+function toggleAdmin(){
+  const pin=CONFIG.adminPin;
+  if(!sessionStorage.getItem("admin_ok")){
+    const input=prompt(lang==="zh"?"请输入商家设置密码":"Enter merchant settings PIN");
+    if(input!==pin)return;
+    sessionStorage.setItem("admin_ok","1");
+  }
+  $("#adminPanel").classList.toggle("show");loadAdmin();
+}
+function loadAdmin(){
+  const C=runtime();$("#adminBrand").value=C.brandName;$("#adminCity").value=C.city;$("#adminStripe").value=C.stripeUrl||"";$("#adminZelleName").value=C.zelle.name||"";$("#adminZelleContact").value=C.zelle.contact||"";$("#adminNotice").value=(C.liveNotices[0]||{}).zh||"";
+}
+function saveAdmin(){
+  const current=runtime();
+  const over={brandName:$("#adminBrand").value||current.brandName,city:$("#adminCity").value||current.city,stripeUrl:$("#adminStripe").value,zelle:{...current.zelle,name:$("#adminZelleName").value,contact:$("#adminZelleContact").value},liveNotices:[{zh:$("#adminNotice").value||current.liveNotices[0].zh,en:current.liveNotices[0].en},...current.liveNotices.slice(1)]};
+  localStorage.setItem("merchant_overrides",JSON.stringify(over));render();alert(lang==="zh"?"已保存在当前设备":"Saved on this device");
+}
+function resetAdmin(){localStorage.removeItem("merchant_overrides");render();loadAdmin()}
+function updateSchema(C){
+  const graph=[{"@type":"Organization","@id":C.siteUrl+"#organization","name":C.brandName,"url":C.siteUrl,"email":C.contactEmail,"areaServed":C.city},{"@type":"WebSite","@id":C.siteUrl+"#website","url":C.siteUrl,"name":C.brandName,"publisher":{"@id":C.siteUrl+"#organization"}}];
+  C.events.forEach(e=>graph.push({"@type":"Event","name":e.titleEn,"startDate":e.startDate,"eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","eventStatus":"https://schema.org/EventScheduled","image":[C.siteUrl+e.image.replace("./","")],"location":{"@type":"Place","name":e.venue,"address":{"@type":"PostalAddress","addressLocality":e.city,"addressRegion":e.region,"addressCountry":e.country}},"offers":{"@type":"Offer","price":e.priceNumber,"priceCurrency":e.currency,"url":C.siteUrl+"#apply","availability":"https://schema.org/LimitedAvailability"},"organizer":{"@id":C.siteUrl+"#organization"}}));
+  $("#structuredData").textContent=JSON.stringify({"@context":"https://schema.org","@graph":graph});
+}
+window.go=go;window.selectEvent=selectEvent;window.choosePlan=choosePlan;window.openPay=openPay;window.joinChallenge=joinChallenge;window.toggleAdmin=toggleAdmin;window.saveAdmin=saveAdmin;window.resetAdmin=resetAdmin;
 render();
 if("serviceWorker"in navigator)navigator.serviceWorker.register("./service-worker.js");
 </script>
