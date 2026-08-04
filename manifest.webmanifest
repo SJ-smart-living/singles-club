@@ -1,0 +1,16 @@
+{
+  "name": "Singles Club",
+  "short_name": "Singles Club",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f8f3ed",
+  "theme_color": "#171313",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
