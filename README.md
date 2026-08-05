@@ -1,16 +1,38 @@
-# Singles Club Final PWA Frontend v1.0.0
+# Singles Club Final Seeded SaaS Frontend v1.0.0
 
-Final one-page SaaS application.
+This release does not change backend routes or payment/member workflows.
 
-- Mature one-page application shell
-- Local city-map visual with streets, parks, blocks, water, labels, and transit points
-- Pulsing and rotating event markers
-- Every navigation and dialog route connected
-- Installable PWA with versioned app-shell caching and update prompts
-- Membership-gated event booking
-- Public event submission for adults
-- Operator review required before a submitted event becomes public
-- No private addresses on the public map
-- Chinese and English
+## Startup content
+
+When the backend has no public events or posts, the application displays an honest starter layer:
+
+- planned experiences
+- interest-open experiences
+- experience concepts
+- organizer searches
+- platform editorial content
+
+Starter content never claims:
+
+- real members
+- confirmed attendance
+- payments
+- remaining seats
+- completed events
+- success stories
+
+Real backend content automatically replaces starter content as soon as the operator publishes it.
+
+## Product structure
+
+- Mature one-page SaaS application
+- Fixed navigation
+- Real-feeling animated map
+- Image-based moments
+- Membership tiers
+- Member and event payments
+- Status lookup
+- Moderated public event submission
+- Installable PWA
 
 Formal version: `v1.0.0`

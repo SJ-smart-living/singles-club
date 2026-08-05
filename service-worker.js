@@ -1,5 +1,5 @@
 
-const CACHE_NAME="singles-club-v1.0.0-final-20260805";
+const CACHE_NAME="singles-club-v1.0.0-seeded-final-20260805";
 const APP_SHELL=[
   "./","./index.html","./styles.css","./app.js","./config.js",
   "./manifest.webmanifest","./icon.svg","./privacy.html","./terms.html","./safety.html",

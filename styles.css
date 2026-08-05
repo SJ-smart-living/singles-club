@@ -32,3 +32,7 @@ dialog{width:min(640px,calc(100% - 24px));border:0;border-radius:25px;padding:0;
 .install-banner button{border:0;border-radius:999px;background:#fff;color:#171313;padding:8px 12px;font-weight:850;cursor:pointer}
 .update-toast{position:fixed;z-index:151;left:50%;bottom:20px;transform:translateX(-50%);padding:11px 15px;border-radius:999px;background:#171313;color:#fff;box-shadow:0 16px 45px rgba(0,0,0,.25)}
 @keyframes mapSweep{0%,20%{transform:translateX(-35%)}70%,100%{transform:translateX(35%)}}
+
+.starter-card:before{content:"STARTER";position:absolute;z-index:4;right:12px;top:12px;padding:5px 8px;border-radius:999px;background:rgba(23,19,19,.74);color:#fff;font-size:8px;font-weight:900;letter-spacing:.12em}
+.starter-note{display:block;margin-top:8px;color:rgba(255,255,255,.68);font-size:9px;line-height:1.35}
+.starter-card .seat-pill{background:rgba(196,154,103,.26)}

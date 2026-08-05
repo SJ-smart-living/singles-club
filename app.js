@@ -3,6 +3,39 @@
 const C=window.APP_CONFIG,API=C.apiBaseUrl.replace(/\/+$/,""),$=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const state={lang:localStorage.getItem("sc_lang")||C.defaultLanguage,data:null,mapIndex:0,mapTimer:null,lastMember:null,lastBooking:null,currentEvent:null};
 const images=["./assets/coffee-gathering.jpg","./assets/city-walk.jpg","./assets/dinner-gathering.jpg","./assets/music-night.jpg"];
+
+const STARTER_EVENTS=[
+  {id:"seed-coffee",title_zh:"Pasadena 咖啡交流",title_en:"Pasadena Coffee & Conversation",description_zh:"轻松、小型的会员咖啡交流。当前为平台筹备内容，正式开放时间以运营方发布为准。",description_en:"A relaxed small-group coffee experience. This is platform starter content; official opening depends on the operator.",city:"Pasadena",country:"US",required_tier:"community",price:29,currency:"USD",available_spots:null,start_at:null,display_status:"planned",cover_key:"coffee"},
+  {id:"seed-walk",title_zh:"Los Angeles 落日散步",title_en:"Los Angeles Sunset Walk",description_zh:"在公开区域进行的轻松城市散步。当前接受活动兴趣，不代表已确认举办。",description_en:"A relaxed city walk in a public area. Interest may be collected, but the event is not yet confirmed.",city:"Los Angeles",country:"US",required_tier:"community",price:39,currency:"USD",available_spots:null,start_at:null,display_status:"interest_open",cover_key:"walk"},
+  {id:"seed-dinner",title_zh:"Arcadia 小型晚餐",title_en:"Arcadia Small Group Dinner",description_zh:"更小规模的主题晚餐体验。运营方确认场地和时间后开放报名。",description_en:"A smaller themed dinner experience. Booking opens after the operator confirms the venue and schedule.",city:"Arcadia",country:"US",required_tier:"select",price:79,currency:"USD",available_spots:null,start_at:null,display_status:"planned",cover_key:"dinner"},
+  {id:"seed-music",title_zh:"Long Beach 音乐之夜",title_en:"Long Beach Music Evening",description_zh:"音乐、轻松氛围和真实交流。当前为活动灵感展示。",description_en:"Music, a relaxed atmosphere, and real conversation. Currently shown as an experience concept.",city:"Long Beach",country:"US",required_tier:"select",price:49,currency:"USD",available_spots:null,start_at:null,display_status:"concept",cover_key:"music"},
+  {id:"seed-shanghai",title_zh:"上海城市咖啡",title_en:"Shanghai City Coffee",description_zh:"全球城市活动筹备示例。正在寻找本地活动组织者。",description_en:"A global city starter experience. Local organizers are being invited.",city:"Shanghai",country:"CN",required_tier:"community",price:0,currency:"CNY",available_spots:null,start_at:null,display_status:"organizer_search",cover_key:"coffee"},
+  {id:"seed-tokyo",title_zh:"东京美术馆散步",title_en:"Tokyo Museum Walk",description_zh:"安静的小型文化交流活动构想，正式信息由当地运营方确认。",description_en:"A small cultural social experience concept. Final details depend on a local operator.",city:"Tokyo",country:"JP",required_tier:"select",price:0,currency:"JPY",available_spots:null,start_at:null,display_status:"concept",cover_key:"walk"}
+];
+
+const STARTER_POSTS=[
+  {theme:"welcome",title_zh:"欢迎进入 Singles Club",title_en:"Welcome to Singles Club",content_zh:"这里是付费会员制线下活动平台。只有有效会员可以报名活动。",content_en:"A paid-membership platform for real-world social experiences. Active membership is required for event booking."},
+  {theme:"privacy",title_zh:"具体地址不会公开",title_en:"Exact venues stay private",content_zh:"活动公开页面只显示城市和公开区域，具体地址在符合条件后开放。",content_en:"Public pages show only the city and general area. Exact venues unlock only after eligibility and confirmation."},
+  {theme:"community",title_zh:"Community 适合第一次加入",title_en:"Community is the first step",content_zh:"适合参加公开会员咖啡、散步和轻松小组活动。",content_en:"Designed for public member coffee, walks, and relaxed small-group experiences."},
+  {theme:"select",title_zh:"Select 更小规模",title_en:"Select is more focused",content_zh:"适合人数更少、主题更明确和交流更深入的活动。",content_en:"For smaller, more focused, and deeper themed experiences."},
+  {theme:"private",title_zh:"Private 不保证关系结果",title_en:"Private does not guarantee outcomes",content_zh:"Private 提供更个性化的沟通与协调，但不承诺配对或关系结果。",content_en:"Private offers more personalized coordination, without promising a match or relationship outcome."},
+  {theme:"organizer",title_zh:"全球城市活动正在征集",title_en:"Global city organizers wanted",content_zh:"任何成年人可以提交活动提案，运营方审核后才进入公开地图。",content_en:"Any adult may submit an event proposal. It appears publicly only after operator review."},
+  {theme:"safety",title_zh:"真实交流始终以双方自愿为前提",title_en:"Real interaction requires mutual choice",content_zh:"任何参与者都可以拒绝见面、退出活动或停止后续联系。",content_en:"Any participant may decline, leave an event, or stop further communication."},
+  {theme:"payment",title_zh:"会员费与活动费分开",title_en:"Membership and event fees are separate",content_zh:"会员费取得俱乐部资格；单次活动费用以活动页面为准。",content_en:"Membership grants club access. Individual event fees are shown per experience."}
+];
+
+function displayStatus(event){
+  const map={
+    planned:state.lang==="zh"?"筹备中":"Planned",
+    interest_open:state.lang==="zh"?"接受兴趣登记":"Interest open",
+    concept:state.lang==="zh"?"活动灵感":"Experience concept",
+    organizer_search:state.lang==="zh"?"寻找本地组织者":"Seeking local organizer",
+    registration_open:state.lang==="zh"?"开放报名":"Registration open"
+  };
+  return map[event.display_status]||"";
+}
+function isSeedEvent(event){return String(event.id||"").startsWith("seed-")}
+
 const coords=[
  {city:"Los Angeles",x:18,y:44},{city:"Pasadena",x:34,y:28},{city:"Arcadia",x:54,y:31},
  {city:"Irvine",x:65,y:62},{city:"Long Beach",x:43,y:71},{city:"San Diego",x:78,y:74},
@@ -76,7 +109,17 @@ function paymentMarkup(payment,code){
  if(!payment.stripe_url&&!payment.zelle_contact&&!payment.has_qr)html+=`<p>${state.lang==="zh"?"运营方尚未设置在线付款方式，请使用联系信息确认。":"The operator has not configured an online payment method."}</p>`;
  return html+"</div>";
 }
-async function load(){state.data=await request("/api/public");render()}
+async function load(){
+      const live=await request("/api/public");
+      const realEvents=Array.isArray(live.events)?live.events:[];
+      const realPosts=Array.isArray(live.posts)?live.posts:[];
+      state.data={
+        ...live,
+        events:realEvents.length?realEvents:[...STARTER_EVENTS],
+        posts:realPosts.length?realPosts:[...STARTER_POSTS]
+      };
+      render();
+    }
 function render(){
  applyLanguage();
  const d=state.data||{},s=d.settings||{};
@@ -90,34 +133,50 @@ function render(){
 }
 function renderExperiences(){
  const grid=$("#experienceGrid"),events=state.data.events||[];
- if(!events.length){grid.innerHTML=`<div class="empty-state">${state.lang==="zh"?"当前运营方尚未发布公开活动。":"No public experiences are available yet."}</div>`;return}
- grid.innerHTML=events.slice(0,5).map((e,i)=>`
-  <article class="experience-card">
+ if(!events.length){grid.innerHTML=`<div class="empty-state">${state.lang==="zh"?"当前没有公开活动。":"No public experiences are available."}</div>`;return}
+ grid.innerHTML=events.slice(0,6).map((e,i)=>{
+  const seeded=isSeedEvent(e),status=displayStatus(e);
+  const price=Number(e.price||0)>0?money(e.price,e.currency):(state.lang==="zh"?"待公布":"TBA");
+  const seats=e.available_spots!==null&&e.available_spots!==undefined
+    ?`${e.available_spots} ${state.lang==="zh"?"席":"seats"}`
+    :status;
+  return `<article class="experience-card ${seeded?"starter-card":""}">
    <img src="${images[i%images.length]}" alt="${loc(e,"title")}">
    <div class="experience-content">
-    <div class="experience-topline"><span class="tier-pill">${e.required_tier}</span><span class="seat-pill">${e.available_spots??0} ${state.lang==="zh"?"席":"seats"}</span></div>
+    <div class="experience-topline"><span class="tier-pill">${e.required_tier}</span><span class="seat-pill">${seats}</span></div>
     <h3>${loc(e,"title")}</h3>
-    <div class="experience-meta"><span>${e.city} · ${date(e.start_at)}</span><button class="book-button" data-event="${e.id}">${tr("book")}</button></div>
+    <div class="experience-meta">
+      <span>${e.city} · ${e.start_at?date(e.start_at):status}</span>
+      ${seeded
+        ?`<button class="book-button" data-starter="${e.id}">${e.display_status==="organizer_search"?(state.lang==="zh"?"提交活动":"Submit event"):(state.lang==="zh"?"查看状态":"View status")}</button>`
+        :`<button class="book-button" data-event="${e.id}">${tr("book")}</button>`}
+    </div>
+    <small class="starter-note">${seeded?(state.lang==="zh"?"平台启动内容，不代表真实报名人数或已确认举办。":"Platform starter content; it does not represent confirmed attendance or a confirmed event."):""}</small>
    </div>
-  </article>`).join("");
+  </article>`;
+ }).join("");
  const first=events[0];
  $("#featuredTitle").textContent=loc(first,"title");
- $("#featuredMeta").textContent=`${first.city} · ${date(first.start_at)} · ${money(first.price,first.currency)}`;
- $("#featuredBook").onclick=()=>openBooking(first);
+ $("#featuredMeta").textContent=`${first.city} · ${first.start_at?date(first.start_at):displayStatus(first)} · ${Number(first.price||0)>0?money(first.price,first.currency):(state.lang==="zh"?"待公布":"TBA")}`;
+ $("#featuredBook").textContent=isSeedEvent(first)?(state.lang==="zh"?"查看筹备状态":"View planning status"):tr("book");
+ $("#featuredBook").onclick=()=>isSeedEvent(first)?$("#statusDialog").showModal():openBooking(first);
  $$("[data-event]").forEach(b=>b.onclick=()=>openBooking(events.find(e=>String(e.id)===b.dataset.event)));
+ $$("[data-starter]").forEach(b=>b.onclick=()=>{
+   const e=events.find(x=>String(x.id)===b.dataset.starter);
+   if(e?.display_status==="organizer_search")openSubmit();
+   else $("#statusDialog").showModal();
+ });
 }
 function renderMoments(){
- const posts=state.data.posts||[];
- const fallback=[
-  {theme:"coffee",title_zh:"本周咖啡交流",title_en:"Coffee this week",content_zh:"小型咖啡交流正在确认席位。",content_en:"Seats are being confirmed for a small coffee gathering."},
-  {theme:"walk",title_zh:"城市散步",title_en:"City walk",content_zh:"一次不赶时间的散步，让交流自然发生。",content_en:"A slow city walk where conversation can happen naturally."},
-  {theme:"music",title_zh:"音乐之夜",title_en:"Music night",content_zh:"音乐、轻松的空间和真实的人。",content_en:"Music, a relaxed space, and real people."}
- ];
- const source=posts.length?posts:fallback;
- $("#momentsRail").innerHTML=source.slice(0,6).map((p,i)=>`
+ const posts=state.data.posts||STARTER_POSTS;
+ $("#momentsRail").innerHTML=posts.slice(0,10).map((p,i)=>`
   <article class="moment-card animate">
    <img src="${images[(i+1)%images.length]}" alt="${loc(p,"title")}">
-   <div class="moment-copy"><small>${p.theme||"club"}</small><h3>${loc(p,"title")||loc(p,"content").slice(0,22)}</h3><p>${loc(p,"content")}</p></div>
+   <div class="moment-copy">
+    <small>${p.theme||"club"} · ${state.lang==="zh"?"平台内容":"Platform content"}</small>
+    <h3>${loc(p,"title")||loc(p,"content").slice(0,22)}</h3>
+    <p>${loc(p,"content")}</p>
+   </div>
   </article>`).join("");
 }
 function renderMemberships(){
@@ -144,7 +203,9 @@ function renderMap(){
   const city=coords[state.mapIndex],event=events[state.mapIndex%Math.max(1,events.length)];
   $("#mapTier").textContent=event?.required_tier||"Community";
   $("#mapTitle").textContent=event?loc(event,"title"):(state.lang==="zh"?"会员活动":"Member experience");
-  $("#mapMeta").textContent=event?`${event.city} · ${event.available_spots??0} ${state.lang==="zh"?"个席位":"seats"}`:city.city;
+  $("#mapMeta").textContent=event
+      ?`${event.city} · ${isSeedEvent(event)?displayStatus(event):`${event.available_spots??0} ${state.lang==="zh"?"个席位":"seats"}`}`
+      :city.city;
   if($("#heroCity"))$("#heroCity").textContent=event?.city||city.city;
   if($("#heroExperience"))$("#heroExperience").textContent=event?loc(event,"title"):"Coffee & Conversation";
  }
