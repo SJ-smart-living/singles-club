@@ -1,5 +1,6 @@
 window.APP_CONFIG = {
   apiBaseUrl: "https://singles-club-backend.onrender.com",
+  adminUrl: "https://singles-club-backend.onrender.com/admin.html",
   siteUrl: "https://sj-smart-living.github.io/singles-club/",
   defaultLanguage: "zh",
   maxPhotos: 3,
@@ -16,5 +17,6 @@ window.APP_CONFIG = {
     "venue_unlocked",
     "checked_in",
     "completed"
-  ]
+  ],
+  rotationSeconds: 7
 };

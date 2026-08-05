@@ -1,21 +1,31 @@
 # Singles Club v1.0.0
 
-A single-screen progressive web application for discovering local social activities, submitting an activity application, and checking application progress.
+Production frontend for a single-screen social activity application.
 
-## Included
+## Product experience
 
-- Single-screen application interface
-- Pulsing local activity map
-- Continuously moving activity updates
-- Participation options
-- Activity application
+- Premium SaaS-style app shell
+- Animated city activity map
+- Automatically rotating featured activities
+- Continuously moving updates
+- $99 / $299 / $599 participation options loaded from the backend
+- Activity application with optional photo upload
 - Application progress lookup
+- Merchant administration entry
 - Chinese and English interface
-- Responsive desktop and mobile layouts
-- Installable PWA structure
+- Responsive desktop and mobile navigation
 
-## Public release
+## Required operational connection
+
+The application is configured to use its existing Render backend. Do not remove `apiBaseUrl` or `adminUrl` from `config.js`.
+
+Private database credentials, administrator passwords, session secrets, and payment credentials must remain in Render environment variables and must never be added to this repository.
+
+## GitHub Pages
+
+Use:
+
+- Branch: `main`
+- Folder: `/ (root)`
 
 Version: `v1.0.0`
-
-This repository contains the public application interface. Operational credentials, private records, and payment account credentials are not stored in this repository.
