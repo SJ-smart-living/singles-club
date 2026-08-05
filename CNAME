@@ -1,16 +1,1 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="robots" content="noindex">
-  <title>LivingHub</title>
-  <script>
-    (function () {
-      var target = 'https://livinghub.app/' + location.search + location.hash;
-      location.replace(target);
-    }());
-  </script>
-</head>
-<body><p>正在返回 LivingHub…</p></body>
-</html>
+livinghub.app
