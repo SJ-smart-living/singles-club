@@ -1,17 +1,21 @@
-# Singles Club App Shell v1.0.2
+# Singles Club v1.0.0
 
-A true single-screen application interface connected to the production Render backend.
+A single-screen progressive web application for discovering local social activities, submitting an activity application, and checking application progress.
 
-- One app shell
-- No separate public pages
-- Desktop sidebar
-- Mobile bottom navigation
-- Pulsing activity map
-- Auto-scrolling updates
-- Membership plans
-- Application modal
-- Status modal
-- Merchant admin remains on the separate backend
+## Included
 
-Frontend: https://sj-smart-living.github.io/singles-club/
-Backend: https://singles-club-backend.onrender.com
+- Single-screen application interface
+- Pulsing local activity map
+- Continuously moving activity updates
+- Participation options
+- Activity application
+- Application progress lookup
+- Chinese and English interface
+- Responsive desktop and mobile layouts
+- Installable PWA structure
+
+## Public release
+
+Version: `v1.0.0`
+
+This repository contains the public application interface. Operational credentials, private records, and payment account credentials are not stored in this repository.

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#141214">
-<meta name="description" content="Singles Club local events and serious connections application.">
+<meta name="theme-color" content="#151214">
+<meta name="description" content="发现附近的小型社交活动，按自己的节奏认识新朋友。">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://sj-smart-living.github.io/singles-club/">
 <link rel="manifest" href="./manifest.webmanifest">
@@ -14,72 +14,112 @@
 <script id="structuredData" type="application/ld+json"></script>
 </head>
 <body>
+<div class="ambient ambient-a"></div>
+<div class="ambient ambient-b"></div>
+
 <div class="shell">
   <aside class="sidebar">
-    <div class="brand"><div class="logo">S</div><div><strong id="brandName">Singles Club</strong><span data-i18n="brandSub">真实活动与认真连接</span></div></div>
+    <div class="brand">
+      <div class="logo"><span>∞</span></div>
+      <div><strong id="brandName">Singles Club</strong><span data-i18n="brandSub">从真实活动开始认识</span></div>
+    </div>
+
     <nav class="side-nav">
-      <button class="nav-item active" data-panel="discover"><span>⌁</span><b data-i18n="discover">发现</b></button>
+      <button class="nav-item active"><span>⌁</span><b data-i18n="discover">发现</b></button>
       <button class="nav-item" id="openApplySide"><span>＋</span><b data-i18n="apply">申请</b></button>
       <button class="nav-item" id="openStatusSide"><span>◎</span><b data-i18n="status">状态</b></button>
     </nav>
-    <div class="side-card">
-      <span class="live-dot"></span>
-      <div><strong data-i18n="liveNow">活动持续更新</strong><p data-i18n="privacyNote">只显示活动区域，不公开会员实时位置。</p></div>
+
+    <div class="side-signal">
+      <div class="signal-visual"><i></i><i></i><i></i></div>
+      <strong data-i18n="signalTitle">附近活动正在更新</strong>
+      <p data-i18n="signalText">查看公开活动区域，具体安排由活动组织方确认。</p>
     </div>
+
     <div class="side-footer">
       <button class="text-btn" id="langBtn">EN</button>
-      <a class="text-btn" id="adminLink" target="_blank" rel="noopener" data-i18n="merchant">商家后台</a>
+      <span class="privacy-chip" data-i18n="privacyChip">资料默认不公开</span>
     </div>
   </aside>
 
   <main class="workspace">
     <header class="topbar">
       <div>
-        <div class="eyebrow" data-i18n="eyebrow">LOCAL CONNECTION APP</div>
-        <h1 data-i18n="headline">附近正在发生</h1>
+        <div class="eyebrow"><span class="eyebrow-dot"></span><span data-i18n="eyebrow">LOCAL SOCIAL EXPERIENCES</span></div>
+        <h1 data-i18n-html="headline">今天，也许会遇见<span>新的可能</span></h1>
+        <p class="headline-sub" data-i18n="headlineSub">从一杯咖啡、一次散步或一场共同体验开始。</p>
       </div>
       <div class="top-actions">
         <button class="icon-btn" id="openStatusTop" aria-label="Status">◎</button>
-        <button class="primary-btn" id="openApplyTop" data-i18n="join">申请加入</button>
+        <button class="primary-btn glow" id="openApplyTop" data-i18n="join">查看本周活动</button>
       </div>
     </header>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>COFFEE</span><i>✦</i><span>WALK</span><i>✦</i><span>DINNER</span><i>✦</i><span>LEARNING</span><i>✦</i>
+        <span>COFFEE</span><i>✦</i><span>WALK</span><i>✦</i><span>DINNER</span><i>✦</i><span>LEARNING</span><i>✦</i>
+      </div>
+    </div>
 
     <section class="dashboard">
       <section class="map-card">
         <div class="card-head">
-          <div><span class="section-kicker">LIVE MAP</span><h2 data-i18n="mapTitle">点击闪烁城市查看活动</h2></div>
-          <div class="live-pill"><i></i><span data-i18n="live">实时更新</span></div>
+          <div>
+            <span class="section-kicker">ACTIVITY PULSE</span>
+            <h2 data-i18n="mapTitle">附近有哪些真实活动</h2>
+          </div>
+          <div class="live-pill"><i></i><span data-i18n="updating">近期更新</span></div>
         </div>
+
         <div class="map" id="map">
           <div class="map-grid"></div>
-          <div class="map-note" data-i18n="mapNote">活动区域公开，具体地址仅在确认后开放。</div>
+          <div class="orbit orbit-1"></div>
+          <div class="orbit orbit-2"></div>
+          <div class="route-line route-a"></div>
+          <div class="route-line route-b"></div>
+          <div class="map-center">
+            <span data-i18n="mapCenter">从一个小活动开始</span>
+          </div>
+          <div class="map-note" data-i18n="mapNote">仅展示活动区域，不展示个人实时位置。</div>
         </div>
+
         <div class="featured">
-          <div><strong id="featuredTitle">—</strong><p id="featuredMeta">—</p></div>
+          <div>
+            <span class="featured-label" data-i18n="nextActivity">下一场公开活动</span>
+            <strong id="featuredTitle">—</strong>
+            <p id="featuredMeta">—</p>
+          </div>
           <button class="primary-btn" id="featuredBtn" data-i18n="requestSpot">申请名额</button>
         </div>
       </section>
 
       <section class="activity-card">
-        <div class="card-head compact"><div><span class="section-kicker">UPDATES</span><h2 data-i18n="updates">最新动态</h2></div><span class="mini-pill" data-i18n="moving">自动更新</span></div>
+        <div class="card-head compact">
+          <div><span class="section-kicker">CLUB MOMENTS</span><h2 data-i18n="updates">正在发生</h2></div>
+          <span class="mini-pill"><i></i><span data-i18n="moving">持续流动</span></span>
+        </div>
         <div class="feed"><div class="feed-track" id="feedTrack"></div></div>
       </section>
 
       <section class="plans-card">
-        <div class="card-head compact"><div><span class="section-kicker">MEMBERSHIP</span><h2 data-i18n="plans">会员方案</h2></div><span class="mini-pill rose" data-i18n="unlock">解锁更多</span></div>
+        <div class="card-head compact">
+          <div><span class="section-kicker">MEMBERSHIP</span><h2 data-i18n="plans">选择参与方式</h2></div>
+          <span class="mini-pill rose" data-i18n="flexible">按需选择</span>
+        </div>
         <div class="plans" id="pricing"></div>
       </section>
 
       <section class="trust-row">
-        <article><span>01</span><strong data-i18n="humanReview">人工确认</strong><p data-i18n="humanReviewSub">审核与活动状态清楚</p></article>
-        <article><span>02</span><strong data-i18n="privateDefault">默认不公开</strong><p data-i18n="privateDefaultSub">资料仅在授权范围内使用</p></article>
-        <article><span>03</span><strong data-i18n="merchantPay">商家直接收款</strong><p data-i18n="merchantPaySub">付款进入商家自己的账户</p></article>
+        <article><span>01</span><strong data-i18n="smallEvents">小型真实活动</strong><p data-i18n="smallEventsSub">先参加活动，再决定是否继续了解。</p></article>
+        <article><span>02</span><strong data-i18n="permissionFirst">授权优先</strong><p data-i18n="permissionFirstSub">资料只用于本人选择的活动与服务。</p></article>
+        <article><span>03</span><strong data-i18n="organizerManaged">组织方独立运营</strong><p data-i18n="organizerManagedSub">活动安排与收款由当前组织方管理。</p></article>
       </section>
     </section>
   </main>
 
   <nav class="mobile-nav">
-    <button class="active" data-panel="discover"><span>⌁</span><b data-i18n="discover">发现</b></button>
+    <button class="active"><span>⌁</span><b data-i18n="discover">发现</b></button>
     <button id="openApplyMobile"><span>＋</span><b data-i18n="apply">申请</b></button>
     <button id="openStatusMobile"><span>◎</span><b data-i18n="status">状态</b></button>
   </nav>
@@ -88,41 +128,68 @@
 <dialog id="applyDialog">
   <div class="modal">
     <button class="close" id="closeApply">×</button>
-    <div class="modal-head"><span class="section-kicker">APPLICATION</span><h2 data-i18n="application">会员申请</h2><p data-i18n="applicationSub">一分钟完成，资料默认不公开。</p></div>
+    <div class="modal-head">
+      <span class="section-kicker">JOIN AN EXPERIENCE</span>
+      <h2 data-i18n="application">活动参与申请</h2>
+      <p data-i18n="applicationSub">填写基本信息，组织方将根据活动安排与你联系。</p>
+    </div>
     <div class="progress"><i class="active"></i><i></i><i></i></div>
+
     <form id="applyForm">
       <section class="step active">
         <div class="grid2">
-          <label><span data-i18n="name">姓名或昵称</span><input required name="display_name"></label>
+          <label><span data-i18n="name">姓名或昵称</span><input required name="display_name" autocomplete="name"></label>
           <label><span data-i18n="age">年龄</span><input required type="number" min="18" max="99" name="age"></label>
-          <label><span data-i18n="city">城市</span><input required name="city"></label>
-          <label><span data-i18n="contact">电话或邮箱</span><input required name="contact"></label>
+          <label><span data-i18n="city">所在城市</span><input required name="city"></label>
+          <label><span data-i18n="contact">联系方式</span><input required name="contact"></label>
         </div>
       </section>
+
       <section class="step">
-        <label><span data-i18n="goal">关系目标</span><select required name="relationship_goal" id="goalSelect"></select></label>
-        <label><span data-i18n="intro">一句话介绍</span><textarea required name="intro" maxlength="300"></textarea></label>
-        <label><span data-i18n="offer">活动或会员方案</span><select required name="offer_key" id="offerSelect"></select></label>
+        <label><span data-i18n="goal">希望认识怎样的人</span><select required name="relationship_goal" id="goalSelect"></select></label>
+        <label><span data-i18n="intro">简单介绍自己</span><textarea required name="intro" maxlength="300"></textarea></label>
+        <label><span data-i18n="offer">选择活动或参与方案</span><select required name="offer_key" id="offerSelect"></select></label>
       </section>
+
       <section class="step">
-        <label><span data-i18n="photos">本人照片（最多3张）</span><input id="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple></label>
+        <label><span data-i18n="photos">本人照片（可选，最多3张）</span><input id="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple></label>
         <div class="preview" id="preview"></div>
-        <label class="consent"><input required type="checkbox"><span data-i18n="consent">我确认已满18岁，并同意商家仅为审核、活动联系和本人选择的服务使用资料。</span></label>
+        <label class="consent">
+          <input required type="checkbox">
+          <span data-i18n="consent">我已满18岁，并同意当前活动组织方为处理本次申请和活动联系使用我提交的信息。</span>
+        </label>
+        <p class="form-note" data-i18n="formNote">提交申请不代表活动名额已经确认，最终安排以组织方回复为准。</p>
       </section>
+
       <div class="error" id="applyError"></div>
-      <div class="modal-actions"><button type="button" class="secondary-btn" id="backBtn" data-i18n="back">上一步</button><button type="button" class="primary-btn" id="nextBtn" data-i18n="next">下一步</button></div>
+      <div class="modal-actions">
+        <button type="button" class="secondary-btn" id="backBtn" data-i18n="back">上一步</button>
+        <button type="button" class="primary-btn" id="nextBtn" data-i18n="next">下一步</button>
+      </div>
     </form>
-    <div class="success" id="success"><span class="section-kicker" data-i18n="received">申请已收到</span><h2 data-i18n="thanks">谢谢你的认真填写</h2><p data-i18n="saveCode">请保存申请编号</p><div class="code" id="code"></div><button class="primary-btn" id="successStatusBtn" data-i18n="viewStatus">查看状态</button></div>
+
+    <div class="success" id="success">
+      <div class="success-ring">✓</div>
+      <span class="section-kicker" data-i18n="received">申请已提交</span>
+      <h2 data-i18n="thanks">等待组织方与你联系</h2>
+      <p data-i18n="saveCode">请保存申请编号</p>
+      <div class="code" id="code"></div>
+      <button class="primary-btn" id="successStatusBtn" data-i18n="viewStatus">查看状态</button>
+    </div>
   </div>
 </dialog>
 
 <dialog id="statusDialog">
   <div class="modal">
     <button class="close" id="closeStatus">×</button>
-    <div class="modal-head"><span class="section-kicker">APPLICATION STATUS</span><h2 data-i18n="statusHeading">查询申请状态</h2></div>
+    <div class="modal-head">
+      <span class="section-kicker">APPLICATION STATUS</span>
+      <h2 data-i18n="statusHeading">查询申请进度</h2>
+      <p data-i18n="statusSub">使用申请编号和原联系方式查询。</p>
+    </div>
     <form id="statusForm">
       <label><span data-i18n="applicationCode">申请编号</span><input required name="application_code"></label>
-      <label><span data-i18n="contact">电话或邮箱</span><input required name="contact"></label>
+      <label><span data-i18n="contact">联系方式</span><input required name="contact"></label>
       <button class="primary-btn" data-i18n="check">查询</button>
     </form>
     <div id="statusResult"></div>
