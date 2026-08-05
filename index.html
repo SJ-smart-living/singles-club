@@ -12,247 +12,219 @@
   <title>Singles Club</title>
 </head>
 <body>
-  <div class="grain"></div>
-  <div class="app-shell">
-    <header class="topbar">
-      <a class="identity" href="./" aria-label="Singles Club">
-        <span class="mark">∞</span>
-        <span><strong id="brandName">Singles Club</strong><small data-i18n="brandLine">Members-only social experiences</small></span>
-      </a>
-      <nav class="topnav">
-        <a href="#experiences" data-i18n="experiences">活动体验</a>
-        <a href="#membership" data-i18n="membership">会员资格</a>
-        <button class="text-action" id="openStatus" data-i18n="status">查询状态</button>
-        <button class="join-action" id="openJoin" data-i18n="join">成为会员</button>
-        <button class="language-action" id="langBtn">EN</button>
-      </nav>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">∞</span>
+      <div><strong id="brandName">Singles Club</strong><small data-i18n="brandLine">Members-only social experiences</small></div>
+    </div>
+
+    <nav class="side-nav">
+      <button class="active" data-scroll="dashboard">⌁ <span data-i18n="discover">发现</span></button>
+      <button data-scroll="experiences">◉ <span data-i18n="experiences">活动体验</span></button>
+      <button data-scroll="membership">◇ <span data-i18n="membership">会员资格</span></button>
+      <button id="openStatusSide">◎ <span data-i18n="status">查询状态</span></button>
+    </nav>
+
+    <div class="sidebar-boundary">
+      <i></i>
+      <strong data-i18n="privacyTitle">隐私优先</strong>
+      <p data-i18n="privacyShort">照片、联系方式和具体地址不公开。</p>
+    </div>
+
+    <div class="sidebar-actions">
+      <button id="langBtn">EN</button>
+      <a id="adminLink" target="_blank" rel="noopener" data-i18n="operatorConsole">Club Console</a>
+    </div>
+  </aside>
+
+  <main class="workspace">
+    <header class="workspace-header">
+      <div>
+        <p class="eyebrow">PRIVATE SOCIAL MEMBERSHIP · GLOBAL CITIES</p>
+        <h1 data-i18n-html="headline">先成为会员，<br>再走进每一次<span>真实的相遇</span></h1>
+        <p class="headline-copy" data-i18n="headlineSub">不是滑动屏幕认识一个人，而是在咖啡、散步、晚餐与音乐中，给真实交流留出空间。</p>
+      </div>
+      <div class="header-actions">
+        <button class="soft-btn" id="openStatusTop" data-i18n="status">查询状态</button>
+        <button class="primary-btn" id="openJoinTop" data-i18n="join">成为会员</button>
+      </div>
     </header>
 
-    <main>
-      <section class="hero">
-        <img src="./assets/hero-gathering.jpg" alt="A warm members gathering">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-          <p class="eyebrow">PRIVATE SOCIAL MEMBERSHIP · GLOBAL CITIES</p>
-          <h1 data-i18n-html="headline">先成为会员，<br>再走进每一次<span>真实的相遇</span></h1>
-          <p class="hero-copy" data-i18n="headlineSub">不是滑动屏幕认识一个人，而是在咖啡、散步、晚餐与音乐中，给真实交流留出空间。</p>
-          <div class="hero-actions">
-            <button class="primary-large" id="heroJoin" data-i18n="joinMembership">开通会员资格</button>
-            <a class="glass-large" href="#experiences" data-i18n="explore">查看近期活动</a>
-          </div>
-          <div class="hero-trust">
-            <span data-i18n="adultOnly">仅限18岁及以上成年人</span>
-            <span data-i18n="privateVenue">具体地址仅向符合条件的报名会员开放</span>
-            <span data-i18n="noGuarantee">不承诺配对或关系结果</span>
-          </div>
+    <section class="app-grid" id="dashboard">
+      <article class="map-panel panel">
+        <div class="panel-head">
+          <div><span class="section-label">ACTIVITY PULSE</span><h2 data-i18n="worldTitle">真实的城市，正在发生真实的交流</h2></div>
+          <em><i></i><span data-i18n="live">持续更新</span></em>
         </div>
-        <div class="hero-note">
-          <span class="live-dot"></span>
-          <div><strong id="heroCity">Los Angeles</strong><small id="heroExperience">Coffee & Conversation</small></div>
-        </div>
-      </section>
 
-      <section class="world-strip" aria-label="Global cities">
-        <div class="world-copy">
-          <p class="section-label">THE WORLD IS MEETING</p>
-          <h2 data-i18n="worldTitle">真实的城市，正在发生真实的交流</h2>
-          <p data-i18n="worldSub">平台不依赖第三方地图或外部图片站点。活动可由不同地区的运营方设置城市、货币、时区和语言。</p>
-        </div>
-        <div class="world-map" id="worldMap">
-          <svg viewBox="0 0 1000 430" role="img" aria-label="Global activity map">
-            <defs>
-              <radialGradient id="glow">
-                <stop offset="0%" stop-color="#f3b5b5" stop-opacity=".8"/>
-                <stop offset="100%" stop-color="#f3b5b5" stop-opacity="0"/>
-              </radialGradient>
-              <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
-                <circle cx="2" cy="2" r="1" fill="#ffffff" opacity=".08"/>
-              </pattern>
-            </defs>
-            <rect width="1000" height="430" fill="#1e191a"/>
-            <rect width="1000" height="430" fill="url(#dots)"/>
-            <path class="continent" d="M76 105C147 61 236 69 294 110c43 31 40 65 12 84-35 23-54 54-76 91-17 28-63 29-82-4-14-24-16-54-41-76-39-35-71-67-31-100Z"/>
-            <path class="continent" d="M328 89c80-44 173-37 232 8 31 24 55 61 37 91-19 32-79 18-92 58-10 31 14 57-12 78-41 33-89-8-99-51-10-43-55-42-77-70-29-36-25-92 11-114Z"/>
-            <path class="continent" d="M581 93c79-40 179-22 250 17 65 36 108 88 74 126-37 42-114 4-163 34-52 33-69 103-127 87-43-12-22-70-58-100-37-32-86-46-76-93 7-34 53-52 100-71Z"/>
-            <path class="continent" d="M799 308c43-20 96-4 121 25 25 28 9 59-23 67-40 10-91-8-108-37-14-24-12-45 10-55Z"/>
-            <path class="route" d="M165 175 C285 90 390 130 500 190 S720 305 865 215"/>
-            <path class="route route-two" d="M188 265 C360 330 535 250 702 130"/>
+        <div class="map-stage" id="worldMap">
+          <img src="./assets/hero-gathering.jpg" class="map-background" alt="">
+          <div class="map-overlay"></div>
+          <svg viewBox="0 0 1000 560" class="map-lines" aria-hidden="true">
+            <path d="M90 380 C245 250 395 310 510 235 S720 130 920 230"/>
+            <path d="M120 160 C260 85 415 120 545 215 S730 380 900 330"/>
           </svg>
           <div id="mapPins"></div>
+
+          <div class="map-center">
+            <span class="pulse-ring"></span>
+            <strong data-i18n="mapCenterTitle">城市活动网络</strong>
+            <small data-i18n="mapCenterSub">地点按活动轮换</small>
+          </div>
+
           <div class="map-card" id="mapCard">
             <span id="mapTier">Community</span>
             <strong id="mapTitle">Coffee & Conversation</strong>
             <small id="mapMeta">Pasadena · 4 seats</small>
           </div>
         </div>
-      </section>
 
-      <section class="experience-section" id="experiences">
-        <div class="section-heading">
+        <div class="featured-bar">
           <div>
-            <p class="section-label">UPCOMING EXPERIENCES</p>
-            <h2 data-i18n="upcoming">下一次相遇，也许就在这座城市</h2>
+            <span data-i18n="featured">当前推荐活动</span>
+            <strong id="featuredTitle">—</strong>
+            <small id="featuredMeta">—</small>
           </div>
-          <p data-i18n="upcomingSub">有效会员可报名符合等级的活动。会员费与每次活动费用分别显示。</p>
+          <button class="primary-btn" id="featuredBook" data-i18n="book">会员报名</button>
         </div>
-        <div class="experience-grid" id="experienceGrid"></div>
-      </section>
+      </article>
 
-      <section class="moments-section">
-        <div class="section-heading">
-          <div>
-            <p class="section-label">CLUB MOMENTS</p>
-            <h2 data-i18n="momentsTitle">让平台一直有真实生活在发生</h2>
-          </div>
-          <p data-i18n="momentsSub">活动动态只展示运营方选择公开的内容，不公开会员联系方式、照片或具体地点。</p>
+      <article class="moments-panel panel">
+        <div class="panel-head">
+          <div><span class="section-label">CLUB MOMENTS</span><h2 data-i18n="momentsTitle">真实生活正在发生</h2></div>
         </div>
-        <div class="moments-rail" id="momentsRail"></div>
-      </section>
+        <div class="moments-scroll" id="momentsRail"></div>
+      </article>
 
-      <section class="membership-section" id="membership">
-        <div class="membership-intro">
-          <p class="section-label">MEMBERSHIP</p>
-          <h2 data-i18n="membershipTitle">不是购买一个结果，而是获得进入俱乐部的资格</h2>
-          <p data-i18n="membershipSub">不同等级对应不同活动范围、规模和人工协调程度。是否产生进一步关系，由参与者自行决定。</p>
+      <article class="experience-panel panel" id="experiences">
+        <div class="panel-head">
+          <div><span class="section-label">UPCOMING EXPERIENCES</span><h2 data-i18n="upcoming">下一次相遇，也许就在这座城市</h2></div>
         </div>
-        <div class="membership-grid" id="membershipGrid"></div>
-      </section>
+        <div class="experience-list" id="experienceGrid"></div>
+      </article>
 
-      <section class="boundaries-section">
-        <article>
-          <span>01</span>
-          <h3 data-i18n="privacyTitle">隐私优先</h3>
-          <p data-i18n="privacyText">个人资料、联系方式和照片不会出现在公开活动页面。具体地址仅对满足条件的相关会员开放。</p>
-        </article>
-        <article>
-          <span>02</span>
-          <h3 data-i18n="consentTitle">双方自愿</h3>
-          <p data-i18n="consentText">平台提供会员与活动组织工具，不替任何参与者决定是否见面、继续交流或建立关系。</p>
-        </article>
-        <article>
-          <span>03</span>
-          <h3 data-i18n="operatorTitle">运营责任清晰</h3>
-          <p data-i18n="operatorText">活动安排、收款、退款、地点、安全措施和当地服务由当前运营方管理，并应遵守所在地规则。</p>
-        </article>
-        <article>
-          <span>04</span>
-          <h3 data-i18n="globalTitle">全球结构</h3>
-          <p data-i18n="globalText">日期、时区、城市、语言和货币由活动数据决定；代码不依赖外部地图、字体或图片服务。</p>
-        </article>
-      </section>
-    </main>
-
-    <footer>
-      <div>
-        <strong>Singles Club</strong>
-        <p data-i18n="footerLine">A members-only platform for real-world social experiences.</p>
-      </div>
-      <nav>
-        <a href="./privacy.html" data-i18n="privacy">隐私说明</a>
-        <a href="./terms.html" data-i18n="terms">会员与付款条款</a>
-        <a href="./safety.html" data-i18n="safety">活动安全边界</a>
-        <a id="adminLink" target="_blank" rel="noopener" data-i18n="operatorConsole">Club Console</a>
-      </nav>
-    </footer>
-  </div>
-
-  <dialog id="joinDialog">
-    <div class="dialog-body">
-      <button class="dialog-close" data-close="joinDialog">×</button>
-      <p class="section-label">MEMBERSHIP APPLICATION</p>
-      <h2 data-i18n="joinDialogTitle">开通会员资格</h2>
-      <p data-i18n="joinDialogSub">填写最少资料，选择会员等级，并获得会员编号和商家设置的付款方式。</p>
-      <form id="memberForm">
-        <div class="form-grid">
-          <label><span data-i18n="name">姓名或昵称</span><input name="display_name" required maxlength="80"></label>
-          <label><span data-i18n="age">年龄</span><input name="age" type="number" min="18" max="100" required></label>
-          <label><span data-i18n="city">城市</span><input name="city" required maxlength="100"></label>
-          <label><span data-i18n="contact">电话或邮箱</span><input name="contact" required maxlength="160"></label>
+      <article class="membership-panel panel" id="membership">
+        <div class="panel-head">
+          <div><span class="section-label">MEMBERSHIP</span><h2 data-i18n="membershipTitle">不是购买结果，而是获得进入俱乐部的资格</h2></div>
         </div>
-        <label><span data-i18n="intro">简单介绍</span><textarea name="intro" maxlength="1000"></textarea></label>
-        <label><span data-i18n="preferences">希望参加的活动或交流方式</span><textarea name="preferences" maxlength="1000"></textarea></label>
-        <label><span data-i18n="tier">会员等级</span><select name="tier" id="tierSelect" required></select></label>
-        <label><span data-i18n="photo">本人照片（可选，仅后台查看）</span><input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label>
-        <label class="consent-row">
-          <input type="checkbox" required>
-          <span data-i18n="joinConsent">我确认已满18岁，资料由当前运营方用于会员管理、付款确认和活动联系；平台不保证配对或关系结果。</span>
-        </label>
-        <button class="primary-wide" data-i18n="createMember">生成会员编号</button>
-        <div id="memberError"></div>
-      </form>
-      <section class="completion" id="memberCompletion" hidden>
-        <p class="section-label">MEMBER NUMBER</p>
-        <h3 data-i18n="memberCreated">会员编号已生成</h3>
-        <div class="reference-code" id="memberNumber"></div>
-        <div id="memberPayment"></div>
-        <form id="memberPaidForm">
-          <label><span data-i18n="paymentMethod">付款方式</span>
-            <select name="payment_method"><option value="stripe">Stripe</option><option value="zelle">Zelle</option><option value="qr">QR</option><option value="other">Other</option></select>
-          </label>
-          <label><span data-i18n="paymentRef">付款备注（可选）</span><input name="payment_reference" maxlength="200"></label>
-          <button class="primary-wide" data-i18n="reportMembershipPayment">我已支付会员费</button>
-        </form>
-        <div id="memberPaymentMessage"></div>
-      </section>
-    </div>
-  </dialog>
+        <div class="membership-list" id="membershipGrid"></div>
+      </article>
 
-  <dialog id="bookingDialog">
-    <div class="dialog-body">
-      <button class="dialog-close" data-close="bookingDialog">×</button>
-      <p class="section-label">MEMBER BOOKING</p>
-      <h2 data-i18n="bookingTitle">会员活动报名</h2>
-      <div class="selected-experience" id="selectedExperience"></div>
-      <form id="bookingForm">
-        <input type="hidden" name="event_id">
-        <label><span data-i18n="memberNumber">会员编号</span><input name="member_number" required maxlength="50"></label>
+      <article class="boundaries-panel panel">
+        <div class="panel-head">
+          <div><span class="section-label">PRIVACY & RESPONSIBILITY</span><h2 data-i18n="boundariesTitle">安全边界直接放进产品流程</h2></div>
+        </div>
+        <div class="boundary-grid">
+          <div><b>01</b><strong data-i18n="privacyTitle">隐私优先</strong><p data-i18n="privacyText">个人资料、联系方式和照片不会出现在公开活动页面。</p></div>
+          <div><b>02</b><strong data-i18n="consentTitle">双方自愿</strong><p data-i18n="consentText">平台不替任何参与者决定是否见面或继续交流。</p></div>
+          <div><b>03</b><strong data-i18n="operatorTitle">责任清晰</strong><p data-i18n="operatorText">活动、付款、退款和场地由当前运营方管理。</p></div>
+          <div><b>04</b><strong data-i18n="globalTitle">全球结构</strong><p data-i18n="globalText">城市、日期、时区和货币由活动数据决定。</p></div>
+        </div>
+      </article>
+    </section>
+  </main>
+</div>
+
+<nav class="mobile-nav">
+  <button data-scroll="dashboard">⌁<span data-i18n="discover">发现</span></button>
+  <button data-scroll="experiences">◉<span data-i18n="experiences">活动</span></button>
+  <button id="openJoinMobile">＋<span data-i18n="join">会员</span></button>
+  <button id="openStatusMobile">◎<span data-i18n="status">查询</span></button>
+</nav>
+
+<dialog id="joinDialog">
+  <div class="dialog-body">
+    <button class="dialog-close" data-close="joinDialog">×</button>
+    <p class="section-label">MEMBERSHIP APPLICATION</p>
+    <h2 data-i18n="joinDialogTitle">开通会员资格</h2>
+    <p data-i18n="joinDialogSub">填写最少资料，选择会员等级，并获得会员编号和付款方式。</p>
+    <form id="memberForm">
+      <div class="form-grid">
+        <label><span data-i18n="name">姓名或昵称</span><input name="display_name" required maxlength="80"></label>
+        <label><span data-i18n="age">年龄</span><input name="age" type="number" min="18" max="100" required></label>
+        <label><span data-i18n="city">城市</span><input name="city" required maxlength="100"></label>
         <label><span data-i18n="contact">电话或邮箱</span><input name="contact" required maxlength="160"></label>
-        <p class="form-boundary" data-i18n="bookingBoundary">系统将核验会员状态和等级。精确地点只在活动费确认后开放。</p>
-        <button class="primary-wide" data-i18n="createBooking">生成活动报名编号</button>
-        <div id="bookingError"></div>
-      </form>
-      <section class="completion" id="bookingCompletion" hidden>
-        <p class="section-label">BOOKING NUMBER</p>
-        <h3 data-i18n="bookingCreated">活动报名编号已生成</h3>
-        <div class="reference-code" id="bookingNumber"></div>
-        <div id="bookingPayment"></div>
-        <form id="eventPaidForm">
-          <label><span data-i18n="paymentMethod">付款方式</span>
-            <select name="payment_method"><option value="stripe">Stripe</option><option value="zelle">Zelle</option><option value="qr">QR</option><option value="other">Other</option></select>
-          </label>
-          <label><span data-i18n="paymentRef">付款备注（可选）</span><input name="payment_reference" maxlength="200"></label>
-          <button class="primary-wide" data-i18n="reportEventPayment">我已支付活动费</button>
-        </form>
-        <div id="eventPaymentMessage"></div>
-      </section>
-    </div>
-  </dialog>
-
-  <dialog id="statusDialog">
-    <div class="dialog-body">
-      <button class="dialog-close" data-close="statusDialog">×</button>
-      <p class="section-label">PRIVATE LOOKUP</p>
-      <h2 data-i18n="statusDialogTitle">查询会员资格或活动报名</h2>
-      <div class="lookup-tabs">
-        <button class="active" data-status-tab="member" data-i18n="membershipStatus">会员资格</button>
-        <button data-status-tab="event" data-i18n="eventStatus">活动报名</button>
       </div>
-      <form id="memberStatusForm">
-        <label><span data-i18n="memberNumber">会员编号</span><input name="member_number" required></label>
-        <label><span data-i18n="contact">电话或邮箱</span><input name="contact" required></label>
-        <button class="primary-wide" data-i18n="lookup">查询</button>
+      <label><span data-i18n="intro">简单介绍</span><textarea name="intro" maxlength="1000"></textarea></label>
+      <label><span data-i18n="preferences">希望参加的活动或交流方式</span><textarea name="preferences" maxlength="1000"></textarea></label>
+      <label><span data-i18n="tier">会员等级</span><select name="tier" id="tierSelect" required></select></label>
+      <label><span data-i18n="photo">本人照片（可选，仅后台查看）</span><input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label>
+      <label class="consent-row"><input type="checkbox" required><span data-i18n="joinConsent">我确认已满18岁，资料仅用于会员管理、付款确认和活动联系；平台不保证配对或关系结果。</span></label>
+      <input type="hidden" name="consent_version" value="2026-08-05">
+      <input type="hidden" name="preferred_language" id="preferredLanguage" value="zh">
+      <button class="primary-wide" data-i18n="createMember">生成会员编号</button>
+      <div id="memberError"></div>
+    </form>
+    <section class="completion" id="memberCompletion" hidden>
+      <p class="section-label">MEMBER NUMBER</p>
+      <h3 data-i18n="memberCreated">会员编号已生成</h3>
+      <div class="reference-code" id="memberNumber"></div>
+      <div id="memberPayment"></div>
+      <form id="memberPaidForm">
+        <label><span data-i18n="paymentMethod">付款方式</span><select name="payment_method"><option value="stripe">Stripe</option><option value="zelle">Zelle</option><option value="qr">QR</option><option value="other">Other</option></select></label>
+        <label><span data-i18n="paymentRef">付款备注（可选）</span><input name="payment_reference" maxlength="200"></label>
+        <button class="primary-wide" data-i18n="reportMembershipPayment">我已支付会员费</button>
       </form>
-      <form id="eventStatusForm" hidden>
-        <label><span data-i18n="bookingNumber">活动报名编号</span><input name="booking_number" required></label>
-        <label><span data-i18n="memberNumber">会员编号</span><input name="member_number" required></label>
-        <label><span data-i18n="contact">电话或邮箱</span><input name="contact" required></label>
-        <button class="primary-wide" data-i18n="lookup">查询</button>
-      </form>
-      <div id="statusResult"></div>
-    </div>
-  </dialog>
+      <div id="memberPaymentMessage"></div>
+    </section>
+  </div>
+</dialog>
 
-  <script src="./config.js"></script>
-  <script src="./app.js"></script>
+<dialog id="bookingDialog">
+  <div class="dialog-body">
+    <button class="dialog-close" data-close="bookingDialog">×</button>
+    <p class="section-label">MEMBER BOOKING</p>
+    <h2 data-i18n="bookingTitle">会员活动报名</h2>
+    <div class="selected-experience" id="selectedExperience"></div>
+    <form id="bookingForm">
+      <input type="hidden" name="event_id">
+      <label><span data-i18n="memberNumber">会员编号</span><input name="member_number" required maxlength="50"></label>
+      <label><span data-i18n="contact">电话或邮箱</span><input name="contact" required maxlength="160"></label>
+      <p class="form-boundary" data-i18n="bookingBoundary">系统将核验会员状态和等级。精确地点只在活动费确认后开放。</p>
+      <button class="primary-wide" data-i18n="createBooking">生成活动报名编号</button>
+      <div id="bookingError"></div>
+    </form>
+    <section class="completion" id="bookingCompletion" hidden>
+      <p class="section-label">BOOKING NUMBER</p>
+      <h3 data-i18n="bookingCreated">活动报名编号已生成</h3>
+      <div class="reference-code" id="bookingNumber"></div>
+      <div id="bookingPayment"></div>
+      <form id="eventPaidForm">
+        <label><span data-i18n="paymentMethod">付款方式</span><select name="payment_method"><option value="stripe">Stripe</option><option value="zelle">Zelle</option><option value="qr">QR</option><option value="other">Other</option></select></label>
+        <label><span data-i18n="paymentRef">付款备注（可选）</span><input name="payment_reference" maxlength="200"></label>
+        <button class="primary-wide" data-i18n="reportEventPayment">我已支付活动费</button>
+      </form>
+      <div id="eventPaymentMessage"></div>
+    </section>
+  </div>
+</dialog>
+
+<dialog id="statusDialog">
+  <div class="dialog-body">
+    <button class="dialog-close" data-close="statusDialog">×</button>
+    <p class="section-label">PRIVATE LOOKUP</p>
+    <h2 data-i18n="statusDialogTitle">查询会员资格或活动报名</h2>
+    <div class="lookup-tabs">
+      <button class="active" data-status-tab="member" data-i18n="membershipStatus">会员资格</button>
+      <button data-status-tab="event" data-i18n="eventStatus">活动报名</button>
+    </div>
+    <form id="memberStatusForm">
+      <label><span data-i18n="memberNumber">会员编号</span><input name="member_number" required></label>
+      <label><span data-i18n="contact">电话或邮箱</span><input name="contact" required></label>
+      <button class="primary-wide" data-i18n="lookup">查询</button>
+    </form>
+    <form id="eventStatusForm" hidden>
+      <label><span data-i18n="bookingNumber">活动报名编号</span><input name="booking_number" required></label>
+      <label><span data-i18n="memberNumber">会员编号</span><input name="member_number" required></label>
+      <label><span data-i18n="contact">电话或邮箱</span><input name="contact" required></label>
+      <button class="primary-wide" data-i18n="lookup">查询</button>
+    </form>
+    <div id="statusResult"></div>
+  </div>
+</dialog>
+
+<script src="./config.js"></script>
+<script src="./app.js"></script>
 </body>
 </html>

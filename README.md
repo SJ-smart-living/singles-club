@@ -1,22 +1,26 @@
-# Singles Club Global Premium Frontend v1.0.0
+# Singles Club Premium SaaS One-Page Frontend v1.0.0
 
-A self-contained, membership-gated social experience frontend.
+This version restores the original one-page application structure.
 
-## Product direction
+## Layout
 
-- Large editorial hero experience
-- Local self-hosted imagery
-- Animated global activity map without Google Maps
-- Image-led experiences and club moments
-- Community, Select, and Private membership tiers
-- Separate membership and event payments
-- Private booking and venue lookup
+- Fixed SaaS sidebar
+- Single application workspace
+- Large title and direct actions
+- Animated activity map
+- Image-based club moments
+- Compact experience cards
+- Membership tiers
+- Privacy and responsibility boundaries inside the same application
+- All customer flows open in dialogs without leaving the page
+
+## Product model retained
+
+- Paid membership required before event booking
+- Community, Select, and Private access tiers
+- Separate membership and event fees
+- Exact venue released only after operator confirmation
 - Chinese and English
-- Locale-aware dates and currencies
-- Privacy, payment, and event-safety boundary pages
-
-## Global deployment note
-
-The interface does not rely on external fonts, maps, CDNs, or image hosts. Actual availability in a country still depends on the chosen hosting provider, domain, payment provider, and local regulatory requirements. GitHub Pages may not be a reliable production host in every country; deploy the same static files to an appropriate regional or custom-domain host when needed.
+- Global dates, currencies, cities, and time zones
 
 Formal version: `v1.0.0`

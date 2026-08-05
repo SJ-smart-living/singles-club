@@ -14,7 +14,7 @@ zh:{
  headline:'先成为会员，<br>再走进每一次<span>真实的相遇</span>',
  headlineSub:"不是滑动屏幕认识一个人，而是在咖啡、散步、晚餐与音乐中，给真实交流留出空间。",
  joinMembership:"开通会员资格",explore:"查看近期活动",adultOnly:"仅限18岁及以上成年人",privateVenue:"具体地址仅向符合条件的报名会员开放",noGuarantee:"不承诺配对或关系结果",
- worldTitle:"真实的城市，正在发生真实的交流",worldSub:"平台不依赖第三方地图或外部图片站点。活动可由不同地区的运营方设置城市、货币、时区和语言。",
+ worldTitle:"真实的城市，正在发生真实的交流",live:"持续更新",mapCenterTitle:"城市活动网络",mapCenterSub:"地点按活动轮换",featured:"当前推荐活动",book:"会员报名",privacyShort:"照片、联系方式和具体地址不公开。",boundariesTitle:"安全边界直接放进产品流程",worldSub:"平台不依赖第三方地图或外部图片站点。活动可由不同地区的运营方设置城市、货币、时区和语言。",
  upcoming:"下一次相遇，也许就在这座城市",upcomingSub:"有效会员可报名符合等级的活动。会员费与每次活动费用分别显示。",
  momentsTitle:"让平台一直有真实生活在发生",momentsSub:"活动动态只展示运营方选择公开的内容，不公开会员联系方式、照片或具体地点。",
  membershipTitle:"不是购买一个结果，而是获得进入俱乐部的资格",membershipSub:"不同等级对应不同活动范围、规模和人工协调程度。是否产生进一步关系，由参与者自行决定。",
@@ -37,7 +37,7 @@ en:{
  headline:'Become a member,<br>then step into every <span>real connection</span>',
  headlineSub:"Not another screen to swipe. Make room for real conversation through coffee, walks, dinners, and music.",
  joinMembership:"Activate membership",explore:"Explore experiences",adultOnly:"Adults 18+ only",privateVenue:"Exact venues are released only to eligible booked members",noGuarantee:"No matching or relationship outcome is promised",
- worldTitle:"Real cities. Real conversations are happening.",worldSub:"The platform does not depend on third-party maps or image services. Operators can configure cities, currencies, time zones, and languages.",
+ worldTitle:"Real cities. Real conversations are happening.",live:"Live updates",mapCenterTitle:"City activity network",mapCenterSub:"Locations rotate by event",featured:"Featured activity",book:"Member booking",privacyShort:"Photos, contacts, and exact venues remain private.",boundariesTitle:"Safety boundaries inside the product flow",worldSub:"The platform does not depend on third-party maps or image services. Operators can configure cities, currencies, time zones, and languages.",
  upcoming:"Your next real-world experience may be in this city",upcomingSub:"Active members may book eligible events. Membership and individual event fees are shown separately.",
  momentsTitle:"A platform where real life keeps happening",momentsSub:"Only operator-selected public activity updates are shown. Member contacts, photos, and exact venues remain private.",
  membershipTitle:"You are not buying an outcome. You are gaining club access.",membershipSub:"Tiers define activity access, group size, and coordination level. Participants decide whether any relationship continues.",
@@ -95,12 +95,15 @@ function renderExperiences(){
   <article class="experience-card">
    <img src="${images[i%images.length]}" alt="${loc(e,"title")}">
    <div class="experience-content">
-    <div class="experience-topline"><span class="tier-pill">${e.required_tier}</span><span class="seat-pill">${e.available_spots??0} ${state.lang==="zh"?"个席位":"seats"}</span></div>
+    <div class="experience-topline"><span class="tier-pill">${e.required_tier}</span><span class="seat-pill">${e.available_spots??0} ${state.lang==="zh"?"席":"seats"}</span></div>
     <h3>${loc(e,"title")}</h3>
-    <div class="experience-meta"><span>${e.city} · ${date(e.start_at)}</span><strong>${money(e.price,e.currency)}</strong></div>
-    <button class="book-button" data-event="${e.id}">${state.lang==="zh"?"会员报名":"Member booking"}</button>
+    <div class="experience-meta"><span>${e.city} · ${date(e.start_at)}</span><button class="book-button" data-event="${e.id}">${tr("book")}</button></div>
    </div>
   </article>`).join("");
+ const first=events[0];
+ $("#featuredTitle").textContent=loc(first,"title");
+ $("#featuredMeta").textContent=`${first.city} · ${date(first.start_at)} · ${money(first.price,first.currency)}`;
+ $("#featuredBook").onclick=()=>openBooking(first);
  $$("[data-event]").forEach(b=>b.onclick=()=>openBooking(events.find(e=>String(e.id)===b.dataset.event)));
 }
 function renderMoments(){
@@ -142,8 +145,8 @@ function renderMap(){
   $("#mapTier").textContent=event?.required_tier||"Community";
   $("#mapTitle").textContent=event?loc(event,"title"):(state.lang==="zh"?"会员活动":"Member experience");
   $("#mapMeta").textContent=event?`${event.city} · ${event.available_spots??0} ${state.lang==="zh"?"个席位":"seats"}`:city.city;
-  $("#heroCity").textContent=event?.city||city.city;
-  $("#heroExperience").textContent=event?loc(event,"title"):"Coffee & Conversation";
+  if($("#heroCity"))$("#heroCity").textContent=event?.city||city.city;
+  if($("#heroExperience"))$("#heroExperience").textContent=event?loc(event,"title"):"Coffee & Conversation";
  }
  $$("[data-pin]").forEach(p=>p.onclick=()=>{clearInterval(state.mapTimer);show(Number(p.dataset.pin));state.mapTimer=setInterval(()=>show(state.mapIndex+1),C.rotationSeconds*1000)});
  show(0);clearInterval(state.mapTimer);state.mapTimer=setInterval(()=>show(state.mapIndex+1),C.rotationSeconds*1000);
@@ -157,8 +160,8 @@ function openBooking(event){
  $("#selectedExperience").innerHTML=`<strong>${loc(event,"title")}</strong><p>${event.city} · ${date(event.start_at)} · ${event.required_tier} · ${money(event.price,event.currency)}</p>`;
  $("#bookingDialog").showModal();
 }
-$("#openJoin").onclick=()=>openJoin();$("#heroJoin").onclick=()=>openJoin();$("#openStatus").onclick=()=>$("#statusDialog").showModal();
-$("#langBtn").onclick=()=>{state.lang=state.lang==="zh"?"en":"zh";localStorage.setItem("sc_lang",state.lang);render()};
+$("#openJoinTop").onclick=()=>openJoin();$("#openJoinMobile").onclick=()=>openJoin();$("#openStatusTop").onclick=()=>$("#statusDialog").showModal();$("#openStatusSide").onclick=()=>$("#statusDialog").showModal();$("#openStatusMobile").onclick=()=>$("#statusDialog").showModal();
+$("#langBtn").onclick=()=>{state.lang=state.lang==="zh"?"en":"zh";localStorage.setItem("sc_lang",state.lang);$("#preferredLanguage").value=state.lang;render()};
 $$("[data-close]").forEach(b=>b.onclick=()=>$("#"+b.dataset.close).close());
 $("#memberForm").onsubmit=async e=>{
  e.preventDefault();$("#memberError").innerHTML="";
@@ -209,5 +212,7 @@ $("#eventStatusForm").onsubmit=async e=>{
   $("#statusResult").innerHTML=`<div class="status-box"><h3>${tr("statusLabels."+j.status)}</h3><p>${j.title_zh||j.title_en} · ${money(j.amount_due,j.currency)}</p>${["awaiting_payment","payment_pending"].includes(j.status)?paymentMarkup(j.payment,j.booking_number):""}${j.private_venue?`<div class="success-message"><strong>${state.lang==="zh"?"具体活动安排":"Venue details"}</strong><br>${j.private_venue}</div>`:""}</div>`;
  }catch(err){$("#statusResult").innerHTML=`<div class="error-message">${err.message}</div>`}
 };
+$$("[data-scroll]").forEach(b=>b.onclick=()=>document.getElementById(b.dataset.scroll)?.scrollIntoView({behavior:"smooth"}));
+$("#preferredLanguage").value=state.lang;
 load().catch(err=>document.body.insertAdjacentHTML("afterbegin",`<div class="error-message" style="position:fixed;z-index:999;left:12px;right:12px;top:12px;background:#fff;padding:12px;border-radius:12px">${err.message}</div>`));
 })();
