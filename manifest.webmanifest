@@ -4,8 +4,8 @@
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f5f1eb",
-  "theme_color": "#151314",
+  "background_color": "#ebe8e3",
+  "theme_color": "#171416",
   "icons": [
     {
       "src": "./icon.svg",
@@ -13,6 +13,5 @@
       "type": "image/svg+xml",
       "purpose": "any maskable"
     }
-  ],
-  "description": "Discover local social activities and apply to participate."
+  ]
 }
