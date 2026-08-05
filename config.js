@@ -110,16 +110,35 @@ function paymentMarkup(payment,code){
  return html+"</div>";
 }
 async function load(){
-      const live=await request("/api/public");
-      const realEvents=Array.isArray(live.events)?live.events:[];
-      const realPosts=Array.isArray(live.posts)?live.posts:[];
-      state.data={
-        ...live,
-        events:realEvents.length?realEvents:[...STARTER_EVENTS],
-        posts:realPosts.length?realPosts:[...STARTER_POSTS]
-      };
-      render();
-    }
+  try{
+    const live=await request("/api/public");
+    const realEvents=Array.isArray(live.events)?live.events:[];
+    const realPosts=Array.isArray(live.posts)?live.posts:[];
+    state.data={
+      ...live,
+      events:realEvents.length?realEvents:[...STARTER_EVENTS],
+      posts:realPosts.length?realPosts:[...STARTER_POSTS]
+    };
+    render();
+  }catch(error){
+    state.data={
+      settings:{brand_name:"LivingHub"},
+      plans:[
+        {tier:"community",name_zh:"年度会员",name_en:"Annual Member",price:299,duration_days:365,summary_zh:"取得年度会员资格；每场活动费用另付。",summary_en:"Annual member access; individual event fees are separate.",features_zh:"浏览公开活动\n报名符合资格的活动\n付款确认后查看具体地点",features_en:"Browse public experiences\nBook eligible activities\nView venue after confirmation"},
+        {tier:"private",name_zh:"年度合作会员",name_en:"Annual Partner Member",price:2990,duration_days:365,summary_zh:"包含会员权益和经审核的发布资格。",summary_en:"Includes member access and moderated publishing rights.",features_zh:"普通会员全部权益\n提交活动与合作信息\n审核后进入地图与活动列表",features_en:"All member benefits\nSubmit events and partner information\nAppear publicly after review"}
+      ],
+      events:[...STARTER_EVENTS],
+      posts:[...STARTER_POSTS]
+    };
+    render();
+    const banner=document.createElement("div");
+    banner.className="connection-banner";
+    banner.innerHTML=`<strong>${state.lang==="zh"?"正在使用平台启动内容":"Showing platform starter content"}</strong><span>${state.lang==="zh"?"后端暂时未连接。会员、付款、报名和发布操作需要网络恢复后使用。":"The backend is temporarily unavailable. Membership, payment, booking, and publishing require reconnection."}</span><button type="button">${state.lang==="zh"?"重新连接":"Retry"}</button>`;
+    banner.querySelector("button").onclick=()=>location.reload();
+    document.body.appendChild(banner);
+    console.error("LivingHub API connection failed",error);
+  }
+}
 function render(){
  applyLanguage();
  const d=state.data||{},s=d.settings||{};
@@ -345,5 +364,5 @@ if("serviceWorker" in navigator){
   navigator.serviceWorker.addEventListener("controllerchange",()=>location.reload());
 }
 
-load().catch(err=>document.body.insertAdjacentHTML("afterbegin",`<div class="error-message" style="position:fixed;z-index:999;left:12px;right:12px;top:12px;background:#fff;padding:12px;border-radius:12px">${err.message}</div>`));
+load();
 })();
