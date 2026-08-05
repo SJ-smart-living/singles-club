@@ -4,9 +4,9 @@ const C=window.APP_CONFIG,API=C.apiBaseUrl.replace(/\/+$/,""),$=s=>document.quer
 const state={lang:localStorage.getItem("sc_lang")||C.defaultLanguage,data:null,mapIndex:0,mapTimer:null,lastMember:null,lastBooking:null,currentEvent:null};
 const images=["./assets/coffee-gathering.jpg","./assets/city-walk.jpg","./assets/dinner-gathering.jpg","./assets/music-night.jpg"];
 const coords=[
-  {city:"Los Angeles",x:17,y:51},{city:"New York",x:27,y:43},{city:"London",x:48,y:36},
-  {city:"Paris",x:50,y:42},{city:"Dubai",x:61,y:55},{city:"Singapore",x:73,y:69},
-  {city:"Shanghai",x:78,y:48},{city:"Tokyo",x:86,y:44},{city:"Sydney",x:88,y:79}
+ {city:"Los Angeles",x:18,y:44},{city:"Pasadena",x:34,y:28},{city:"Arcadia",x:54,y:31},
+ {city:"Irvine",x:65,y:62},{city:"Long Beach",x:43,y:71},{city:"San Diego",x:78,y:74},
+ {city:"Shanghai",x:82,y:35},{city:"Tokyo",x:89,y:47},{city:"Singapore",x:74,y:82}
 ];
 const T={
 zh:{
@@ -14,7 +14,7 @@ zh:{
  headline:'先成为会员，<br>再走进每一次<span>真实的相遇</span>',
  headlineSub:"不是滑动屏幕认识一个人，而是在咖啡、散步、晚餐与音乐中，给真实交流留出空间。",
  joinMembership:"开通会员资格",explore:"查看近期活动",adultOnly:"仅限18岁及以上成年人",privateVenue:"具体地址仅向符合条件的报名会员开放",noGuarantee:"不承诺配对或关系结果",
- worldTitle:"真实的城市，正在发生真实的交流",live:"持续更新",mapCenterTitle:"城市活动网络",mapCenterSub:"地点按活动轮换",featured:"当前推荐活动",book:"会员报名",privacyShort:"照片、联系方式和具体地址不公开。",boundariesTitle:"安全边界直接放进产品流程",worldSub:"平台不依赖第三方地图或外部图片站点。活动可由不同地区的运营方设置城市、货币、时区和语言。",
+ worldTitle:"真实的城市，正在发生真实的交流",live:"持续更新",mapCenterTitle:"城市活动网络",mapCenterSub:"地点按活动轮换",featured:"当前推荐活动",book:"会员报名",privacyShort:"照片、联系方式和具体地址不公开。",submitExperience:"发布活动",submitDialogTitle:"提交一个线下活动",submitDialogSub:"任何成年人都可以提交活动。运营方审核通过后，活动才会进入公开地图。",organizerName:"组织者名称",organizerContact:"组织者联系方式",eventTitle:"活动名称",countryRegion:"国家或地区",eventTime:"活动时间",publicArea:"公开区域",expectedPrice:"预计活动费",eventDescription:"活动说明",minimumTier:"建议最低会员等级",submissionConsent:"我确认活动信息真实，不公开私人地址，并同意运营方审核、修改或拒绝发布。",submitForReview:"提交审核",boundariesTitle:"安全边界直接放进产品流程",worldSub:"平台不依赖第三方地图或外部图片站点。活动可由不同地区的运营方设置城市、货币、时区和语言。",
  upcoming:"下一次相遇，也许就在这座城市",upcomingSub:"有效会员可报名符合等级的活动。会员费与每次活动费用分别显示。",
  momentsTitle:"让平台一直有真实生活在发生",momentsSub:"活动动态只展示运营方选择公开的内容，不公开会员联系方式、照片或具体地点。",
  membershipTitle:"不是购买一个结果，而是获得进入俱乐部的资格",membershipSub:"不同等级对应不同活动范围、规模和人工协调程度。是否产生进一步关系，由参与者自行决定。",
@@ -37,7 +37,7 @@ en:{
  headline:'Become a member,<br>then step into every <span>real connection</span>',
  headlineSub:"Not another screen to swipe. Make room for real conversation through coffee, walks, dinners, and music.",
  joinMembership:"Activate membership",explore:"Explore experiences",adultOnly:"Adults 18+ only",privateVenue:"Exact venues are released only to eligible booked members",noGuarantee:"No matching or relationship outcome is promised",
- worldTitle:"Real cities. Real conversations are happening.",live:"Live updates",mapCenterTitle:"City activity network",mapCenterSub:"Locations rotate by event",featured:"Featured activity",book:"Member booking",privacyShort:"Photos, contacts, and exact venues remain private.",boundariesTitle:"Safety boundaries inside the product flow",worldSub:"The platform does not depend on third-party maps or image services. Operators can configure cities, currencies, time zones, and languages.",
+ worldTitle:"Real cities. Real conversations are happening.",live:"Live updates",mapCenterTitle:"City activity network",mapCenterSub:"Locations rotate by event",featured:"Featured activity",book:"Member booking",privacyShort:"Photos, contacts, and exact venues remain private.",submitExperience:"Submit event",submitDialogTitle:"Submit an offline experience",submitDialogSub:"Any adult may submit an event. It appears on the public map only after operator approval.",organizerName:"Organizer name",organizerContact:"Organizer contact",eventTitle:"Event title",countryRegion:"Country or region",eventTime:"Event time",publicArea:"Public area",expectedPrice:"Expected event fee",eventDescription:"Event description",minimumTier:"Suggested minimum tier",submissionConsent:"I confirm the information is accurate, no private address is publicly disclosed, and the operator may review, edit, or reject it.",submitForReview:"Submit for review",boundariesTitle:"Safety boundaries inside the product flow",worldSub:"The platform does not depend on third-party maps or image services. Operators can configure cities, currencies, time zones, and languages.",
  upcoming:"Your next real-world experience may be in this city",upcomingSub:"Active members may book eligible events. Membership and individual event fees are shown separately.",
  momentsTitle:"A platform where real life keeps happening",momentsSub:"Only operator-selected public activity updates are shown. Member contacts, photos, and exact venues remain private.",
  membershipTitle:"You are not buying an outcome. You are gaining club access.",membershipSub:"Tiers define activity access, group size, and coordination level. Participants decide whether any relationship continues.",
@@ -214,5 +214,75 @@ $("#eventStatusForm").onsubmit=async e=>{
 };
 $$("[data-scroll]").forEach(b=>b.onclick=()=>document.getElementById(b.dataset.scroll)?.scrollIntoView({behavior:"smooth"}));
 $("#preferredLanguage").value=state.lang;
+
+function openSubmit(){
+  $("#publicEventForm").reset();
+  $("#submitEventMessage").innerHTML="";
+  $("#submitDialog").showModal();
+}
+$("#openSubmitSide").onclick=openSubmit;
+$("#openSubmitTop").onclick=openSubmit;
+$("#openSubmitMobile").onclick=openSubmit;
+
+$("#publicEventForm").onsubmit=async e=>{
+  e.preventDefault();
+  $("#submitEventMessage").innerHTML="";
+  const values=Object.fromEntries(new FormData(e.target));
+  try{
+    const result=await request("/api/public-event-submissions",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(values)
+    });
+    $("#submitEventMessage").innerHTML=`<div class="success-message">${
+      state.lang==="zh"
+        ? `提交成功。审核编号：${result.submission_number}`
+        : `Submitted. Review number: ${result.submission_number}`
+    }</div>`;
+    e.target.reset();
+  }catch(err){
+    $("#submitEventMessage").innerHTML=`<div class="error-message">${err.message}</div>`;
+  }
+};
+
+let deferredInstallPrompt=null;
+window.addEventListener("beforeinstallprompt",event=>{
+  event.preventDefault();
+  deferredInstallPrompt=event;
+  if(document.querySelector(".install-banner"))return;
+  const banner=document.createElement("div");
+  banner.className="install-banner";
+  banner.innerHTML=`<span>${state.lang==="zh"?"安装 Singles Club 应用":"Install Singles Club"}</span><button>${state.lang==="zh"?"安装":"Install"}</button>`;
+  banner.querySelector("button").onclick=async()=>{
+    if(!deferredInstallPrompt)return;
+    deferredInstallPrompt.prompt();
+    await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt=null;
+    banner.remove();
+  };
+  document.body.appendChild(banner);
+});
+
+if("serviceWorker" in navigator){
+  window.addEventListener("load",async()=>{
+    try{
+      const registration=await navigator.serviceWorker.register("./service-worker.js",{scope:"./"});
+      registration.addEventListener("updatefound",()=>{
+        const worker=registration.installing;
+        worker?.addEventListener("statechange",()=>{
+          if(worker.state==="installed"&&navigator.serviceWorker.controller){
+            const toast=document.createElement("button");
+            toast.className="update-toast";
+            toast.textContent=state.lang==="zh"?"发现新版本，点击更新":"New version available — update";
+            toast.onclick=()=>{worker.postMessage({type:"SKIP_WAITING"});location.reload()};
+            document.body.appendChild(toast);
+          }
+        });
+      });
+    }catch(error){console.warn("Service worker registration failed",error)}
+  });
+  navigator.serviceWorker.addEventListener("controllerchange",()=>location.reload());
+}
+
 load().catch(err=>document.body.insertAdjacentHTML("afterbegin",`<div class="error-message" style="position:fixed;z-index:999;left:12px;right:12px;top:12px;background:#fff;padding:12px;border-radius:12px">${err.message}</div>`));
 })();

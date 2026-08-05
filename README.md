@@ -1,26 +1,16 @@
-# Singles Club Premium SaaS One-Page Frontend v1.0.0
+# Singles Club Final PWA Frontend v1.0.0
 
-This version restores the original one-page application structure.
+Final one-page SaaS application.
 
-## Layout
-
-- Fixed SaaS sidebar
-- Single application workspace
-- Large title and direct actions
-- Animated activity map
-- Image-based club moments
-- Compact experience cards
-- Membership tiers
-- Privacy and responsibility boundaries inside the same application
-- All customer flows open in dialogs without leaving the page
-
-## Product model retained
-
-- Paid membership required before event booking
-- Community, Select, and Private access tiers
-- Separate membership and event fees
-- Exact venue released only after operator confirmation
+- Mature one-page application shell
+- Local city-map visual with streets, parks, blocks, water, labels, and transit points
+- Pulsing and rotating event markers
+- Every navigation and dialog route connected
+- Installable PWA with versioned app-shell caching and update prompts
+- Membership-gated event booking
+- Public event submission for adults
+- Operator review required before a submitted event becomes public
+- No private addresses on the public map
 - Chinese and English
-- Global dates, currencies, cities, and time zones
 
 Formal version: `v1.0.0`

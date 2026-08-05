@@ -23,7 +23,7 @@
       <button class="active" data-scroll="dashboard">⌁ <span data-i18n="discover">发现</span></button>
       <button data-scroll="experiences">◉ <span data-i18n="experiences">活动体验</span></button>
       <button data-scroll="membership">◇ <span data-i18n="membership">会员资格</span></button>
-      <button id="openStatusSide">◎ <span data-i18n="status">查询状态</span></button>
+      <button id="openStatusSide">◎ <span data-i18n="status">查询状态</span></button><button id="openSubmitSide">＋ <span data-i18n="submitExperience">发布活动</span></button>
     </nav>
 
     <div class="sidebar-boundary">
@@ -47,7 +47,7 @@
       </div>
       <div class="header-actions">
         <button class="soft-btn" id="openStatusTop" data-i18n="status">查询状态</button>
-        <button class="primary-btn" id="openJoinTop" data-i18n="join">成为会员</button>
+        <button class="soft-btn" id="openSubmitTop" data-i18n="submitExperience">发布活动</button><button class="primary-btn" id="openJoinTop" data-i18n="join">成为会员</button>
       </div>
     </header>
 
@@ -59,12 +59,54 @@
         </div>
 
         <div class="map-stage" id="worldMap">
-          <img src="./assets/hero-gathering.jpg" class="map-background" alt="">
-          <div class="map-overlay"></div>
-          <svg viewBox="0 0 1000 560" class="map-lines" aria-hidden="true">
-            <path d="M90 380 C245 250 395 310 510 235 S720 130 920 230"/>
-            <path d="M120 160 C260 85 415 120 545 215 S730 380 900 330"/>
-          </svg>
+          <div class="city-map-base">
+            <svg viewBox="0 0 1200 760" class="city-map-svg" role="img" aria-label="Activity city map">
+              <defs>
+                <pattern id="minorGrid" width="58" height="58" patternUnits="userSpaceOnUse">
+                  <path d="M58 0H0V58" fill="none" stroke="#b8aea6" stroke-width="1" opacity=".2"/>
+                </pattern>
+                <filter id="softShadow"><feDropShadow dx="0" dy="7" stdDeviation="8" flood-opacity=".18"/></filter>
+              </defs>
+              <rect width="1200" height="760" fill="#d9d1c8"/>
+              <rect width="1200" height="760" fill="url(#minorGrid)"/>
+              <path class="park" d="M55 65h260v160H55z"/>
+              <path class="park" d="M875 500h250v175H875z"/>
+              <path class="water" d="M930 0c-75 125-53 252 30 335 77 77 103 185 80 425h160V0Z"/>
+              <g class="blocks">
+                <path d="M355 65h170v115H355zM560 65h190v115H560zM785 65h120v115H785z"/>
+                <path d="M80 270h190v130H80zM305 245h185v155H305zM530 240h200v160H530zM770 240h145v160H770z"/>
+                <path d="M70 450h210v190H70zM320 455h185v185H320zM545 455h195v185H545zM775 445h115v200H775z"/>
+              </g>
+              <g class="road-major">
+                <path d="M0 220C235 208 400 230 620 210S965 170 1200 188"/>
+                <path d="M0 420C195 400 390 430 610 408S980 365 1200 390"/>
+                <path d="M300 0C286 180 312 330 292 760"/>
+                <path d="M760 0C740 190 770 365 750 760"/>
+              </g>
+              <g class="road-minor">
+                <path d="M0 330H930M0 545H930M465 0V760M620 0V760M890 0V760"/>
+                <path d="M105 0V760M1050 0V760"/>
+              </g>
+              <g class="map-labels">
+                <text x="105" y="150">Central Park</text>
+                <text x="390" y="130">Arts District</text>
+                <text x="585" y="130">Old Town</text>
+                <text x="795" y="130">Civic Center</text>
+                <text x="115" y="345">Coffee Row</text>
+                <text x="350" y="325">Market Street</text>
+                <text x="575" y="320">Museum Quarter</text>
+                <text x="780" y="320">Station</text>
+                <text x="110" y="555">Garden District</text>
+                <text x="365" y="555">Downtown</text>
+                <text x="585" y="555">Riverside</text>
+                <text x="915" y="590">Bay Park</text>
+              </g>
+              <g class="transit">
+                <circle cx="425" cy="408" r="9"/><circle cx="750" cy="408" r="9"/><circle cx="292" cy="220" r="9"/>
+              </g>
+            </svg>
+          </div>
+          <div class="map-light-sweep"></div>
           <div id="mapPins"></div>
 
           <div class="map-center">
@@ -130,7 +172,7 @@
   <button data-scroll="dashboard">⌁<span data-i18n="discover">发现</span></button>
   <button data-scroll="experiences">◉<span data-i18n="experiences">活动</span></button>
   <button id="openJoinMobile">＋<span data-i18n="join">会员</span></button>
-  <button id="openStatusMobile">◎<span data-i18n="status">查询</span></button>
+  <button id="openStatusMobile">◎<span data-i18n="status">查询</span></button><button id="openSubmitMobile">＋<span data-i18n="submitExperience">发布</span></button>
 </nav>
 
 <dialog id="joinDialog">
@@ -221,6 +263,35 @@
       <button class="primary-wide" data-i18n="lookup">查询</button>
     </form>
     <div id="statusResult"></div>
+  </div>
+</dialog>
+
+
+<dialog id="submitDialog">
+  <div class="dialog-body">
+    <button class="dialog-close" data-close="submitDialog">×</button>
+    <p class="section-label">COMMUNITY SUBMISSION</p>
+    <h2 data-i18n="submitDialogTitle">提交一个线下活动</h2>
+    <p data-i18n="submitDialogSub">任何成年人都可以提交活动。运营方审核通过后，活动才会进入公开地图。</p>
+    <form id="publicEventForm">
+      <div class="form-grid">
+        <label><span data-i18n="organizerName">组织者名称</span><input name="organizer_name" required maxlength="100"></label>
+        <label><span data-i18n="organizerContact">组织者联系方式</span><input name="organizer_contact" required maxlength="160"></label>
+        <label><span data-i18n="eventTitle">活动名称</span><input name="title" required maxlength="140"></label>
+        <label><span data-i18n="city">城市</span><input name="city" required maxlength="100"></label>
+        <label><span data-i18n="countryRegion">国家或地区</span><input name="country" required maxlength="100"></label>
+        <label><span data-i18n="eventTime">活动时间</span><input type="datetime-local" name="start_at" required></label>
+        <label><span data-i18n="publicArea">公开区域</span><input name="public_area" required maxlength="160" placeholder="Downtown / 公园附近"></label>
+        <label><span data-i18n="expectedPrice">预计活动费</span><input type="number" name="price" min="0" step=".01" value="0"></label>
+      </div>
+      <label><span data-i18n="eventDescription">活动说明</span><textarea name="description" required maxlength="1600"></textarea></label>
+      <label><span data-i18n="minimumTier">建议最低会员等级</span>
+        <select name="required_tier"><option value="community">Community</option><option value="select">Select</option><option value="private">Private</option></select>
+      </label>
+      <label class="consent-row"><input type="checkbox" required><span data-i18n="submissionConsent">我确认活动信息真实，不公开私人地址，并同意运营方审核、修改或拒绝发布。</span></label>
+      <button class="primary-wide" data-i18n="submitForReview">提交审核</button>
+      <div id="submitEventMessage"></div>
+    </form>
   </div>
 </dialog>
 
