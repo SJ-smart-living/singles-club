@@ -3,6 +3,9 @@ window.APP_CONFIG={
   adminUrl:"https://singles-club-backend.onrender.com/admin.html",
   siteUrl:"https://sj-smart-living.github.io/singles-club/",
   defaultLanguage:"zh",
+  defaultLocale:"zh-CN",
+  defaultCurrency:"USD",
   tierRank:{community:1,select:2,private:3},
-  rotationSeconds:7
+  rotationSeconds:6,
+  legalVersion:"2026-08-05"
 };
