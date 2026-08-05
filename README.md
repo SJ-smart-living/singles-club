@@ -1,34 +1,29 @@
-# Singles Club Frontend v1.0.0
+# Singles Club One-Page SaaS PWA v1.0.0
 
-Clean GitHub Pages frontend connected to the production Render backend.
+This is the single-page SaaS-style frontend connected to the production Render backend.
 
-## Production URLs
+## Live connections
 
 - Frontend: `https://sj-smart-living.github.io/singles-club/`
 - Backend: `https://singles-club-backend.onrender.com`
 - Merchant admin: `https://singles-club-backend.onrender.com/admin.html`
 
-## Repository contents
+## Product interface
 
-- `index.html`
-- `styles.css`
-- `app.js`
-- `config.js`
-- `manifest.webmanifest`
-- `assets/`
-- `robots.txt`
-- `sitemap.xml`
-- `.nojekyll`
+- One-page SaaS application
+- Pulsing local activity map
+- Automatically scrolling club updates
+- $99 / $299 / $599 membership plans from the backend
+- Event application modal
+- Up to three private photo uploads
+- Application status modal
+- Merchant-direct Stripe, Zelle, and QR information
+- Exact venue shown only after the merchant unlocks it
+- Chinese and English
+- PWA installation
 
-## GitHub Pages
+## Upload
 
-Set:
+Upload the extracted files directly to the root of the `singles-club` frontend repository.
 
-- Branch: `main`
-- Folder: `/ (root)`
-
-## Important
-
-This repository contains no Supabase code, SQL, backend administration, secrets, or database credentials.
-
-Daily merchant operations are handled through the separate Render backend.
+Delete old Supabase files and old duplicated folders before upload.

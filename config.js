@@ -1,6 +1,7 @@
 window.APP_CONFIG = {
   apiBaseUrl: "https://singles-club-backend.onrender.com",
   siteUrl: "https://sj-smart-living.github.io/singles-club/",
+  adminUrl: "https://singles-club-backend.onrender.com/admin.html",
   defaultLanguage: "zh",
   maxPhotos: 3,
   maxPhotoBytes: 5 * 1024 * 1024,
