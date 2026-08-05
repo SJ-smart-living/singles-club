@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#161314">
   <meta name="description" content="Local singles club platform for real events, verified applications, member services, shared learning, and merchant-owned payments.">
   <meta name="robots" content="index,follow,max-image-preview:large">
-  <link rel="canonical" id="canonicalLink" href="https://example.com/">
+  <link rel="canonical" id="canonicalLink" href="https://sj-smart-living.github.io/singles-club/">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
@@ -188,39 +188,6 @@
       </div>
     </div>
   </section>
-
-  <section id="adminApp" class="route">
-    <div class="admin-layout">
-      <aside>
-        <div class="brand"><span class="logo">S</span><span id="adminBrand">Singles Club</span></div>
-        <button data-admin-tab="dashboard" class="active" data-i18n="dashboard">概览</button>
-        <button data-admin-tab="events" data-i18n="manageEvents">活动管理</button>
-        <button data-admin-tab="posts" data-i18n="managePosts">动态管理</button>
-        <button data-admin-tab="applications" data-i18n="applications">会员申请</button>
-        <button data-admin-tab="payments" data-i18n="paymentSettings">收款设置</button>
-        <button data-admin-tab="plans" data-i18n="planSettings">套餐设置</button>
-        <button data-admin-tab="club" data-i18n="clubSettings">俱乐部设置</button>
-        <button id="adminLogout" data-i18n="logout">退出</button>
-      </aside>
-      <section class="admin-content">
-        <div id="adminLogin" class="admin-login">
-          <div class="form-card">
-            <h2 data-i18n="merchantLogin">商家登录</h2>
-            <form id="adminLoginForm">
-              <label><span data-i18n="email">邮箱</span><input required type="email" name="email"></label>
-              <label><span data-i18n="password">密码</span><input required type="password" name="password"></label>
-              <button class="btn primary" type="submit" data-i18n="login">登录</button>
-            </form>
-            <div id="adminLoginError" class="error"></div>
-          </div>
-        </div>
-        <div id="adminWorkspace" class="hidden">
-          <div id="adminPanel"></div>
-        </div>
-      </section>
-    </div>
-  </section>
-
   <section id="legalApp" class="route">
     <div class="wrap narrow">
       <button class="back-link" data-route="home">← <span data-i18n="backHome">返回首页</span></button>
@@ -235,7 +202,7 @@
     <span>·</span>
     <button class="link-btn" data-route="privacy" data-i18n="privacyPolicy">隐私政策</button>
     <button class="link-btn" data-route="terms" data-i18n="terms">服务条款</button>
-    <button class="link-btn" data-route="admin" data-i18n="merchantLogin">商家登录</button>
+    <a class="link-btn" id="merchantAdminLink" href="https://singles-club-backend.onrender.com/admin.html" target="_blank" rel="noopener" data-i18n="merchantLogin">商家登录</a>
   </div>
 </footer>
 

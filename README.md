@@ -1,40 +1,34 @@
 # Singles Club Frontend v1.0.0
 
-Static PWA frontend for the Singles Club product.
+Clean GitHub Pages frontend connected to the production Render backend.
 
-## Repository
+## Production URLs
 
-Recommended repository name:
+- Frontend: `https://sj-smart-living.github.io/singles-club/`
+- Backend: `https://singles-club-backend.onrender.com`
+- Merchant admin: `https://singles-club-backend.onrender.com/admin.html`
 
-`singles-club`
+## Repository contents
 
-## Configure
+- `index.html`
+- `styles.css`
+- `app.js`
+- `config.js`
+- `manifest.webmanifest`
+- `assets/`
+- `robots.txt`
+- `sitemap.xml`
+- `.nojekyll`
 
-Edit:
+## GitHub Pages
 
-`public/config.js`
+Set:
 
-Replace:
+- Branch: `main`
+- Folder: `/ (root)`
 
-```js
-apiBaseUrl: "https://YOUR-BACKEND.onrender.com"
-```
+## Important
 
-with the deployed Render backend URL.
+This repository contains no Supabase code, SQL, backend administration, secrets, or database credentials.
 
-## Deploy
-
-Deploy the `public` folder to GitHub Pages, Cloudflare Pages, Netlify, or another static host.
-
-## Backend
-
-The frontend requires the separate `singles-club-backend` repository for:
-
-- applications
-- private photos
-- merchant login
-- events
-- posts
-- plans
-- payment settings
-- status lookup
+Daily merchant operations are handled through the separate Render backend.

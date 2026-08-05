@@ -1,16 +1,10 @@
-const APP_CONFIG = {
-  supabaseUrl: "https://YOUR_PROJECT.supabase.co",
-  supabaseAnonKey: "YOUR_SUPABASE_ANON_KEY",
-
-  tenantSlug: "singles-club",
-  brandFallback: "Singles Club",
-  siteUrl: "https://example.com/",
+window.APP_CONFIG = {
+  apiBaseUrl: "https://singles-club-backend.onrender.com",
+  siteUrl: "https://sj-smart-living.github.io/singles-club/",
   defaultLanguage: "zh",
-
   maxPhotos: 3,
   maxPhotoBytes: 5 * 1024 * 1024,
   allowedPhotoTypes: ["image/jpeg", "image/png", "image/webp"],
-
   statusOrder: [
     "submitted",
     "under_review",
