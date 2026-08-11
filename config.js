@@ -11,5 +11,5 @@ window.APP_CONFIG = {
     private: 3
   },
   rotationSeconds: 6,
-  legalVersion: "2026-08-05"
+  legalVersion: "2026-08-11"
 };

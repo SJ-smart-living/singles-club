@@ -27,7 +27,7 @@
       <button class="active" data-scroll="dashboard">⌁ <span data-i18n="discover">发现</span></button>
       <button data-scroll="experiences">◉ <span data-i18n="experiences">活动体验</span></button>
       <button data-scroll="membership">◇ <span data-i18n="membership">会员资格</span></button>
-      <button id="openStatusSide">◎ <span data-i18n="status">查询状态</span></button><button id="openSubmitSide">＋ <span data-i18n="submitExperience">发布活动</span></button>
+      <button id="openStatusSide">◎ <span data-i18n="status">查询状态</span></button><button id="openSubmitSide">＋ <span data-i18n="submitExperience">发起活动</span></button><button id="openOrganizerSide">↗ <span data-i18n="myEvents">我的活动</span></button>
     </nav>
 
     <div class="sidebar-boundary">
@@ -51,7 +51,7 @@
       </div>
       <div class="header-actions">
         <button class="soft-btn" id="openStatusTop" data-i18n="status">查询状态</button>
-        <button class="soft-btn" id="openSubmitTop" data-i18n="submitExperience">发布活动</button><button class="primary-btn" id="openJoinTop" data-i18n="join">成为会员</button>
+        <button class="soft-btn" id="openOrganizerTop" data-i18n="myEvents">我的活动</button><button class="soft-btn" id="openSubmitTop" data-i18n="submitExperience">发起活动</button><button class="primary-btn" id="openJoinTop" data-i18n="join">免费加入</button>
       </div>
     </header>
 
@@ -154,7 +154,7 @@
         <div class="panel-head">
           <div><span class="section-label">MEMBERSHIP</span><h2 data-i18n="membershipTitle">不是购买结果，而是获得进入俱乐部的资格</h2></div>
         </div>
-        <div class="membership-list" id="membershipGrid"></div><div class="partner-path"><span>PARTNER PATH</span><strong data-i18n="partnerPathTitle">合作会员可以发布并经营活动</strong><p data-i18n="partnerPathText">支付年度合作资格后，使用同一会员编号提交活动；平台审核通过后进入地图。活动费用仍按每场单独设置和收取。</p><div class="path-steps"><b>01 年度资格</b><b>02 资料确认</b><b>03 提交活动</b><b>04 平台审核</b><b>05 开放报名</b></div></div>
+        <div class="membership-list" id="membershipGrid"></div><div class="partner-path"><span>OPEN ORGANIZER</span><strong data-i18n="partnerPathTitle">想参加就报名，想组织就发起</strong><p data-i18n="partnerPathText">Basic 免费注册即可报名普通活动和提交自己的活动。组织者自己定价、自己收款、自己退款、自负盈亏；平台前期不抽活动款。</p><div class="path-steps"><b>01 免费注册</b><b>02 发起活动</b><b>03 平台审核</b><b>04 分享成团</b><b>05 自己收款</b></div></div></div>
       </article>
 
       <article class="boundaries-panel panel">
@@ -176,7 +176,7 @@
   <button data-scroll="dashboard">⌁<span data-i18n="discover">发现</span></button>
   <button data-scroll="experiences">◉<span data-i18n="experiences">活动</span></button>
   <button id="openJoinMobile">＋<span data-i18n="join">会员</span></button>
-  <button id="openStatusMobile">◎<span data-i18n="status">查询</span></button><button id="openSubmitMobile">＋<span data-i18n="submitExperience">发布</span></button>
+  <button id="openStatusMobile">◎<span data-i18n="status">查询</span></button><button id="openSubmitMobile">＋<span data-i18n="submitExperience">发起</span></button><button id="openOrganizerMobile">↗<span data-i18n="myEvents">我的活动</span></button>
 </nav>
 
 <dialog id="joinDialog">
@@ -271,34 +271,9 @@
 </dialog>
 
 
-<dialog id="submitDialog">
-  <div class="dialog-body">
-    <button class="dialog-close" data-close="submitDialog">×</button>
-    <p class="section-label">COMMUNITY SUBMISSION</p>
-    <h2 data-i18n="submitDialogTitle">提交一个线下活动</h2>
-    <p data-i18n="submitDialogSub">任何成年人都可以提交活动。运营方审核通过后，活动才会进入公开地图。</p>
-    <form id="publicEventForm"><div class="partner-gate"><strong data-i18n="partnerRequired">仅限有效 Partner Member 提交</strong><p data-i18n="partnerRequiredText">请使用已激活的合作会员编号和注册联系方式。活动不会自动公开。</p></div>
-      <div class="form-grid"><label><span data-i18n="memberNumber">会员编号</span><input name="member_number" required maxlength="50"></label><label><span data-i18n="contact">注册电话或邮箱</span><input name="member_contact" required maxlength="160"></label>
-        <label><span data-i18n="organizerName">组织者名称</span><input name="organizer_name" required maxlength="100"></label>
-        <label><span data-i18n="organizerContact">组织者联系方式</span><input name="organizer_contact" required maxlength="160"></label>
-        <label><span data-i18n="eventTitle">活动名称</span><input name="title" required maxlength="140"></label>
-        <label><span data-i18n="city">城市</span><input name="city" required maxlength="100"></label>
-        <label><span data-i18n="countryRegion">国家或地区</span><input name="country" required maxlength="100"></label>
-        <label><span data-i18n="eventTime">活动时间</span><input type="datetime-local" name="start_at" required></label>
-        <label><span data-i18n="publicArea">公开区域</span><input name="public_area" required maxlength="160" placeholder="Downtown / 公园附近"></label>
-        <label><span data-i18n="expectedPrice">预计活动费</span><input type="number" name="price" min="0" step=".01" value="0"></label>
-      </div>
-      <label><span data-i18n="eventDescription">活动说明</span><textarea name="description" required maxlength="1600"></textarea></label>
-      <label><span data-i18n="minimumTier">建议最低会员等级</span>
-        <select name="required_tier"><option value="community">Community</option><option value="select">Select</option><option value="private">Private</option></select>
-      </label>
-      <label class="consent-row"><input type="checkbox" required><span data-i18n="submissionConsent">我确认活动信息真实，不公开私人地址，并同意运营方审核、修改或拒绝发布。</span></label>
-      <button class="primary-wide" data-i18n="submitForReview">提交审核</button>
-      <div id="submitEventMessage"></div>
-    </form>
-  </div>
-</dialog>
-
+<dialog id="submitDialog"><div class="dialog-body wide-dialog"><button class="dialog-close" data-close="submitDialog">×</button><p class="section-label">START AN EXPERIENCE</p><h2 data-i18n="submitDialogTitle">发起一个活动</h2><p data-i18n="submitDialogSub">像接龙一样简单：设定人数、价格和自己的收款方式，平台审核后生成分享链接。活动费直接进入组织者自己的账户。</p><form id="publicEventForm"><div class="organizer-boundary"><strong data-i18n="partnerRequired">Basic 免费注册即可发起</strong><p data-i18n="partnerRequiredText">使用自己的会员编号和注册联系方式。所有活动先审核再公开。</p></div><div class="form-grid">
+<label>会员编号<input name="member_number" required></label><label>注册电话或邮箱<input name="member_contact" required></label><label>组织者名称<input name="organizer_name" required></label><label>活动联系信息<input name="organizer_contact" required></label><label>活动名称<input name="title" required></label><label>城市<input name="city" value="Los Angeles" required></label><label>国家/地区<input name="country" value="US" required></label><label>活动时间<input type="datetime-local" name="start_at" required></label><label>报名截止<input type="datetime-local" name="deadline_at"></label><label>公开区域<input name="public_area" placeholder="Pasadena / Downtown" required></label><label>最低成团人数<input type="number" name="min_participants" min="2" max="500" value="4" required></label><label>最多人数<input type="number" name="capacity" min="2" max="500" value="10" required></label><label>活动费<input type="number" name="price" min="0" step=".01" value="0"></label><label>货币<input name="currency" value="USD" maxlength="3"></label><label>参加资格<select name="required_tier"><option value="community">Basic 免费注册</option><option value="select">Annual Member</option></select></label><label>组织者收款方式<input name="payment_method" placeholder="Zelle / Stripe / WeChat Pay / Other"></label><label>收款名称<input name="payment_name"></label><label>收款账号/邮箱/电话<input name="payment_contact"></label><label>收款链接（可选）<input type="url" name="payment_url" placeholder="https://..."></label><label>活动封面图<input type="file" name="cover_image" accept="image/jpeg,image/png,image/webp"></label><label>收款二维码（可选）<input type="file" name="payment_qr" accept="image/jpeg,image/png,image/webp"></label></div><label>活动说明<textarea name="description" required maxlength="1600"></textarea></label><label>取消与退款规则<textarea name="refund_policy" required maxlength="1200">未达到最低成团人数或组织者取消活动时，由组织者负责按照本活动公布的规则处理退款。LivingHub 不代收本场活动费用。</textarea></label><label class="consent-row"><input type="checkbox" required><span>我确认活动信息真实；我负责活动安排、场地、收费、退款和现场安全；我不会公开私人地址；我理解 LivingHub 只提供发布、审核、报名和信息工具，并保留拒绝或下架活动的权利。</span></label><button class="primary-wide">提交审核</button><div id="submitEventMessage"></div></form></div></dialog>
+<dialog id="organizerDialog"><div class="dialog-body wide-dialog"><button class="dialog-close" data-close="organizerDialog">×</button><p class="section-label">MY EXPERIENCES</p><h2>我的活动</h2><p>输入自己的会员编号和注册联系方式，管理活动、确认收款、分享、取消和开放地点。</p><form id="organizerLookupForm"><div class="form-grid"><label>会员编号<input name="member_number" required></label><label>注册电话或邮箱<input name="contact" required></label></div><button class="primary-wide">打开我的活动</button></form><div id="organizerPanel"></div></div></dialog>
 <script src="./config.js"></script>
 <script src="./app.js"></script>
 </body>
