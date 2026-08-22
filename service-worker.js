@@ -1,5 +1,5 @@
 
-const CACHE_NAME="livinghub-v1.1.0-open-organizer-20260811";
+const CACHE_NAME="livinghub-v1.1.0-easy-share-20260822";
 const APP_SHELL=[
   "./","./index.html","./styles.css","./app.js","./config.js",
   "./manifest.webmanifest","./icon.svg","./404.html","./privacy.html","./terms.html","./safety.html",

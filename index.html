@@ -46,14 +46,25 @@
     <header class="workspace-header">
       <div>
         <p class="eyebrow">LIVINGHUB · SINGLES CLUB · LOS ANGELES</p>
-        <h1 data-i18n-html="headline">先成为会员，<br>再走进每一次<span>真实的相遇</span></h1>
-        <p class="headline-copy" data-i18n="headlineSub">真实交流不由算法承诺结果，而由成年人在清楚规则、双方自愿和真实活动中自行决定。</p>
+        <h1 data-i18n-html="headline">想参加就报名，<br>想组织就<span>发起</span>。人数到了，我们见面。</h1>
+        <p class="headline-copy" data-i18n="headlineSub">免费加入 · 一分钟发起 · 自动生成分享邀请 · 组织者自己收款。先把人聚起来，再把活动做起来。</p>
       </div>
       <div class="header-actions">
         <button class="soft-btn" id="openStatusTop" data-i18n="status">查询状态</button>
         <button class="soft-btn" id="openOrganizerTop" data-i18n="myEvents">我的活动</button><button class="soft-btn" id="openSubmitTop" data-i18n="submitExperience">发起活动</button><button class="primary-btn" id="openJoinTop" data-i18n="join">免费加入</button>
       </div>
     </header>
+
+    <section class="social-pulse" aria-label="LivingHub activity pulse">
+      <div class="pulse-badge"><i></i><span>LIVE</span></div>
+      <div class="pulse-track" id="pulseTrack">
+        <span><img src="./assets/coffee-gathering.jpg" alt=""> Pasadena · Coffee · 正在招募</span>
+        <span><img src="./assets/city-walk.jpg" alt=""> Los Angeles · City Walk · 还差2人成团</span>
+        <span><img src="./assets/dinner-gathering.jpg" alt=""> Arcadia · Dinner · 本周</span>
+        <span><img src="./assets/music-night.jpg" alt=""> Long Beach · Music Night · 即将开始</span>
+        <span><img src="./assets/hero-gathering.jpg" alt=""> 你也可以发起下一场活动 →</span>
+      </div>
+    </section>
 
     <section class="app-grid" id="dashboard">
       <article class="map-panel panel">
@@ -186,20 +197,27 @@
     <h2 data-i18n="joinDialogTitle">开通会员资格</h2>
     <p data-i18n="joinDialogSub">填写最少资料，选择会员等级，并获得会员编号和付款方式。</p>
     <form id="memberForm">
-      <div class="form-grid">
-        <label><span data-i18n="name">姓名或昵称</span><input name="display_name" required maxlength="80"></label>
-        <label><span data-i18n="age">年龄</span><input name="age" type="number" min="18" max="100" required></label>
-        <label><span data-i18n="city">城市</span><input name="city" required maxlength="100"></label>
-        <label><span data-i18n="contact">电话或邮箱</span><input name="contact" required maxlength="160"></label>
+      <div class="quick-form-head">
+        <strong>30秒免费加入</strong>
+        <small>只填4项，Basic 免费立即生效</small>
       </div>
-      <label><span data-i18n="intro">简单介绍</span><textarea name="intro" maxlength="1000"></textarea></label>
-      <label><span data-i18n="preferences">希望参加的活动或交流方式</span><textarea name="preferences" maxlength="1000"></textarea></label>
-      <label><span data-i18n="tier">会员等级</span><select name="tier" id="tierSelect" required></select></label>
-      <label><span data-i18n="photo">本人照片（可选，仅后台查看）</span><input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label>
-      <label class="consent-row"><input type="checkbox" required><span data-i18n="joinConsent">我确认已满18岁，资料仅用于会员管理、付款确认和活动联系；平台不保证配对或关系结果。</span></label>
-      <input type="hidden" name="consent_version" value="2026-08-05">
+      <div class="form-grid quick-grid">
+        <label><span data-i18n="name">姓名或昵称</span><input name="display_name" required maxlength="80" placeholder="怎么称呼你"></label>
+        <label><span data-i18n="age">年龄</span><input name="age" type="number" min="18" max="100" required placeholder="18+"></label>
+        <label><span data-i18n="city">城市</span><input name="city" required maxlength="100" value="Los Angeles"></label>
+        <label><span data-i18n="contact">电话或邮箱</span><input name="contact" required maxlength="160" placeholder="用于报名和查询"></label>
+      </div>
+      <input type="hidden" name="tier" id="tierSelect" value="community">
+      <details class="optional-box">
+        <summary>可选资料 · 以后再填也可以</summary>
+        <label><span data-i18n="intro">简单介绍</span><textarea name="intro" maxlength="1000" placeholder="可不填"></textarea></label>
+        <label><span data-i18n="preferences">希望参加的活动</span><textarea name="preferences" maxlength="1000" placeholder="咖啡 / 散步 / 晚餐 / 音乐 / 其他"></textarea></label>
+        <label><span data-i18n="photo">本人照片（可选，仅后台查看）</span><input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label>
+      </details>
+      <label class="consent-row compact-consent"><input type="checkbox" required><span>我已满18岁，同意平台仅将资料用于注册、报名、活动联系和必要的安全管理。LivingHub 不承诺配对或活动结果。</span></label>
+      <input type="hidden" name="consent_version" value="2026-08-22">
       <input type="hidden" name="preferred_language" id="preferredLanguage" value="zh">
-      <button class="primary-wide" data-i18n="createMember">生成会员编号</button>
+      <button class="primary-wide big-action" data-i18n="createMember">免费加入 LivingHub</button>
       <div id="memberError"></div>
     </form>
     <section class="completion" id="memberCompletion" hidden>
@@ -271,9 +289,64 @@
 </dialog>
 
 
-<dialog id="submitDialog"><div class="dialog-body wide-dialog"><button class="dialog-close" data-close="submitDialog">×</button><p class="section-label">START AN EXPERIENCE</p><h2 data-i18n="submitDialogTitle">发起一个活动</h2><p data-i18n="submitDialogSub">像接龙一样简单：设定人数、价格和自己的收款方式，平台审核后生成分享链接。活动费直接进入组织者自己的账户。</p><form id="publicEventForm"><div class="organizer-boundary"><strong data-i18n="partnerRequired">Basic 免费注册即可发起</strong><p data-i18n="partnerRequiredText">使用自己的会员编号和注册联系方式。所有活动先审核再公开。</p></div><div class="form-grid">
-<label>会员编号<input name="member_number" required></label><label>注册电话或邮箱<input name="member_contact" required></label><label>组织者名称<input name="organizer_name" required></label><label>活动联系信息<input name="organizer_contact" required></label><label>活动名称<input name="title" required></label><label>城市<input name="city" value="Los Angeles" required></label><label>国家/地区<input name="country" value="US" required></label><label>活动时间<input type="datetime-local" name="start_at" required></label><label>报名截止<input type="datetime-local" name="deadline_at"></label><label>公开区域<input name="public_area" placeholder="Pasadena / Downtown" required></label><label>最低成团人数<input type="number" name="min_participants" min="2" max="500" value="4" required></label><label>最多人数<input type="number" name="capacity" min="2" max="500" value="10" required></label><label>活动费<input type="number" name="price" min="0" step=".01" value="0"></label><label>货币<input name="currency" value="USD" maxlength="3"></label><label>参加资格<select name="required_tier"><option value="community">Basic 免费注册</option><option value="select">Annual Member</option></select></label><label>组织者收款方式<input name="payment_method" placeholder="Zelle / Stripe / WeChat Pay / Other"></label><label>收款名称<input name="payment_name"></label><label>收款账号/邮箱/电话<input name="payment_contact"></label><label>收款链接（可选）<input type="url" name="payment_url" placeholder="https://..."></label><label>活动封面图<input type="file" name="cover_image" accept="image/jpeg,image/png,image/webp"></label><label>收款二维码（可选）<input type="file" name="payment_qr" accept="image/jpeg,image/png,image/webp"></label></div><label>活动说明<textarea name="description" required maxlength="1600"></textarea></label><label>取消与退款规则<textarea name="refund_policy" required maxlength="1200">未达到最低成团人数或组织者取消活动时，由组织者负责按照本活动公布的规则处理退款。LivingHub 不代收本场活动费用。</textarea></label><label class="consent-row"><input type="checkbox" required><span>我确认活动信息真实；我负责活动安排、场地、收费、退款和现场安全；我不会公开私人地址；我理解 LivingHub 只提供发布、审核、报名和信息工具，并保留拒绝或下架活动的权利。</span></label><button class="primary-wide">提交审核</button><div id="submitEventMessage"></div></form></div></dialog>
+<dialog id="submitDialog">
+  <div class="dialog-body wide-dialog easy-start-dialog">
+    <button class="dialog-close" data-close="submitDialog">×</button>
+    <p class="section-label">START AN EXPERIENCE</p>
+    <h2>发起一个活动</h2>
+    <p class="easy-sub">像接龙一样：说清楚做什么、什么时候、多少钱、几人成团。图片可以不传，系统会自动配一张。</p>
+    <form id="publicEventForm">
+      <div class="step-chip-row"><b>1 活动</b><b>2 成团</b><b>3 收款</b><b>4 分享</b></div>
+
+      <div class="quick-event-grid">
+        <label class="span-2">活动名称<input name="title" required maxlength="140" placeholder="例如：周六 Pasadena 咖啡认识新朋友"></label>
+        <label>活动时间<input type="datetime-local" name="start_at" required></label>
+        <label>城市/区域<input name="public_area" required maxlength="160" placeholder="Pasadena / Downtown"></label>
+        <label>最低成团<input type="number" name="min_participants" min="2" max="500" value="4" required></label>
+        <label>最多人数<input type="number" name="capacity" min="2" max="500" value="10" required></label>
+        <label>活动费<input type="number" name="price" min="0" step=".01" value="0"></label>
+        <label>报名截止<input type="datetime-local" name="deadline_at"></label>
+      </div>
+
+      <label>一句话介绍<textarea name="description" required maxlength="1600" placeholder="告诉大家为什么值得来。简单一点更容易报名。"></textarea></label>
+
+      <div class="quick-payment-box">
+        <strong>收费活动？把自己的收款方式放这里</strong>
+        <p>免费活动可以全部留空。活动费直接给组织者，LivingHub 前期不抽成。</p>
+        <div class="form-grid">
+          <label>收款方式<input name="payment_method" placeholder="Zelle / Stripe / 微信 / 其他"></label>
+          <label>收款账号/邮箱/电话<input name="payment_contact" placeholder="有收费再填"></label>
+          <label>收款链接（可选）<input type="url" name="payment_url" placeholder="https://..."></label>
+          <label>收款二维码（可选）<input type="file" name="payment_qr" accept="image/jpeg,image/png,image/webp"></label>
+        </div>
+      </div>
+
+      <details class="optional-box">
+        <summary>更多设置 · 不填也能发</summary>
+        <div class="form-grid">
+          <label>会员编号<input name="member_number" required></label>
+          <label>注册电话或邮箱<input name="member_contact" required></label>
+          <label>组织者显示名称<input name="organizer_name" placeholder="不填时使用 LivingHub Member"></label>
+          <label>活动联系信息<input name="organizer_contact" placeholder="默认使用注册联系方式"></label>
+          <label>国家/地区<input name="country" value="US" required></label>
+          <label>货币<input name="currency" value="USD" maxlength="3"></label>
+          <label>参加资格<select name="required_tier"><option value="community">Basic 免费注册</option><option value="select">Annual Member</option></select></label>
+          <label>活动封面图（可选）<input type="file" name="cover_image" accept="image/jpeg,image/png,image/webp"></label>
+        </div>
+        <label>取消与退款规则<textarea name="refund_policy" maxlength="1200">未达到最低成团人数或组织者取消活动时，由组织者负责按照本活动公布的规则处理退款。LivingHub 不代收本场活动费用。</textarea></label>
+      </details>
+
+      <label class="consent-row compact-consent"><input type="checkbox" required><span>我确认活动信息真实，并负责活动安排、收费、退款、场地和现场安全；LivingHub 提供发布、审核、报名和分享工具。</span></label>
+      <button class="primary-wide big-action">提交审核，生成分享活动</button>
+      <div id="submitEventMessage"></div>
+    </form>
+  </div>
+</dialog>
 <dialog id="organizerDialog"><div class="dialog-body wide-dialog"><button class="dialog-close" data-close="organizerDialog">×</button><p class="section-label">MY EXPERIENCES</p><h2>我的活动</h2><p>输入自己的会员编号和注册联系方式，管理活动、确认收款、分享、取消和开放地点。</p><form id="organizerLookupForm"><div class="form-grid"><label>会员编号<input name="member_number" required></label><label>注册电话或邮箱<input name="contact" required></label></div><button class="primary-wide">打开我的活动</button></form><div id="organizerPanel"></div></div></dialog>
+<div class="floating-quick-actions">
+  <button id="quickJoinFloat">免费加入</button>
+  <button id="quickStartFloat">＋ 发起活动</button>
+</div>
 <script src="./config.js"></script>
 <script src="./app.js"></script>
 </body>

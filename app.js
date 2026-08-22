@@ -45,7 +45,7 @@ const T={
 zh:{
  brandLine:"Singles Club · Los Angeles",experiences:"活动体验",membership:"会员资格",status:"查询状态",join:"免费加入",myEvents:"我的活动",
  headline:'想参加就报名，<br>想组织就<span>发起</span>。人数到了，我们见面。',
- headlineSub:"免费注册就能参加普通活动，也能自己发起。组织者自己定价、自己收款、自己负责活动；平台负责连接、审核、报名和信息安全。",
+ headlineSub:"免费加入 · 一分钟发起 · 自动生成分享邀请 · 组织者自己收款。先把人聚起来，再把活动做起来。",
  joinMembership:"开通会员资格",explore:"查看近期活动",adultOnly:"仅限18岁及以上成年人",privateVenue:"具体地址仅向符合条件的报名会员开放",noGuarantee:"不承诺配对或关系结果",
  worldTitle:"真实的城市，正在发生真实的交流",live:"持续更新",mapCenterTitle:"城市活动网络",mapCenterSub:"地点按活动轮换",featured:"当前推荐活动",book:"会员报名",privacyShort:"照片、联系方式和具体地址不公开。",partnerPathTitle:"想参加就报名，想组织就发起",partnerPathText:"Basic 免费注册即可报名普通活动和提交自己的活动。组织者自己定价、自己收款、自己退款、自负盈亏；平台前期不抽活动款。",techCase:"产品技术案例，不代表 BB369TECH 组织或提供具体活动。",partnerRequired:"Basic 免费注册即可发起",partnerRequiredText:"请使用自己的会员编号和注册联系方式。活动先审核，再进入公开地图。",submitExperience:"发起活动",submitDialogTitle:"发起一个活动",submitDialogSub:"设定人数、价格和自己的收款方式，平台审核后生成分享链接。活动费直接进入组织者自己的账户。",organizerName:"组织者名称",organizerContact:"组织者联系方式",eventTitle:"活动名称",countryRegion:"国家或地区",eventTime:"活动时间",publicArea:"公开区域",expectedPrice:"预计活动费",eventDescription:"活动说明",minimumTier:"建议最低会员等级",submissionConsent:"我确认活动信息真实，不公开私人地址，并同意运营方审核、修改或拒绝发布。",submitForReview:"提交审核",boundariesTitle:"安全边界直接放进产品流程",worldSub:"平台不依赖第三方地图或外部图片站点。活动可由不同地区的运营方设置城市、货币、时区和语言。",
  upcoming:"下一次相遇，也许就在这座城市",upcomingSub:"有效会员可报名符合等级的活动。会员费与每次活动费用分别显示。",
@@ -56,10 +56,10 @@ zh:{
  operatorTitle:"组织者责任清晰",operatorText:"活动安排、收费、退款、场地和现场安全由活动组织者负责；LivingHub 对自己的平台服务和数据处理负责。",
  globalTitle:"全球结构",globalText:"日期、时区、城市、语言和货币由活动数据决定；代码不依赖外部地图、字体或图片服务。",
  footerLine:"A members-only platform for real-world social experiences.",privacy:"隐私说明",terms:"会员与付款条款",safety:"活动安全边界",operatorConsole:"Club Console",
- joinDialogTitle:"加入 LivingHub",joinDialogSub:"Basic 免费注册立即生效；如选择 Annual Member，再完成 $299 年度会员费。",
+ joinDialogTitle:"30秒免费加入",joinDialogSub:"先免费加入，马上可以报名和发起普通活动。需要 Annual 限定活动时再升级。",
  name:"姓名或昵称",age:"年龄",city:"城市",contact:"电话或邮箱",intro:"简单介绍",preferences:"希望参加的活动或交流方式",tier:"会员等级",photo:"本人照片（可选，仅后台查看）",
  joinConsent:"我确认已满18岁，资料由当前运营方用于会员管理、付款确认和活动联系；平台不保证配对或关系结果。",
- createMember:"加入并生成会员编号",memberCreated:"会员编号已生成",paymentMethod:"付款方式",paymentRef:"付款备注（可选）",reportMembershipPayment:"我已支付会员费",
+ createMember:"免费加入 LivingHub",memberCreated:"会员编号已生成",paymentMethod:"付款方式",paymentRef:"付款备注（可选）",reportMembershipPayment:"我已支付会员费",
  bookingTitle:"会员活动报名",memberNumber:"会员编号",bookingBoundary:"系统核验注册状态和活动资格。活动费直接付给组织者；活动成团并确认后才开放具体地点。",createBooking:"生成活动报名编号",
  bookingCreated:"活动报名编号已生成",reportEventPayment:"我已付款给组织者",statusDialogTitle:"查询会员资格或活动报名",membershipStatus:"会员资格",eventStatus:"活动报名",bookingNumber:"活动报名编号",lookup:"查询",
  tierCopy:{community:"免费注册即可报名普通活动，也可以发起自己的活动。",select:"$299/年，可参加组织者设置为 Annual Member 的限定活动。",private:"历史兼容方案，前台不开放。"},
@@ -147,16 +147,14 @@ function render(){
  renderMemberships();
  renderMap();
 }
-function eventImage(e,i=0){return e?.has_image&&!isSeedEvent(e)?`${API}/api/events/${e.id}/image`:images[i%images.length]}
-function eventStatusLabel(e){const z={recruiting:"招募中",formed:"已成团",full:"名额已满",cancelled_minimum:"未成团",cancelled_organizer:"组织者取消",completed:"已完成"},n={recruiting:"Recruiting",formed:"Group formed",full:"Full",cancelled_minimum:"Not formed",cancelled_organizer:"Organizer cancelled",completed:"Completed"};return (state.lang==="zh"?z:n)[e?.event_status||e?.group?.status||"recruiting"]||""}
-function groupCopy(e){const g=e?.group||{confirmed:Number(e.confirmed_count||0),min:Number(e.min_participants||2),capacity:Number(e.capacity||10),remaining_to_form:Math.max(0,Number(e.min_participants||2)-Number(e.confirmed_count||0))};if(["cancelled_minimum","cancelled_organizer"].includes(e.event_status))return eventStatusLabel(e);if(["formed","full"].includes(e.event_status))return `${state.lang==="zh"?"已成团":"Formed"} · ${g.confirmed}/${g.capacity}`;return g.remaining_to_form>0?`${g.confirmed}/${g.min} · ${state.lang==="zh"?`再 ${g.remaining_to_form} 人成团`:`${g.remaining_to_form} more to form`}`:`${g.confirmed}/${g.capacity}`}
-function organizerPaymentMarkup(payment){if(!payment)return "";let h=`<div class="payment-box organizer-payment"><strong>${state.lang==="zh"?"直接付给组织者":"Pay organizer directly"}</strong>`;if(payment.method)h+=`<p>${payment.method}</p>`;if(payment.name||payment.contact)h+=`<p>${payment.name||""}<br>${payment.contact||""}</p>`;if(payment.url)h+=`<a class="payment-link" href="${payment.url}" target="_blank" rel="noopener">${state.lang==="zh"?"打开组织者收款链接":"Open organizer payment link"}</a>`;if(payment.has_qr&&payment.qr_url)h+=`<img class="payment-qr" src="${payment.qr_url}" alt="Organizer payment QR">`;if(payment.refund_policy)h+=`<p><b>${state.lang==="zh"?"取消/退款：":"Cancellation/refund: "}</b>${payment.refund_policy}</p>`;return h+`<p class="payment-boundary">${state.lang==="zh"?"本场活动费用不进入 LivingHub。付款、活动服务和退款由组织者负责。":"This event payment does not go to LivingHub. The organizer handles payment, service, and refunds."}</p></div>`}
-async function shareEvent(e){const url=e.share_url||`${C.siteUrl}/?event=${encodeURIComponent(e.share_code||e.id)}`,data={title:loc(e,"title"),text:`${loc(e,"title")} · ${e.city}`,url};if(navigator.share){try{await navigator.share(data);return}catch{}}try{await navigator.clipboard.writeText(url);alert(state.lang==="zh"?"活动链接已复制":"Event link copied")}catch{prompt("Copy link",url)}}
-function renderExperiences(){
- const grid=$("#experienceGrid"),events=state.data.events||[];
- if(!events.length){grid.innerHTML=`<div class="empty-state">${state.lang==="zh"?"当前没有公开活动。":"No public experiences are available."}</div>`;return}
- grid.innerHTML=events.slice(0,8).map((e,i)=>{const seeded=isSeedEvent(e),status=displayStatus(e),price=Number(e.price||0)>0?money(e.price,e.currency):(state.lang==="zh"?"免费":"Free"),group=seeded?status:groupCopy(e);return `<article class="experience-card ${seeded?"starter-card":""}"><img src="${eventImage(e,i)}" alt="${loc(e,"title")}"><div class="experience-content"><div class="experience-topline"><span class="tier-pill">${e.required_tier==="select"?"Annual":"Basic"}</span><span class="seat-pill">${group}</span></div><h3>${loc(e,"title")}</h3><div class="experience-progress">${!seeded?`<i style="width:${Math.min(100,Math.round((Number(e.confirmed_count||0)/Math.max(1,Number(e.min_participants||2)))*100))}%"></i>`:""}</div><div class="experience-meta"><span>${e.city} · ${e.start_at?date(e.start_at):status} · ${price}</span>${seeded?`<button class="book-button" data-starter="${e.id}">${e.display_status==="organizer_search"?(state.lang==="zh"?"发起活动":"Start event"):(state.lang==="zh"?"查看状态":"View status")}</button>`:`<div class="card-actions"><button class="share-mini" data-share="${e.id}">${state.lang==="zh"?"分享":"Share"}</button><button class="book-button" data-event="${e.id}">${tr("book")}</button></div>`}</div><small class="starter-note">${seeded?(state.lang==="zh"?"平台启动内容，不代表真实报名人数或已确认举办。":"Platform starter content; it does not represent confirmed attendance or a confirmed event."):""}</small></div></article>`}).join("");
- const first=events[0];$("#featuredTitle").textContent=loc(first,"title");$("#featuredMeta").textContent=`${first.city} · ${first.start_at?date(first.start_at):displayStatus(first)} · ${isSeedEvent(first)?displayStatus(first):groupCopy(first)}`;$("#featuredBook").textContent=isSeedEvent(first)?(state.lang==="zh"?"查看筹备状态":"View planning status"):tr("book");$("#featuredBook").onclick=()=>isSeedEvent(first)?$("#statusDialog").showModal():openBooking(first);$$('[data-event]').forEach(b=>b.onclick=()=>openBooking(events.find(e=>String(e.id)===b.dataset.event)));$$('[data-share]').forEach(b=>b.onclick=()=>shareEvent(events.find(e=>String(e.id)===b.dataset.share)));$$('[data-starter]').forEach(b=>b.onclick=()=>{const e=events.find(x=>String(x.id)===b.dataset.starter);if(e?.display_status==="organizer_search")openSubmit();else $("#statusDialog").showModal()});
+function eventImage(e,i=0){
+  if(e?.has_image&&!isSeedEvent(e))return `${API}/api/events/${e.id}/image`;
+  const text=`${e?.title_zh||""} ${e?.title_en||""} ${e?.description_zh||""} ${e?.description_en||""}`.toLowerCase();
+  if(/coffee|咖啡|brunch|早午餐/.test(text))return "./assets/coffee-gathering.jpg";
+  if(/walk|hike|散步|徒步|公园|sunset|日落/.test(text))return "./assets/city-walk.jpg";
+  if(/dinner|晚餐|food|美食|restaurant|餐厅/.test(text))return "./assets/dinner-gathering.jpg";
+  if(/music|音乐|唱歌|karaoke|live/.test(text))return "./assets/music-night.jpg";
+  return ["./assets/hero-gathering.jpg","./assets/event-coffee.jpg","./assets/event-walk.jpg","./assets/event-dinner.jpg"][i%4];
 }
 function renderMoments(){
  const posts=state.data.posts||STARTER_POSTS;
@@ -193,7 +191,11 @@ function renderMap(){
 function openJoin(tier="community"){
  $("#memberForm").reset();$("#memberForm").hidden=false;$("#memberCompletion").hidden=true;$("#memberError").innerHTML="";$("#tierSelect").value=tier;$("#joinDialog").showModal();
 }
-function openBooking(event){state.currentEvent=event;$("#bookingForm").reset();$("#bookingForm").hidden=false;$("#bookingCompletion").hidden=true;$("#bookingError").innerHTML="";$("#bookingForm").event_id.value=event.id;$("#selectedExperience").innerHTML=`<div class="selected-event-head"><img src="${eventImage(event,0)}" alt=""><div><strong>${loc(event,"title")}</strong><p>${event.city} · ${event.start_at?date(event.start_at):""} · ${Number(event.price)>0?money(event.price,event.currency):(state.lang==="zh"?"免费":"Free")}</p><p><b>${groupCopy(event)}</b></p><p>${loc(event,"description")||""}</p><button type="button" class="share-inline" id="shareCurrentEvent">${state.lang==="zh"?"分享这场活动":"Share this event"}</button></div></div>`;$("#shareCurrentEvent").onclick=()=>shareEvent(event);$("#bookingDialog").showModal()}
+function openBooking(event){state.currentEvent=event;$("#bookingForm").reset();$("#bookingForm").hidden=false;$("#bookingCompletion").hidden=true;$("#bookingError").innerHTML="";$("#bookingForm").event_id.value=event.id;
+ const savedNum=localStorage.getItem("lh_member_number")||"";
+ const savedContact=localStorage.getItem("lh_member_contact")||"";
+ if($("#bookingForm").member_number)$("#bookingForm").member_number.value=savedNum;
+ if($("#bookingForm").contact)$("#bookingForm").contact.value=savedContact;$("#selectedExperience").innerHTML=`<div class="selected-event-head"><img src="${eventImage(event,0)}" alt=""><div><strong>${loc(event,"title")}</strong><p>${event.city} · ${event.start_at?date(event.start_at):""} · ${Number(event.price)>0?money(event.price,event.currency):(state.lang==="zh"?"免费":"Free")}</p><p><b>${groupCopy(event)}</b></p><p>${loc(event,"description")||""}</p><button type="button" class="share-inline" id="shareCurrentEvent">${state.lang==="zh"?"分享这场活动":"Share this event"}</button></div></div>`;$("#shareCurrentEvent").onclick=()=>shareEvent(event);$("#bookingDialog").showModal()}
 
 $("#openJoinTop").onclick=()=>openJoin();$("#openJoinMobile").onclick=()=>openJoin();$("#openStatusTop").onclick=()=>$("#statusDialog").showModal();$("#openStatusSide").onclick=()=>$("#statusDialog").showModal();$("#openStatusMobile").onclick=()=>$("#statusDialog").showModal();
 $("#langBtn").onclick=()=>{state.lang=state.lang==="zh"?"en":"zh";localStorage.setItem("sc_lang",state.lang);$("#preferredLanguage").value=state.lang;render()};
@@ -202,7 +204,10 @@ $("#memberForm").onsubmit=async e=>{
  e.preventDefault();$("#memberError").innerHTML="";
  try{
   const fd=new FormData(e.target),j=await request("/api/memberships",{method:"POST",body:fd});
-  state.lastMember={...j,contact:fd.get("contact")};e.target.hidden=true;$("#memberCompletion").hidden=false;
+  state.lastMember={...j,contact:fd.get("contact")};
+  localStorage.setItem("lh_member_number",j.member_number||"");
+  localStorage.setItem("lh_member_contact",String(fd.get("contact")||""));
+  e.target.hidden=true;$("#memberCompletion").hidden=false;
   $("#memberNumber").textContent=j.member_number;const free=Number(j.plan.price||0)<=0;
   $("#memberPayment").innerHTML=`<div class="status-box"><strong>${j.plan.name_zh||j.plan.name_en}</strong><p>${free?(state.lang==="zh"?"免费注册，立即生效":"Free registration, active now"):money(j.plan.price)+" / "+(state.lang==="zh"?"年":"year")}</p></div>${free?`<div class="success-message">${state.lang==="zh"?"Basic 注册已经生效。现在可以报名普通活动，也可以发起自己的活动。":"Basic registration is active. You can book standard events and start your own."}</div>`:paymentMarkup(j.payment,j.member_number)}`;$("#memberPaidForm").hidden=free;
  }catch(err){$("#memberError").innerHTML=`<div class="error-message">${err.message}</div>`}
@@ -253,11 +258,19 @@ $("#preferredLanguage").value=state.lang;
 function openSubmit(){
   $("#publicEventForm").reset();
   $("#submitEventMessage").innerHTML="";
+  const num=localStorage.getItem("lh_member_number")||"";
+  const contact=localStorage.getItem("lh_member_contact")||"";
+  const f=$("#publicEventForm");
+  if(f.member_number)f.member_number.value=num;
+  if(f.member_contact)f.member_contact.value=contact;
+  if(f.organizer_contact)f.organizer_contact.value=contact;
   $("#submitDialog").showModal();
 }
 $("#openSubmitSide").onclick=openSubmit;
 $("#openSubmitTop").onclick=openSubmit;
 $("#openSubmitMobile").onclick=openSubmit;
+$("#quickJoinFloat").onclick=()=>openJoin("community");
+$("#quickStartFloat").onclick=openSubmit;
 
 $("#publicEventForm").onsubmit=async e=>{e.preventDefault();$("#submitEventMessage").innerHTML="";const fd=new FormData(e.target);try{const result=await request("/api/public-event-submissions",{method:"POST",body:fd});$("#submitEventMessage").innerHTML=`<div class="success-message">${state.lang==="zh"?`提交成功。审核编号：${result.submission_number}。审核通过后会生成可转发的活动链接。`:`Submitted. Review number: ${result.submission_number}. A shareable event link will be created after approval.`}</div>`}catch(err){$("#submitEventMessage").innerHTML=`<div class="error-message">${err.message}</div>`}};
 let organizerCredentials=null;function openOrganizer(){$("#organizerPanel").innerHTML="";$("#organizerDialog").showModal()}$("#openOrganizerSide").onclick=openOrganizer;$("#openOrganizerTop").onclick=openOrganizer;$("#openOrganizerMobile").onclick=openOrganizer;

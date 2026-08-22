@@ -61,3 +61,50 @@ dialog{background:rgba(255,255,255,.96);backdrop-filter:blur(30px)}
 
 /* LivingHub v1.1 open-organizer experience */
 .wide-dialog{max-height:min(92vh,920px);overflow:auto}.organizer-boundary,.organizer-summary{padding:14px;border:1px solid var(--line);border-radius:16px;background:#faf5f2;margin:12px 0}.organizer-boundary strong{display:block;margin-bottom:5px}.experience-progress,.group-meter{height:4px;border-radius:999px;background:rgba(255,255,255,.18);overflow:hidden;margin:7px 0 10px}.experience-progress i,.group-meter i{display:block;height:100%;background:#e3a1ae;border-radius:999px;transition:width .5s ease}.card-actions,.organizer-actions,.mini-actions{display:flex;gap:7px;flex-wrap:wrap;align-items:center}.share-mini,.share-inline{border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:#fff;border-radius:999px;padding:8px 11px;font-weight:850;cursor:pointer}.share-inline{background:#f0e5e1;color:#171313;border-color:#e4d5d0}.selected-event-head{display:grid;grid-template-columns:130px 1fr;gap:14px;align-items:start}.selected-event-head img{width:130px;height:130px;object-fit:cover;border-radius:16px}.organizer-payment{background:#fbf5f1}.organizer-payment .payment-boundary{font-size:11px;color:#7b6a68;border-top:1px solid var(--line);padding-top:10px}.organizer-list{display:grid;gap:12px;margin-top:15px}.organizer-card{border:1px solid var(--line);border-radius:19px;padding:15px;background:#fff}.organizer-card-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.organizer-card h3{margin:5px 0}.status-chip{display:inline-flex;padding:5px 8px;border-radius:999px;background:#f0e7e4;font-size:10px;font-weight:850}.booking-mini-list{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}.booking-mini{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}.booking-mini small{display:block;color:var(--muted);margin-top:4px}.organizer-summary{display:flex;gap:18px}.mobile-nav{grid-template-columns:repeat(6,1fr)!important}@media(max-width:760px){.selected-event-head{grid-template-columns:1fr}.selected-event-head img{width:100%;height:190px}.booking-mini{display:block}.mini-actions{margin-top:8px}}
+
+/* LivingHub v1.1 easy-share launch polish */
+.social-pulse{margin:0 0 14px;display:flex;align-items:center;gap:12px;overflow:hidden;border:1px solid var(--line);background:rgba(255,255,255,.68);backdrop-filter:blur(16px);border-radius:18px;padding:9px 12px;box-shadow:0 12px 30px rgba(45,31,32,.05)}
+.pulse-badge{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:950;letter-spacing:.12em;white-space:nowrap}
+.pulse-badge i{width:8px;height:8px;border-radius:50%;background:#d85f7b;box-shadow:0 0 0 0 rgba(216,95,123,.45);animation:pulseLive 1.8s infinite}
+.pulse-track{display:flex;align-items:center;gap:24px;min-width:max-content;animation:liveMarquee 28s linear infinite}
+.pulse-track:hover{animation-play-state:paused}
+.pulse-track span{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:780;white-space:nowrap}
+.pulse-track img{width:31px;height:31px;border-radius:9px;object-fit:cover}
+@keyframes pulseLive{70%{box-shadow:0 0 0 9px rgba(216,95,123,0)}100%{box-shadow:0 0 0 0 rgba(216,95,123,0)}}
+@keyframes liveMarquee{to{transform:translateX(-48%)}}
+
+.quick-form-head{display:flex;justify-content:space-between;align-items:end;gap:10px;margin:6px 0 14px;padding:12px 14px;border-radius:15px;background:#171313;color:white}
+.quick-form-head strong{font-size:16px}.quick-form-head small{opacity:.7}
+.quick-grid{margin-bottom:8px}
+.optional-box{border:1px solid var(--line);border-radius:16px;background:#faf7f4;padding:0 13px;margin:12px 0}
+.optional-box summary{cursor:pointer;padding:13px 0;font-weight:850;color:#6f6260}
+.optional-box[open] summary{border-bottom:1px solid var(--line);margin-bottom:12px}
+.compact-consent{font-size:11px;line-height:1.45}
+.big-action{min-height:52px;font-size:15px;box-shadow:0 12px 28px rgba(33,23,24,.16)}
+
+.easy-start-dialog .easy-sub{max-width:680px;color:var(--muted)}
+.step-chip-row{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:10px 0 18px}
+.step-chip-row b{padding:9px 7px;text-align:center;border-radius:12px;background:#f2e8e6;font-size:10px}
+.quick-event-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.quick-event-grid .span-2{grid-column:1/-1}
+.quick-payment-box{margin:14px 0;padding:15px;border-radius:18px;background:linear-gradient(145deg,#fbf6f2,#f5e8e7);border:1px solid #ead8d5}
+.quick-payment-box strong{display:block}.quick-payment-box p{margin:4px 0 12px;color:var(--muted);font-size:12px}
+
+.experience-card{transition:transform .25s ease,box-shadow .25s ease}
+.experience-card:hover{transform:translateY(-4px);box-shadow:0 20px 42px rgba(33,23,24,.14)}
+.experience-card img{transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.experience-card:hover img{transform:scale(1.045)}
+.world-pin.active{animation:pinHeartbeat 1.6s ease-in-out infinite}
+@keyframes pinHeartbeat{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.28)}}
+
+.floating-quick-actions{position:fixed;right:18px;bottom:20px;z-index:45;display:flex;gap:8px;padding:7px;border-radius:999px;background:rgba(23,19,19,.88);backdrop-filter:blur(14px);box-shadow:0 15px 35px rgba(0,0,0,.22)}
+.floating-quick-actions button{border:0;border-radius:999px;padding:10px 14px;font-weight:900;cursor:pointer}
+.floating-quick-actions button:first-child{background:#fff;color:#171313}
+.floating-quick-actions button:last-child{background:#e9a3b2;color:#171313}
+@media(max-width:860px){
+ .floating-quick-actions{bottom:78px;right:12px}
+ .quick-event-grid{grid-template-columns:1fr}
+ .quick-event-grid .span-2{grid-column:auto}
+ .step-chip-row{grid-template-columns:repeat(2,1fr)}
+ .social-pulse{border-radius:14px}
+}

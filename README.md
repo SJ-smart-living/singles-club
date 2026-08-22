@@ -1,16 +1,17 @@
 # LivingHub Singles Club Frontend v1.1.0
 
-## Current launch model
+Easy-share launch experience.
 
-- Basic registration is free.
-- Basic users can book standard events and submit their own events.
-- Annual Member is optional at $299/year for organizer-designated Annual-only events.
-- Event organizers set their own prices, payment methods, minimum group size, capacity, deadline, and refund policy.
-- Organizer event fees are paid directly to organizers.
-- LivingHub does not hold or take a commission from organizer event fees in the current launch phase.
-- All public event submissions require platform review.
-- Events support recruiting, formed, full, minimum-not-met, organizer-cancelled, and completed states.
-- Approved events receive shareable links with social preview metadata.
-- Organizers can review bookings, confirm direct payments, release private venues, cancel events, and mark refunds.
+## What changed
 
-Version: `v1.1.0`
+- Free Basic onboarding reduced to four required fields.
+- Optional profile fields are collapsed.
+- Event creation is presented like a simple relay/group-buy form.
+- Advanced event settings are hidden under “More settings”.
+- Existing event images are automatically matched by activity type when an organizer does not upload a cover.
+- Share action automatically creates a short invitation with price, time, group progress, and a direct event link.
+- Saved member number/contact are reused for booking, organizing, and My Events on the same browser.
+- Added live activity ticker, animated map pulse, hover motion, and floating quick actions.
+- Existing API base URL, backend payment paths, booking paths, PWA structure, and custom domain are preserved.
+
+Formal version remains `v1.1.0`.
