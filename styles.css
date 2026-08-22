@@ -108,3 +108,34 @@ dialog{background:rgba(255,255,255,.96);backdrop-filter:blur(30px)}
  .step-chip-row{grid-template-columns:repeat(2,1fr)}
  .social-pulse{border-radius:14px}
 }
+
+/* v1.1 richer visual discovery */
+.photo-story-strip{display:flex;gap:14px;overflow-x:auto;padding:4px 2px 18px;scrollbar-width:none}
+.photo-story-strip::-webkit-scrollbar{display:none}
+.story-item{flex:0 0 78px;text-align:center;font-size:11px;font-weight:850;cursor:pointer}
+.story-item img{width:68px;height:68px;border-radius:50%;object-fit:cover;border:3px solid #fff;outline:2px solid #e7a7b4;box-shadow:0 8px 22px rgba(40,24,26,.12);transition:.25s}
+.story-item:hover img{transform:translateY(-3px) scale(1.04)}
+.story-item span{display:block;margin-top:7px}
+.story-create{width:68px;height:68px;border-radius:50%;background:#171313;color:white;display:flex;flex-direction:column;justify-content:center;align-items:center;box-shadow:0 8px 22px rgba(40,24,26,.18)}
+.story-create span{font-size:24px;margin:0}.story-create b{font-size:10px}
+
+.discover-section{padding:28px 28px 18px;background:#fff;border-radius:28px;margin-top:18px;border:1px solid var(--line)}
+.discover-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:16px}
+.discover-head h2{margin:3px 0 0;font-size:clamp(25px,3vw,42px)}
+.text-button{border:0;background:#171313;color:#fff;border-radius:999px;padding:11px 16px;font-weight:900;cursor:pointer}
+.visual-mosaic{display:grid;grid-template-columns:1.2fr 1fr 1fr;grid-auto-rows:170px;gap:10px}
+.mosaic-card{position:relative;border:0;border-radius:20px;overflow:hidden;padding:0;cursor:pointer;background:#eee;text-align:left}
+.mosaic-card img{width:100%;height:100%;object-fit:cover;transition:transform .65s cubic-bezier(.2,.7,.2,1),filter .35s}
+.mosaic-card:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 38%,rgba(0,0,0,.72))}
+.mosaic-card:hover img{transform:scale(1.07);filter:saturate(1.08)}
+.mosaic-card span{position:absolute;z-index:2;left:16px;right:16px;bottom:14px;color:white}
+.mosaic-card b,.mosaic-card small{display:block}.mosaic-card b{font-size:17px}.mosaic-card small{margin-top:3px;opacity:.85}
+.mosaic-tall{grid-row:span 2}.mosaic-wide{grid-column:span 2}
+.tiny-boundary{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:10px;line-height:1.6;color:#817371}
+.tiny-boundary a{color:inherit;font-weight:800}
+@media(max-width:760px){
+ .discover-section{padding:18px 14px;border-radius:20px}
+ .visual-mosaic{grid-template-columns:1fr 1fr;grid-auto-rows:135px}
+ .mosaic-tall{grid-row:span 1}.mosaic-wide{grid-column:span 2}
+ .discover-head{align-items:center}.discover-head h2{font-size:25px}
+}
