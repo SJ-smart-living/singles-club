@@ -1,102 +1,97 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#171313"><title>LivingHub Join</title><link rel="manifest" href="./manifest.webmanifest"><link rel="stylesheet" href="./styles.css"></head><body>
-<header><div class="brand">LivingHub <small>MEMBER JOIN</small></div><button id="loginOpen">会员登录</button></header>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#171313">
+<title>LivingHub Join</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">LivingHub <small>MEMBER JOIN</small></div>
+  <button id="myCardBtn" class="ghost">我的会员卡</button>
+</header>
+
 <main>
-<section class="hero"><div><span>REAL PEOPLE · REAL MOMENTS</span><h1>一个链接，<em>把真实的人接进来。</em></h1><p>免费登记 · 30秒完成 · 自动获得会员编号、邀请链接和个人二维码。</p><button id="startJoin" class="primary">免费加入</button></div><div class="phone"><b>Welcome to LivingHub</b><strong>LH-8K27</strong><div class="fakeqr"></div><small>扫码加入我的 LivingHub</small></div></section>
-<section class="steps"><article>01<br><b>填写资料</b><p>昵称、城市、联系方式。</p></article><article>02<br><b>生成会员号</b><p>获得个人 Member ID。</p></article><article>03<br><b>拿到二维码</b><p>分享给朋友，记录来源。</p></article><article>04<br><b>获得积分</b><p>真实邀请和活动参与可累计。</p></article></section>
-<section id="join" class="panel"><div><span>JOIN LIVINGHUB</span><h2>30秒免费加入</h2><p>先登记成为 Basic Member。后续需要查看完整会员资料或限定权益时，再按对应页面升级。</p><div id="refBanner" hidden></div></div>
-<form id="joinForm"><div class="grid"><label>昵称<input name="name" required></label><label>城市<input name="city" required value="Los Angeles"></label><label>手机或邮箱<input name="contact" required></label><label>年龄<input name="age" type="number" min="18" required></label></div><label>照片（可选）<input id="photoInput" name="photo" type="file" accept="image/jpeg,image/png,image/webp"></label><div id="photoPreview" hidden></div><details><summary>再说一点自己（可选）</summary><textarea name="intro" placeholder="喜欢什么、想参加什么活动……"></textarea></details><label class="agree"><input type="checkbox" required><span>我已满18岁，并同意平台将资料用于会员登记、活动参与和必要联系。联系方式不会在公开页面直接展示。</span></label><button class="primary full">生成我的会员号</button><div id="joinMsg"></div></form></section>
-<section id="result" class="result" hidden>
-  <span>MEMBER ACCESS</span>
-  <div class="member-top">
-    <div>
-      <h2>欢迎回来，<span id="welcomeName">Member</span></h2>
-      <p>先看看大家的公开资料。联系方式默认隐藏，真实会员资料需要按对应权限解锁。</p>
-    </div>
-    <div class="memberid"><small>MEMBER ID</small><strong id="memberId"></strong></div>
+<section class="hero">
+  <div>
+    <span>REAL PEOPLE · REAL MOMENTS</span>
+    <h1>免费加入，<br><em>看看谁也在这里。</em></h1>
+    <p>填写简单公开资料，上传一张照片。提交后你的会员卡会自动进入所有人的发现页。</p>
+    <button id="startJoin" class="primary">免费加入</button>
   </div>
-
-  <div class="member-tabs">
-    <button class="active" data-tab="discover">发现会员</button>
-    <button data-tab="profile">我的资料</button>
-    <button data-tab="invite">我的邀请</button>
-  </div>
-
-  <div id="discoverPanel" class="member-panel">
-    <div class="directory-head">
-      <div><span>DISCOVER</span><h3>看看谁也在这里</h3></div>
-      <small>示例资料均明确标记为“案例观察”，不代表真实可联系会员。</small>
-    </div>
-    <div id="profileGrid" class="profile-grid"></div>
-  </div>
-
-  <div id="profilePanel" class="member-panel" hidden>
-    <div class="profile-editor">
-      <div>
-        <span>MY PROFILE</span>
-        <h3>管理我的资料</h3>
-        <p>你可以随时修改自己的公开资料。联系方式不会在公开卡片里直接显示。</p>
-      </div>
-      <form id="profileForm">
-        <div class="grid">
-          <label>昵称<input name="name" required maxlength="40"></label>
-          <label>年龄<input name="age" type="number" min="18" max="100" required></label>
-          <label>城市<input name="city" required maxlength="60"></label>
-          <label>兴趣<input name="interests" maxlength="120"></label>
-        </div>
-        <label>公开介绍<textarea name="intro" maxlength="260"></textarea></label>
-        <details class="private-box">
-          <summary>私人联系信息（不公开）</summary>
-          <label>电话或邮箱<input name="contact" maxlength="120"></label>
-        </details>
-        <div class="profile-actions">
-          <button class="primary full">保存我的资料</button>
-          <button type="button" id="deleteProfile" class="danger full">删除我的本机资料</button>
-        </div>
-        <div id="profileMsg"></div>
-      </form>
-    </div>
-  </div>
-
-  <div id="invitePanel" class="member-panel" hidden>
-    <div class="cols">
-      <article>
-        <div id="qrBox"></div>
-        <b>我的邀请二维码</b>
-        <small id="inviteUrl"></small>
-        <div class="actions">
-          <button id="copyInvite" class="primary">复制邀请</button>
-          <button id="shareInvite">直接分享</button>
-        </div>
-      </article>
-      <article>
-        <span>LIVING POINTS</span>
-        <strong id="points">100</strong>
-        <p>完成注册 +100</p>
-        <div class="ledger">
-          <div>邀请1位真实会员 <b>+100</b></div>
-          <div>好友首次参加活动 <b>+200</b></div>
-          <div>完成一次真实活动 <b>+300</b></div>
-        </div>
-      </article>
-    </div>
+  <div class="hero-card">
+    <b>真实会员正在加入</b>
+    <p>公开资料可见 · 联系方式不公开 · 见面通过组织者协调</p>
   </div>
 </section>
+
+<section id="join" class="join-panel">
+  <div class="join-copy">
+    <span>JOIN LIVINGHUB</span>
+    <h2>30秒建立你的公开会员卡</h2>
+    <p>只填写你愿意公开展示的资料。不要填写身份证、住址、银行卡、收入证明或其他敏感信息。</p>
+  </div>
+  <form id="joinForm">
+    <div class="grid">
+      <label>昵称<input name="display_name" required maxlength="50" placeholder="怎么称呼你"></label>
+      <label>年龄<input name="age" type="number" min="18" max="100" required></label>
+      <label>城市<input name="city" required maxlength="80" value="Los Angeles"></label>
+      <label>兴趣<input name="interests" maxlength="160" placeholder="Coffee, Hiking, Travel"></label>
+    </div>
+    <label>公开介绍<textarea name="intro" maxlength="400" placeholder="简单说说自己、喜欢什么、想参加什么活动……"></textarea></label>
+    <label>公开照片<input id="photoInput" name="photo" type="file" accept="image/jpeg,image/png,image/webp" required></label>
+    <div id="photoPreview" class="photo-preview" hidden></div>
+    <label class="agree">
+      <input type="checkbox" required>
+      <span>我已满18岁，并同意将昵称、年龄、城市、兴趣、介绍和照片作为会员公开资料展示。私人联系方式不会在会员卡中公开。</span>
+    </label>
+    <button id="submitBtn" class="primary full">提交并进入会员区</button>
+    <div id="joinMsg"></div>
+  </form>
+</section>
+
+<section id="memberArea" class="member-area">
+  <div class="member-head">
+    <div>
+      <span>DISCOVER</span>
+      <h2>看看谁也在这里</h2>
+      <p>真实会员与案例观察自然排列；案例资料始终明确标注 DEMO。</p>
+    </div>
+    <button id="refreshBtn" class="ghost">刷新会员</button>
+  </div>
+  <div id="memberGrid" class="member-grid"></div>
+</section>
 </main>
-<footer>LivingHub · 真实的人 · 真实的活动 · 真实的连接</footer>
-<dialog id="loginDialog"><form method="dialog"><button class="x">×</button><h2>会员登录</h2><input id="loginId" placeholder="会员编号"><input id="loginContact" placeholder="注册联系方式"><button id="loginBtn" type="button" class="primary full">进入我的会员页</button><p id="loginMsg"></p></form></dialog>
 
 <dialog id="organizerDialog">
-  <form method="dialog" class="dialog organizer-dialog">
+  <form method="dialog" class="dialog-form">
     <button class="x" value="cancel">×</button>
     <span>ORGANIZER CONTACT</span>
     <h2>想认识 TA？</h2>
-    <p>LivingHub 不直接公开会员私人联系方式。你可以联系组织者，由第三方先确认双方意愿，再决定是否安排真实见面。</p>
+    <p>LivingHub 不直接公开会员私人联系方式。请先联系组织者，由第三方确认双方意愿后，再决定是否安排真实见面。</p>
     <div class="organizer-box">
-      <b>联系组织者</b>
-      <span id="organizerEmailText">hello.singlesclub@outlook.com</span>
+      <b>LivingHub Organizer</b>
+      <span>hello.singlesclub@outlook.com</span>
     </div>
-    <a id="organizerMail" class="primary full mail-link" href="mailto:hello.singlesclub@outlook.com">发送认识申请</a>
+    <a id="organizerMail" class="primary full mail-link" href="#">联系组织者</a>
   </form>
 </dialog>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script><script src="./config.js"></script><script src="./app.js"></script></body></html>
+<dialog id="myCardDialog">
+  <form method="dialog" class="dialog-form">
+    <button class="x" value="cancel">×</button>
+    <span>MY MEMBER CARD</span>
+    <h2>我的会员卡</h2>
+    <div id="myCardContent"></div>
+    <button id="deleteLocal" type="button" class="danger full">清除本机会员记录</button>
+    <small class="hint">清除本机记录不会删除已提交到公开会员目录的资料。正式删除功能需要后续加入身份验证。</small>
+  </form>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./config.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>

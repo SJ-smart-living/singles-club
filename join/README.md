@@ -1,49 +1,29 @@
-# LivingHub Member Join v1.1.1 — Final Standalone Frontend
+# LivingHub Join v1.1.1 — Supabase Live
 
-版本号保持 `v1.1.1`，没有升级版本号。
+版本号保持 v1.1.1。
 
-## 当前模式
+## 已接入
+- Supabase profiles 公共会员目录
+- member-photos 公共图片存储
+- 任何访客可提交公开会员资料
+- 上传照片后所有设备都能看到
+- DEMO 案例明确标记
+- 联系方式不存入 profiles
+- “联系组织者”代替直接公开联系方式
 
-- 纯前端，不需要 Supabase 或后端
-- 只收最小公开资料：
-  - 昵称
-  - 年龄
-  - 城市
-  - 兴趣
-  - 个人介绍
-  - 公开照片（可选）
-- 私人联系信息为可选，只保存在当前浏览器，不公开显示
-- 上传照片后会自动保存到当前浏览器，并立即显示在“发现会员”真实会员卡中
-- 自己的真实会员卡与 DEMO 案例自然混排
-- 案例始终标记 `案例观察 · DEMO`
-- 可以登录后管理自己的本机资料
-- 提供“删除我的本机资料”
-- 其他卡片不展示联系方式，只提供“联系组织者”
-- 组织者邮箱由 `config.js` 配置
+## 当前简化阶段的重要限制
+当前 profiles INSERT 和 member-photos INSERT 对匿名访客开放，适合早期小规模测试。
+正式大规模推广前应增加：
+- CAPTCHA / Turnstile
+- 邮箱或手机验证
+- 管理员审核状态
+- 删除/编辑本人资料的身份验证
+- 上传频率限制
 
-## 当前限制
+## 安全
+前端只包含 Supabase Publishable key。不要放 service_role / secret key / 数据库密码。
 
-这是纯前端本机版本：
-- 不同设备之间不会同步会员
-- 管理员无法集中看到全部会员
-- 不能真正实现多人共享会员目录
-- 不能真正实现付费解锁
-
-等真实使用量起来后再接数据库，不需要改变当前界面逻辑。
-
-## 版本
-
-v1.1.1
-
-
-## Photo fix
-- Fixed missing `name="photo"` on upload field.
-- Compresses uploaded images before localStorage persistence.
-- Product version remains v1.1.1.
-
-## Stable photo submission fix
-- Membership generation no longer depends on photo processing.
-- Photo is processed before submission.
-- If a photo cannot be decoded/compressed, membership still generates.
-- If localStorage quota is exceeded, membership retries without the photo.
-- Product version remains v1.1.1.
+## 部署
+把整个 join/ 文件夹覆盖上传到前端仓库。
+地址保持：
+https://livinghub.app/join/
