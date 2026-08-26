@@ -56,3 +56,10 @@ Frontend status flow:
 - Full UUID remains unchanged internally
 - Explicit photo/public-profile consent wording added
 - No route, Supabase configuration, schema, RPC, or admin path changes
+
+## Small UI update — ID overlay + public area
+- Member short ID is displayed directly on the profile photo/avatar.
+- Added public area/neighborhood input.
+- No route, Supabase project, RPC name, or admin path changes.
+- Area is stored together with city using the existing `city` field to avoid a database migration.
+- Exact street address is intentionally not collected or displayed.

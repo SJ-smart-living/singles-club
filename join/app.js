@@ -44,11 +44,11 @@ async function uploadPhoto(file){
  return {url:data.publicUrl,path};
 }
 function card(p,mine=false){
- const photo=p.photo_url?`<img src="${esc(p.photo_url)}" alt="">`:`<div class="avatar">${esc((p.display_name||"M")[0])}</div>`;
+ const photo=p.photo_url?`<div class="photo-wrap"><img src="${esc(p.photo_url)}" alt=""><span class="member-id-overlay">${shortMemberId(p.id)}</span></div>`:`<div class="photo-wrap"><div class="avatar">${esc((p.display_name||"M")[0])}</div><span class="member-id-overlay">${shortMemberId(p.id)}</span></div>`;
  return `<article class="member-card">
  <span class="badge real">${mine?"真实会员 · MY PROFILE":"真实会员"}</span>${photo}
  <div class="content">
- <div class="meta">${shortMemberId(p.id)} · ${esc(p.city)} · ${esc(p.age)}</div>
+ <div class="meta">${esc(p.city)} · ${esc(p.age)}</div>
  <h4>${esc(p.display_name)}</h4>
  <p>${esc(p.intro||"刚刚加入 LivingHub。")}</p>
  <div class="tags">${split(p.interests).map(x=>`<b>${esc(x)}</b>`).join("")}</div>
@@ -102,7 +102,7 @@ $("#joinForm").onsubmit=async e=>{
    const {data,error}=await sb.rpc("register_livinghub_profile",{
      p_display_name:String(fd.get("display_name")||"").trim(),
      p_age:Number(fd.get("age")),
-     p_city:String(fd.get("city")||"").trim(),
+     p_city:[String(fd.get("city")||"").trim(),String(fd.get("area")||"").trim()].filter(Boolean).join(" · "),
      p_interests:String(fd.get("interests")||"").trim(),
      p_intro:String(fd.get("intro")||"").trim(),
      p_photo_url:photo.url,
@@ -151,7 +151,12 @@ $("#loadManage").onclick=async()=>{
    const p=Array.isArray(data)?data[0]:data;
    saveCred({profile_id:id,manage_key:key});
    const f=$("#manageForm");
-   ["display_name","age","city","interests","intro","status"].forEach(k=>{if(f.elements[k])f.elements[k].value=p[k]??""});
+   ["display_name","age","interests","intro","status"].forEach(k=>{if(f.elements[k])f.elements[k].value=p[k]??""});
+   if(f.elements.city||f.elements.area){
+     const parts=String(p.city||"").split(" · ");
+     if(f.elements.city)f.elements.city.value=parts[0]||"";
+     if(f.elements.area)f.elements.area.value=parts.slice(1).join(" · ")||"";
+   }
    $("#manageEditor").hidden=false;
    show(msg,"资料已打开。",true);
  }catch(err){
@@ -169,7 +174,7 @@ $("#manageForm").onsubmit=async e=>{
      p_manage_key:c.manage_key,
      p_display_name:String(fd.get("display_name")||"").trim(),
      p_age:Number(fd.get("age")),
-     p_city:String(fd.get("city")||"").trim(),
+     p_city:[String(fd.get("city")||"").trim(),String(fd.get("area")||"").trim()].filter(Boolean).join(" · "),
      p_interests:String(fd.get("interests")||"").trim(),
      p_intro:String(fd.get("intro")||"").trim(),
      p_status:String(fd.get("status")||"active")

@@ -13,3 +13,6 @@ dialog{border:0;border-radius:24px;padding:0;width:min(500px,calc(100% - 24px));
 .admin-main{max-width:1180px;margin:auto;padding:40px 24px}.admin-login{margin-top:40px}.table-wrap{overflow:auto;margin-top:18px}table{width:100%;border-collapse:collapse;background:#fff}th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line);font-size:12px}th{font-size:10px;color:var(--muted);letter-spacing:.08em}.admin-main h2{font:700 36px Georgia;margin:8px 0}
 @media(max-width:800px){.hero,.join-panel{grid-template-columns:1fr}.hero{min-height:auto;padding:48px 0}.hero h1{font-size:48px}.hero-card{width:100%}.member-grid{grid-template-columns:1fr 1fr}.member-head{display:block}.join-panel,.member-area{padding:24px}}@media(max-width:520px){.grid,.member-grid{grid-template-columns:1fr}}
 .privacy-note{font-size:10px;line-height:1.55;color:var(--muted);background:#faf5f2;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:8px 0 12px}
+
+.photo-wrap{position:relative}
+.member-id-overlay{position:absolute;left:12px;bottom:12px;background:rgba(23,19,19,.88);color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:7px 10px;font-size:10px;font-weight:900;letter-spacing:.08em;backdrop-filter:blur(8px)}
