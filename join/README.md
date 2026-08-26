@@ -27,3 +27,8 @@
 把整个 join/ 文件夹覆盖上传到前端仓库。
 地址保持：
 https://livinghub.app/join/
+
+
+## Submission reset fix
+- Fixed async submit error: `Cannot read properties of null (reading 'reset')`.
+- Product version remains v1.1.1.

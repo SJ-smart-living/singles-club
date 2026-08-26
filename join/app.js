@@ -66,10 +66,12 @@ async function loadDirectory(){
  $$("[data-demo]").forEach(b=>b.onclick=()=>alert("这是案例观察资料，只用于展示页面体验，不代表真实可联系会员。"));
 }
 $("#joinForm").onsubmit=async e=>{
- e.preventDefault(); status("正在提交…",true);
+ e.preventDefault();
+ const form=e.currentTarget;
+ status("正在提交…",true);
  const btn=$("#submitBtn");btn.disabled=true;
  try{
-   const fd=new FormData(e.currentTarget),file=fd.get("photo");
+   const fd=new FormData(form),file=fd.get("photo");
    if(!file||!file.size)throw new Error("请选择一张公开照片。");
    const photo_url=await uploadPhoto(file);
    const row={
@@ -84,7 +86,7 @@ $("#joinForm").onsubmit=async e=>{
    if(error)throw error;
    localSave(data);
    status("会员资料已生成，并已进入公开会员发现页。",true);
-   e.currentTarget.reset();$("#photoPreview").hidden=true;
+   form.reset();$("#photoPreview").hidden=true;
    await loadDirectory();
    $("#memberArea").scrollIntoView({behavior:"smooth"});
  }catch(err){status(err.message||"提交失败")}
