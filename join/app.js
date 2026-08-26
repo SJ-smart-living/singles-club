@@ -18,15 +18,28 @@ function makeId(){let a="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",s="LH-";for(let i=0;i
 function load(){try{return JSON.parse(localStorage.getItem(KEY)||"null")}catch{return null}}
 function save(v){localStorage.setItem(KEY,JSON.stringify(v))}
 function inviteUrl(i){return `${base}/?ref=${encodeURIComponent(i)}`}
-function renderDemoProfiles(){
- $("#profileGrid").innerHTML=demos.map((d,i)=>`<article class="member-card">
+function renderMemberDirectory(current){
+ const realCard=current?`<article class="member-card real-member-card">
+   <span class="real-badge">真实会员 · MY PROFILE</span>
+   <div class="real-avatar">${(current.name||"M").slice(0,1).toUpperCase()}</div>
+   <div class="content">
+     <div class="meta">${current.city||""} · ${current.age||""}</div>
+     <h4>${current.name||"LivingHub Member"}</h4>
+     <p>${current.intro||"还没有填写个人介绍。可以到“我的资料”里补充。"} </p>
+     <div class="tags">${String(current.interests||"").split(",").map(x=>x.trim()).filter(Boolean).map(x=>`<b>${x}</b>`).join("")||"<b>NEW MEMBER</b>"}</div>
+     <div class="lock-box real-lock"><span>联系方式仅本人可见</span><button data-tab-jump="profile">编辑我的资料</button></div>
+   </div>
+ </article>`:"";
+ const demoCards=demos.map((d,i)=>`<article class="member-card">
    <span class="demo-badge">案例观察 · DEMO</span>
    <img src="${d.img}" alt="${d.name}">
    <div class="content"><div class="meta">${d.city} · ${d.age}</div><h4>${d.name}</h4><p>${d.intro}</p>
    <div class="tags">${d.interests.map(x=>`<b>${x}</b>`).join("")}</div>
-   <div class="lock-box"><span>联系方式已隐藏</span><button data-unlock="${i}">解锁真实会员资料</button></div></div>
+   <div class="lock-box"><span>示例资料 · 无真实联系方式</span><button data-unlock="${i}">了解解锁规则</button></div></div>
  </article>`).join("");
- $$("[data-unlock]").forEach(b=>b.onclick=()=>alert("这是案例观察资料，不是真实会员。正式版中，真实会员资料会按会员权限和对方隐私设置决定是否可查看。"));
+ $("#profileGrid").innerHTML=realCard+demoCards;
+ $$("[data-unlock]").forEach(b=>b.onclick=()=>alert("这是案例观察资料，不是真实会员。正式会员会按会员权限和本人隐私设置决定可见范围。"));
+ $$("[data-tab-jump]").forEach(b=>b.onclick=()=>showTab(b.dataset.tabJump));
 }
 function showTab(tab){
  $$("[data-tab]").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));
@@ -44,7 +57,7 @@ function fillProfile(m){
 }
 function render(m){
  $("#result").hidden=false;$("#memberId").textContent=m.id;$("#welcomeName").textContent=m.name||"Member";$("#points").textContent=m.points||100;
- fillProfile(m);renderDemoProfiles();
+ fillProfile(m);renderMemberDirectory(m);
  const u=inviteUrl(m.id);$("#inviteUrl").textContent=u;$("#qrBox").innerHTML="";
  if(window.QRCode)new QRCode($("#qrBox"),{text:u,width:200,height:200,colorDark:"#171313",colorLight:"#ffffff"});
  else $("#qrBox").innerHTML=`<small>${u}</small>`;
@@ -58,7 +71,7 @@ $("#joinForm").onsubmit=e=>{
 $("#profileForm").onsubmit=e=>{
  e.preventDefault();let m=load();if(!m)return;let f=new FormData(e.currentTarget);
  m={...m,name:String(f.get("name")||"").trim(),city:String(f.get("city")||"").trim(),age:Number(f.get("age")),contact:String(f.get("contact")||"").trim(),intro:String(f.get("intro")||"").trim(),interests:String(f.get("interests")||"").trim(),updated_at:new Date().toISOString()};
- save(m);$("#welcomeName").textContent=m.name;$("#profileMsg").textContent="资料已保存。";
+ save(m);$("#welcomeName").textContent=m.name;$("#profileMsg").textContent="资料已保存。";renderMemberDirectory(m);
 };
 $("#copyInvite").onclick=async()=>{let m=load();if(!m)return;let t=`我刚加入 LivingHub。一起看看吧。\\n${inviteUrl(m.id)}`;try{await navigator.clipboard.writeText(t);alert("邀请已复制。")}catch{prompt("复制邀请",t)}};
 $("#shareInvite").onclick=async()=>{let m=load();if(!m)return;if(navigator.share){try{await navigator.share({title:"LivingHub",text:"一起加入 LivingHub。",url:inviteUrl(m.id)});return}catch{}}$("#copyInvite").click()};

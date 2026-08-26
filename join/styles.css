@@ -14,3 +14,10 @@
 #profileMsg{font-size:11px;color:#4f7c59;margin-top:9px}
 @media(max-width:800px){.member-top,.directory-head{display:block}.profile-grid{grid-template-columns:1fr 1fr}.profile-editor{grid-template-columns:1fr}.member-panel{padding:15px}}
 @media(max-width:520px){.profile-grid{grid-template-columns:1fr}}
+
+/* v1.1.1 real member card */
+.real-member-card{border:2px solid #d49aab;background:linear-gradient(155deg,#fff,#fff8f7)}
+.real-badge{position:absolute;top:10px;left:10px;background:#d68fa0;color:#171313;border-radius:999px;padding:6px 9px;font-size:9px;font-weight:950;letter-spacing:.06em}
+.real-avatar{height:220px;display:grid;place-items:center;background:linear-gradient(145deg,#f1cbd3,#ead7c0);font:700 82px Georgia;color:#fff;text-shadow:0 8px 25px rgba(70,40,40,.15)}
+.real-lock{background:#fff2f5}
+.real-lock button{background:#171313;color:#fff;border-color:#171313}
