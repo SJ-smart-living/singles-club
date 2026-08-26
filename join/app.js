@@ -17,7 +17,12 @@ const demos=[
 
 function makeId(){let a="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",s="LH-";for(let i=0;i<6;i++)s+=a[Math.floor(Math.random()*a.length)];return s}
 function load(){try{return JSON.parse(localStorage.getItem(KEY)||"null")}catch{return null}}
-function save(v){localStorage.setItem(KEY,JSON.stringify(v))}
+function save(v){
+  try{localStorage.setItem(KEY,JSON.stringify(v))}
+  catch(err){
+    throw new Error("照片文件仍然太大，无法保存到本设备。请换一张较小的照片后再试。");
+  }
+}
 function inviteUrl(id){return `${base}/?ref=${encodeURIComponent(id)}`}
 function splitTags(v){return String(v||"").split(",").map(x=>x.trim()).filter(Boolean)}
 
@@ -34,10 +39,25 @@ $("#organizerMail").href=`mailto:${organizerEmail}?subject=${encodeURIComponent(
 
 function fileToDataURL(file){
   return new Promise((resolve,reject)=>{
-    const r=new FileReader();
-    r.onload=()=>resolve(r.result);
-    r.onerror=reject;
-    r.readAsDataURL(file);
+    const reader=new FileReader();
+    reader.onerror=reject;
+    reader.onload=()=>{
+      const img=new Image();
+      img.onerror=reject;
+      img.onload=()=>{
+        const max=900;
+        let w=img.naturalWidth||img.width,h=img.naturalHeight||img.height;
+        const scale=Math.min(1,max/Math.max(w,h));
+        w=Math.max(1,Math.round(w*scale));h=Math.max(1,Math.round(h*scale));
+        const canvas=document.createElement("canvas");
+        canvas.width=w;canvas.height=h;
+        const ctx=canvas.getContext("2d");
+        ctx.drawImage(img,0,0,w,h);
+        resolve(canvas.toDataURL("image/jpeg",0.78));
+      };
+      img.src=reader.result;
+    };
+    reader.readAsDataURL(file);
   });
 }
 
@@ -140,8 +160,12 @@ $("#joinForm").onsubmit=async e=>{
     status:"basic",
     created_at:old?.created_at||new Date().toISOString()
   };
-  save(m);
-  renderMember(m);
+  try{
+    save(m);
+    renderMember(m);
+  }catch(err){
+    $("#joinMsg").innerHTML=`<div class="status err">${err.message}</div>`;
+  }
 };
 
 $("#profileForm").onsubmit=e=>{

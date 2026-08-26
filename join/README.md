@@ -34,3 +34,9 @@
 ## 版本
 
 v1.1.1
+
+
+## Photo fix
+- Fixed missing `name="photo"` on upload field.
+- Compresses uploaded images before localStorage persistence.
+- Product version remains v1.1.1.
