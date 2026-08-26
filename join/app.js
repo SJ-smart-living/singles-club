@@ -5,6 +5,8 @@ const sb=window.supabase.createClient(C.supabaseUrl,C.supabaseAnonKey);
 const LOCAL="livinghub_member_credentials_v111";
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const split=s=>String(s||"").split(",").map(x=>x.trim()).filter(Boolean);
+function shortMemberId(id){return "LH-"+String(id||"").replace(/-/g,"").slice(0,6).toUpperCase()}
+
 
 const demos=[
  {name:"Lina",age:31,city:"Los Angeles",intro:"喜欢咖啡、城市散步和周末短途旅行。",interests:"Coffee,Travel,Art",img:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=82"},
@@ -46,7 +48,7 @@ function card(p,mine=false){
  return `<article class="member-card">
  <span class="badge real">${mine?"真实会员 · MY PROFILE":"真实会员"}</span>${photo}
  <div class="content">
- <div class="meta">${esc(p.city)} · ${esc(p.age)}</div>
+ <div class="meta">${shortMemberId(p.id)} · ${esc(p.city)} · ${esc(p.age)}</div>
  <h4>${esc(p.display_name)}</h4>
  <p>${esc(p.intro||"刚刚加入 LivingHub。")}</p>
  <div class="tags">${split(p.interests).map(x=>`<b>${esc(x)}</b>`).join("")}</div>
@@ -110,7 +112,7 @@ $("#joinForm").onsubmit=async e=>{
    if(error)throw error;
    const p=Array.isArray(data)?data[0]:data;
    saveCred({profile_id:p.id,manage_key:key});
-   $("#successProfileId").textContent=p.id;
+   $("#successProfileId").textContent=shortMemberId(p.id);
    $("#successManageKey").textContent=key;
    show(msg,"会员资料创建成功 ✓",true);
    $("#successDialog").showModal();
@@ -127,7 +129,7 @@ $("#joinForm").onsubmit=async e=>{
 
 $("#copyCredentials").onclick=async()=>{
  const c=loadCred();if(!c)return;
- const t=`LivingHub Member ID: ${c.profile_id}\nPrivate Management Code: ${c.manage_key}`;
+ const t=`LivingHub Member ID: ${shortMemberId(c.profile_id)}\nInternal ID: ${c.profile_id}\nPrivate Management Code: ${c.manage_key}`;
  try{await navigator.clipboard.writeText(t);alert("已复制，请保存到自己的安全位置。")}
  catch{prompt("请复制保存",t)}
 };

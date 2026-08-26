@@ -1,6 +1,7 @@
 (()=>{"use strict";
 const $=s=>document.querySelector(s),C=window.LIVINGHUB_JOIN_CONFIG||{},sb=window.supabase.createClient(C.supabaseUrl,C.supabaseAnonKey);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function shortMemberId(id){return "LH-"+String(id||"").replace(/-/g,"").slice(0,6).toUpperCase()}
 function msg(t,ok=false){$("#adminMsg").innerHTML=`<div class="status ${ok?"ok":"err"}">${esc(t)}</div>`}
 
 async function check(){
@@ -21,7 +22,7 @@ async function load(){
    .order("created_at",{ascending:false});
  if(error){alert(error.message);return}
  $("#adminRows").innerHTML=(data||[]).map(p=>`<tr>
- <td>${esc(p.display_name)}</td>
+ <td><b>${shortMemberId(p.id)}</b><br>${esc(p.display_name)}</td>
  <td>${esc(p.city)} · ${p.age}</td>
  <td>${esc(p.status)}</td>
  <td>${new Date(p.created_at).toLocaleString()}</td>

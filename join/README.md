@@ -50,3 +50,9 @@ Frontend status flow:
 2. 照片上传成功 ✓ 正在创建会员资料…
 3. 会员资料创建成功 ✓
 4. 显示 Member ID + Private Management Code
+
+## Small UI update — same v1.1.1
+- Visible short member number: `LH-XXXXXX`
+- Full UUID remains unchanged internally
+- Explicit photo/public-profile consent wording added
+- No route, Supabase configuration, schema, RPC, or admin path changes
