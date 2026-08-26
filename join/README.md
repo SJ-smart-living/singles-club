@@ -38,3 +38,15 @@ Publishable key 可以放前端。
 
 ## 版本
 v1.1.1
+
+
+## Final no-digest patch
+Run `SUPABASE-NO-DIGEST-FINAL.sql` once in Supabase SQL Editor.
+This removes all dependency on `digest()` and prevents the recurring
+`function digest(text, unknown) does not exist` error.
+
+Frontend status flow:
+1. 正在上传照片…
+2. 照片上传成功 ✓ 正在创建会员资料…
+3. 会员资料创建成功 ✓
+4. 显示 Member ID + Private Management Code

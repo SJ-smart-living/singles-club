@@ -93,7 +93,9 @@ $("#joinForm").onsubmit=async e=>{
  btn.disabled=true;
  try{
    if(!file || !file.size) throw new Error("请选择一张公开照片。");
+   show(msg,"正在上传照片…",true);
    const photo=await uploadPhoto(file);
+   show(msg,"照片上传成功 ✓ 正在创建会员资料…",true);
    const key=makeKey();
    const {data,error}=await sb.rpc("register_livinghub_profile",{
      p_display_name:String(fd.get("display_name")||"").trim(),
@@ -110,11 +112,12 @@ $("#joinForm").onsubmit=async e=>{
    saveCred({profile_id:p.id,manage_key:key});
    $("#successProfileId").textContent=p.id;
    $("#successManageKey").textContent=key;
+   show(msg,"会员资料创建成功 ✓",true);
    $("#successDialog").showModal();
    form.reset();
    $("#photoPreview").hidden=true;
-   show(msg,"会员资料已生成。请保存私人管理码。",true);
    await loadDirectory();
+   document.querySelector(".member-area")?.scrollIntoView({behavior:"smooth",block:"start"});
  }catch(err){
    show(msg,err.message||"提交失败");
  }finally{
