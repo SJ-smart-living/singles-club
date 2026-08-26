@@ -1,1 +1,14 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LivingHub Member Admin</title><link rel="stylesheet" href="./styles.css"></head><body><main class="admin-main"><section id="adminLogin" class="join-panel admin-login"><div><span>ADMIN ACCESS</span><h2>会员管理后台</h2><p>管理员邮箱登录后，可查看全部真实会员、暂停/恢复、删除和清理照片。</p></div><form id="adminLoginForm"><label>管理员邮箱<input id="adminEmail" type="email" value="hello.singlesclub@outlook.com" required></label><button class="primary full">发送登录链接</button><div id="adminMsg"></div></form></section><section id="adminApp" class="member-area" hidden><div class="member-head"><div><span>OPERATIONS</span><h2>真实会员管理</h2></div><div><button id="cleanupPhotos" class="ghost">清理已删除照片</button><button id="adminLogout" class="ghost">退出</button></div></div><div class="table-wrap"><table><thead><tr><th>会员</th><th>城市/年龄</th><th>状态</th><th>创建时间</th><th>操作</th></tr></thead><tbody id="adminRows"></tbody></table></div></section></main><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./config.js"></script><script src="./admin.js"></script></body></html>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LivingHub Member Admin</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main class="admin-main">
+<section id="adminLogin" class="join-panel admin-login">
+  <div><span>ADMIN ACCESS</span><h2>会员管理后台</h2><p>管理员邮箱登录后，可查看全部真实会员、暂停/恢复、删除和清理照片。</p></div>
+  <form id="adminLoginForm"><label>管理员邮箱<input id="adminEmail" type="email" value="hello.singlesclub@outlook.com" required></label><button class="primary full">发送登录链接</button><div id="adminMsg"></div></form>
+</section>
+
+<section id="adminApp" class="member-area" hidden>
+  <div class="member-head"><div><span>OPERATIONS</span><h2>真实会员管理</h2></div><div><button id="cleanupPhotos" class="ghost">清理已删除照片</button><button id="adminLogout" class="ghost">退出</button></div></div>
+  <div class="table-wrap"><table><thead><tr><th>会员</th><th>城市/年龄</th><th>状态</th><th>创建时间</th><th>操作</th></tr></thead><tbody id="adminRows"></tbody></table></div>
+</section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./config.js"></script><script src="./admin.js"></script>
+</body></html>
