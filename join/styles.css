@@ -16,3 +16,25 @@ dialog{border:0;border-radius:24px;padding:0;width:min(500px,calc(100% - 24px));
 
 .photo-wrap{position:relative}
 .member-id-overlay{position:absolute;left:12px;bottom:12px;background:rgba(23,19,19,.88);color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:7px 10px;font-size:10px;font-weight:900;letter-spacing:.08em;backdrop-filter:blur(8px)}
+
+/* Independent Join legal pages */
+.legal-consent a{color:var(--ink);font-weight:800;text-decoration:underline;text-underline-offset:2px}
+.legal-body{min-height:100vh}
+.legal-topbar{max-width:960px;height:74px;margin:auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.legal-back{display:inline-flex;align-items:center;text-decoration:none}
+.legal-main{max-width:960px;margin:auto;padding:24px 24px 70px}
+.legal-document{background:#fff;border:1px solid var(--line);border-radius:30px;padding:clamp(24px,5vw,54px);box-shadow:0 22px 60px #2f20200f}
+.legal-title{padding-bottom:28px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.legal-title>span{font-size:10px;letter-spacing:.18em;font-weight:900;color:var(--gold)}
+.legal-title h1{font:700 clamp(38px,6vw,58px)/1.05 Georgia;margin:12px 0 4px}
+.legal-title .legal-en{font-size:14px;font-weight:800;color:var(--rose);margin:0 0 18px}
+.legal-title p{color:var(--muted);line-height:1.75}
+.legal-title small{color:#998b86}
+.legal-section{padding:24px 0;border-bottom:1px solid var(--line)}
+.legal-section:last-child{border-bottom:0}
+.legal-section h2{font:700 24px Georgia;margin:0 0 12px}
+.legal-section p{color:#5f5350;line-height:1.8;margin:9px 0}
+.legal-contact{background:#faf5f2;border:0;border-radius:18px;padding:20px;margin-top:26px}
+.legal-footer{max-width:960px;margin:auto;padding:0 24px 50px;display:flex;gap:16px;flex-wrap:wrap;font-size:11px}
+.legal-footer a{color:var(--muted)}
+@media(max-width:600px){.legal-topbar{height:auto;padding-top:18px;padding-bottom:10px}.legal-document{border-radius:22px}.legal-footer{gap:10px}}

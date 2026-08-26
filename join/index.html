@@ -49,7 +49,20 @@
       <input type="checkbox" required>
       <span>我已满18岁，并明确同意 LivingHub 在会员发现页公开展示我主动上传的照片，以及我填写的昵称、年龄、城市、兴趣和个人介绍。我确认这些内容由我自愿提交，并了解我可以随时使用私人管理码修改、暂停展示或删除自己的资料。</span>
     </label>
-    <div class="privacy-note">公开范围仅限你主动提交的会员展示内容；平台不会在会员卡中公开私人联系方式。</div>
+    
+<label class="agree legal-consent">
+  <input type="checkbox" name="legal_consent" required>
+  <span>
+    我已阅读并同意
+    <a href="./terms.html" target="_blank" rel="noopener">《会员服务条款》</a>、
+    <a href="./privacy.html" target="_blank" rel="noopener">《隐私政策》</a>
+    和
+    <a href="./safety.html" target="_blank" rel="noopener">《安全与见面规则》</a>。
+    我理解 LivingHub Join 提供会员资料展示、意向传递与第三方协调服务，不保证任何关系、匹配、见面或其他结果。
+  </span>
+</label>
+
+<div class="privacy-note">公开范围仅限你主动提交的会员展示内容；平台不会在会员卡中公开私人联系方式。</div>
     <button id="submitBtn" class="primary full">提交并进入会员区</button>
     <div id="joinMsg"></div>
   </form>

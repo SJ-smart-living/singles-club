@@ -63,3 +63,23 @@ Frontend status flow:
 - No route, Supabase project, RPC name, or admin path changes.
 - Area is stored together with city using the existing `city` field to avoid a database migration.
 - Exact street address is intentionally not collected or displayed.
+
+## Independent Join legal layer — same v1.1.1
+
+Added only:
+- `/join/privacy.html`
+- `/join/terms.html`
+- `/join/safety.html`
+- A second required registration consent checkbox linking to these three Join-only pages.
+
+No changes to:
+- Supabase project/config
+- database schema
+- RPC functions
+- member photo upload
+- member IDs
+- admin path
+- member self-management
+- existing Join routes
+
+These legal pages belong only to the Join member project and do not link to the LivingHub main website.
