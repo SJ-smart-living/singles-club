@@ -1,0 +1,17 @@
+{
+  "name": "LivingHub Member Join",
+  "short_name": "LH Join",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f1eb",
+  "theme_color": "#171313",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

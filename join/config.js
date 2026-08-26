@@ -1,0 +1,1 @@
+window.LIVINGHUB_JOIN_CONFIG={publicBase:""};
