@@ -38,14 +38,20 @@
       </div>
       <form id="profileForm">
         <div class="grid">
-          <label>昵称<input name="name" required></label>
-          <label>城市<input name="city" required></label>
-          <label>年龄<input name="age" type="number" min="18" required></label>
-          <label>联系方式<input name="contact" required></label>
+          <label>昵称<input name="name" required maxlength="40"></label>
+          <label>年龄<input name="age" type="number" min="18" max="100" required></label>
+          <label>城市<input name="city" required maxlength="60"></label>
+          <label>兴趣<input name="interests" maxlength="120"></label>
         </div>
-        <label>我的介绍<textarea name="intro" maxlength="260"></textarea></label>
-        <label>兴趣标签<input name="interests" placeholder="Coffee, Hiking, Travel"></label>
-        <button class="primary full">保存我的资料</button>
+        <label>公开介绍<textarea name="intro" maxlength="260"></textarea></label>
+        <details class="private-box">
+          <summary>私人联系信息（不公开）</summary>
+          <label>电话或邮箱<input name="contact" maxlength="120"></label>
+        </details>
+        <div class="profile-actions">
+          <button class="primary full">保存我的资料</button>
+          <button type="button" id="deleteProfile" class="danger full">删除我的本机资料</button>
+        </div>
         <div id="profileMsg"></div>
       </form>
     </div>
@@ -78,4 +84,19 @@
 </main>
 <footer>LivingHub · 真实的人 · 真实的活动 · 真实的连接</footer>
 <dialog id="loginDialog"><form method="dialog"><button class="x">×</button><h2>会员登录</h2><input id="loginId" placeholder="会员编号"><input id="loginContact" placeholder="注册联系方式"><button id="loginBtn" type="button" class="primary full">进入我的会员页</button><p id="loginMsg"></p></form></dialog>
+
+<dialog id="organizerDialog">
+  <form method="dialog" class="dialog organizer-dialog">
+    <button class="x" value="cancel">×</button>
+    <span>ORGANIZER CONTACT</span>
+    <h2>想认识 TA？</h2>
+    <p>LivingHub 不直接公开会员私人联系方式。你可以联系组织者，由第三方先确认双方意愿，再决定是否安排真实见面。</p>
+    <div class="organizer-box">
+      <b>联系组织者</b>
+      <span id="organizerEmailText">hello.singlesclub@outlook.com</span>
+    </div>
+    <a id="organizerMail" class="primary full mail-link" href="mailto:hello.singlesclub@outlook.com">发送认识申请</a>
+  </form>
+</dialog>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script><script src="./config.js"></script><script src="./app.js"></script></body></html>
