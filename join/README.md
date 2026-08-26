@@ -40,3 +40,10 @@ v1.1.1
 - Fixed missing `name="photo"` on upload field.
 - Compresses uploaded images before localStorage persistence.
 - Product version remains v1.1.1.
+
+## Stable photo submission fix
+- Membership generation no longer depends on photo processing.
+- Photo is processed before submission.
+- If a photo cannot be decoded/compressed, membership still generates.
+- If localStorage quota is exceeded, membership retries without the photo.
+- Product version remains v1.1.1.
