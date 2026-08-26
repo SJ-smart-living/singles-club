@@ -5,8 +5,76 @@
 <section class="steps"><article>01<br><b>填写资料</b><p>昵称、城市、联系方式。</p></article><article>02<br><b>生成会员号</b><p>获得个人 Member ID。</p></article><article>03<br><b>拿到二维码</b><p>分享给朋友，记录来源。</p></article><article>04<br><b>获得积分</b><p>真实邀请和活动参与可累计。</p></article></section>
 <section id="join" class="panel"><div><span>JOIN LIVINGHUB</span><h2>30秒免费加入</h2><p>先登记成为 Basic Member。后续需要查看完整会员资料或限定权益时，再按对应页面升级。</p><div id="refBanner" hidden></div></div>
 <form id="joinForm"><div class="grid"><label>昵称<input name="name" required></label><label>城市<input name="city" required value="Los Angeles"></label><label>手机或邮箱<input name="contact" required></label><label>年龄<input name="age" type="number" min="18" required></label></div><label>照片（可选）<input id="photoInput" type="file" accept="image/*"></label><div id="photoPreview" hidden></div><details><summary>再说一点自己（可选）</summary><textarea name="intro" placeholder="喜欢什么、想参加什么活动……"></textarea></details><label class="agree"><input type="checkbox" required><span>我已满18岁，并同意平台将资料用于会员登记、活动参与和必要联系。联系方式不会在公开页面直接展示。</span></label><button class="primary full">生成我的会员号</button></form></section>
-<section id="result" class="result" hidden><span>YOU'RE IN</span><h2>欢迎加入 LivingHub</h2><div class="memberid"><small>MEMBER ID</small><strong id="memberId"></strong></div><div class="cols"><article><div id="qrBox"></div><b>扫码加入我的 LivingHub</b><small id="inviteUrl"></small><div class="actions"><button id="copyInvite" class="primary">复制邀请</button><button id="shareInvite">直接分享</button></div></article><article><span>LIVING POINTS</span><strong id="points">100</strong><p>完成注册 +100</p><div class="ledger"><div>邀请1位真实会员 <b>+100</b></div><div>好友首次参加活动 <b>+200</b></div><div>完成一次真实活动 <b>+300</b></div></div></article></div></section>
-<section class="network"><h2>每个人，都可以成为一个入口</h2><div><b>你</b> → <b>朋友A</b> → <b>朋友B</b></div><p>只记录直接邀请，不做多层分销。</p></section>
+<section id="result" class="result" hidden>
+  <span>MEMBER ACCESS</span>
+  <div class="member-top">
+    <div>
+      <h2>欢迎回来，<span id="welcomeName">Member</span></h2>
+      <p>先看看大家的公开资料。联系方式默认隐藏，真实会员资料需要按对应权限解锁。</p>
+    </div>
+    <div class="memberid"><small>MEMBER ID</small><strong id="memberId"></strong></div>
+  </div>
+
+  <div class="member-tabs">
+    <button class="active" data-tab="discover">发现会员</button>
+    <button data-tab="profile">我的资料</button>
+    <button data-tab="invite">我的邀请</button>
+  </div>
+
+  <div id="discoverPanel" class="member-panel">
+    <div class="directory-head">
+      <div><span>DISCOVER</span><h3>看看谁也在这里</h3></div>
+      <small>示例资料均明确标记为“案例观察”，不代表真实可联系会员。</small>
+    </div>
+    <div id="profileGrid" class="profile-grid"></div>
+  </div>
+
+  <div id="profilePanel" class="member-panel" hidden>
+    <div class="profile-editor">
+      <div>
+        <span>MY PROFILE</span>
+        <h3>管理我的资料</h3>
+        <p>你可以随时修改自己的公开资料。联系方式不会在公开卡片里直接显示。</p>
+      </div>
+      <form id="profileForm">
+        <div class="grid">
+          <label>昵称<input name="name" required></label>
+          <label>城市<input name="city" required></label>
+          <label>年龄<input name="age" type="number" min="18" required></label>
+          <label>联系方式<input name="contact" required></label>
+        </div>
+        <label>我的介绍<textarea name="intro" maxlength="260"></textarea></label>
+        <label>兴趣标签<input name="interests" placeholder="Coffee, Hiking, Travel"></label>
+        <button class="primary full">保存我的资料</button>
+        <div id="profileMsg"></div>
+      </form>
+    </div>
+  </div>
+
+  <div id="invitePanel" class="member-panel" hidden>
+    <div class="cols">
+      <article>
+        <div id="qrBox"></div>
+        <b>我的邀请二维码</b>
+        <small id="inviteUrl"></small>
+        <div class="actions">
+          <button id="copyInvite" class="primary">复制邀请</button>
+          <button id="shareInvite">直接分享</button>
+        </div>
+      </article>
+      <article>
+        <span>LIVING POINTS</span>
+        <strong id="points">100</strong>
+        <p>完成注册 +100</p>
+        <div class="ledger">
+          <div>邀请1位真实会员 <b>+100</b></div>
+          <div>好友首次参加活动 <b>+200</b></div>
+          <div>完成一次真实活动 <b>+300</b></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 </main>
 <footer>LivingHub · 真实的人 · 真实的活动 · 真实的连接</footer>
 <dialog id="loginDialog"><form method="dialog"><button class="x">×</button><h2>会员登录</h2><input id="loginId" placeholder="会员编号"><input id="loginContact" placeholder="注册联系方式"><button id="loginBtn" type="button" class="primary full">进入我的会员页</button><p id="loginMsg"></p></form></dialog>
